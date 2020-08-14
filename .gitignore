@@ -1,0 +1,10 @@
+# dependencies
+node_modules
+/backend/node_modules
+.env
+.pnp
+.pnp.js
+
+# misc
+.DS_Store
+

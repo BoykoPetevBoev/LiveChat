@@ -1,0 +1,12 @@
+.container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: white;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    height: 100%;
+}
+.warning {
+    color: var(--special-second);
+}

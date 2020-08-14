@@ -1,0 +1,45 @@
+.field-wrap {
+    height: 70px;
+}
+
+.line {
+    height: 10px;
+}
+
+.input {
+    background-color: var(--secondary-color);
+    border: solid 1px var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    width: 80%;
+    transition: .5s ease;
+}
+
+.input::placeholder{
+    color: var(--special-color);
+}
+
+.input:focus {
+    border: solid 1px var(--special-color);
+    outline: none;
+    box-shadow: 0 0 10px 2px var(--special-color);
+}
+
+.errorBox {
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--primary-color);
+    box-shadow: 0px 0px 5px 4px var(--special-second);
+    padding: 5px 10px;
+    width: 80%;
+    transition: .5s ease;
+}
+
+.errorBox:focus {
+    box-shadow: 0px 0px 10px 5px var(--special-second);
+    outline: none;
+    border: solid 1px var(--special-second);
+}
+.errorBox::placeholder{
+    color: var(--primary-color);
+}

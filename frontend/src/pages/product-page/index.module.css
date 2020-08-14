@@ -1,0 +1,16 @@
+.container {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.product-wraper {
+    padding-top: 50px;
+    padding-bottom: 40px;
+    background-color: white;
+    text-align: center;
+    height: 100%;
+}
+/* .button-wrapper {
+    border: solid 1px red;
+} */

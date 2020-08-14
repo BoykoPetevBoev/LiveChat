@@ -1,0 +1,84 @@
+.container {
+    text-align: center;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(58,198,234,1) 50%, rgba(0,0,0,1) 100%);
+}
+
+.user {
+    padding-bottom: 3%;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0 0 10px black;
+    padding: 2%;
+    margin: 6% 0;
+    display: inline-block;
+}
+
+.welcome {
+    width: 60%;
+    height: 35px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.welcome p {
+    display: inline-block;
+    margin: auto;
+    margin-top: 6px;
+    font: bold 30px arial, sans-serif;
+    background-color: rgba(0, 0, 0, 0.664);
+    color: transparent;
+    text-shadow: 2px 2px 3px var(--special-first);
+    -webkit-background-clip: text;
+       -moz-background-clip: text;
+            background-clip: text;
+}
+
+.table {
+    margin: auto;
+}
+
+.account, .shopping-cart, .wishlist, .ico {
+    background-color: white;
+    box-shadow: inset 0 0 5px black;
+    margin: auto;
+    width: 70%;
+}
+.shopping-cart, .wishlist {
+    display: inline-block;
+    height: 500px;
+    width: 46%;
+    margin: 1%;
+    overflow-y: auto;
+}
+.ico {
+    display: inline-block;
+    width: 46%;
+    margin: 1%;
+    background-color: var(--special-second);
+    color: black;
+}
+.name {
+    background-color: black;
+    color: var(--special-second);
+    height: 28px;
+    margin: 0;
+    box-shadow: inset 0 0 5px black;
+}
+
+
+.account {
+    padding-bottom: 1%;
+    margin-bottom: 1%
+}
+
+
+.tr th {
+    text-align: right;
+    padding: 0 10px;
+    font-weight: 500;
+}
+.tr td {
+    text-align: left;
+    padding: 0 10px;
+}

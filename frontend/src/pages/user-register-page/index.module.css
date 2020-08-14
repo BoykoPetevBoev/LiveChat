@@ -1,0 +1,11 @@
+.background {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-box-shadow: inset 0px 0px 114px 30px rgba(0, 0, 0, 1);
+    -moz-box-shadow: inset 0px 0px 114px 30px rgba(0, 0, 0, 1);
+    box-shadow: inset 0px 0px 114px 30px rgba(0, 0, 0, 1);
+    background-image: url("https://wallpaperplay.com/walls/full/7/3/9/5971.jpg");
+}

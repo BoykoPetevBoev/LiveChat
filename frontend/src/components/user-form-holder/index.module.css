@@ -1,0 +1,39 @@
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -20%, 0);
+        transform: translate3d(0, -20%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.form-holder {
+    box-sizing: content-box;
+    margin: auto;
+    text-align: center;
+    color: var(--special-second);
+    background-color: var(--secondary-color);
+    padding:  0 3% ;
+
+    width: 70%;
+    height: 100%;
+    max-width: 600px;
+    opacity: 0.9;
+    animation: fadeInDown;
+    animation-duration: .5s;
+    -webkit-box-shadow: inset 0px 0px 114px 78px rgba(0, 0, 0, 1);
+    -moz-box-shadow: inset 0px 0px 114px 78px rgba(0, 0, 0, 1);
+    box-shadow: inset 0px 0px 114px 78px rgba(0, 0, 0, 1);
+}
+
+.form-holder h1 {
+    text-align: center;
+    color: var(--primary-color);
+    padding-top: 30%;
+    font-weight: 300;
+    margin: 0 0 40px;
+}

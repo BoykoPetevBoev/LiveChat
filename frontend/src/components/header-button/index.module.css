@@ -1,0 +1,42 @@
+.skew {
+    text-align: center;
+    display: inline-block;
+    transform: skew(20deg);
+    height: 100%;
+    width: 1%;
+    min-width: 15px;
+    background-color: var(--primary-dark);
+    /* text-shadow: 0 0 4px 1px var(--primary-bright); */
+    transition: .5s ease;
+    animation-delay: 1s;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.skew:hover {
+    background-color: var(--primary-bright);
+}
+
+.button {
+    transform: skew(-20deg);
+    color: var(--primary-bright);
+    font-size: 17px;
+    width: 10px;
+    height: 100%;
+    float: left;
+    transition: .2s ease;
+    text-shadow: 0 0 1px 1px var(--primary-dark);
+}
+
+.button:hover {
+    text-decoration: none;
+    color: var(--primary-dark);
+}
+
+.button:active {
+    text-shadow: none;
+    color: var(--primary-bright);   
+}
+.skew:active {
+    background-color: black;
+}

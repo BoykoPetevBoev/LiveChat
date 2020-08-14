@@ -1,0 +1,32 @@
+.product {
+    border-bottom: solid 1px rgb(212, 212, 212);
+    height: 100px;
+}
+
+.image-holder, .price-holder, .button-holder, .name-holder {
+    display: inline-block;
+    width: 25%;
+    vertical-align: middle;
+}
+
+.price {
+    width: 100px;
+    margin: auto;
+    text-align: center;
+}
+
+.img {
+    vertical-align: middle;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.button {
+    background-color: unset;
+    border: none;
+    font-size: larger;
+}
+
+.button:hover {
+    color: var(--special-second);
+}

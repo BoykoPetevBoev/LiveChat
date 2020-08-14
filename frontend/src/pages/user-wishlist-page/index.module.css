@@ -1,0 +1,99 @@
+.container {
+    text-align: center;
+    min-height: 100%;
+    background-color: var(--special-first);
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(58, 198, 234, 1) 50%, rgba(0, 0, 0, 1) 100%);
+}   
+
+.wishlist {
+    height: 50px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.wishlist p {
+    display: inline-block;
+    margin: auto;
+    margin-top: 6px;
+    font: bold 30px arial, sans-serif;
+    background-color: rgba(0, 0, 0, 0.664);
+    color: transparent;
+    text-shadow: 2px 2px 3px var(--special-first);
+    -webkit-background-clip: text;
+       -moz-background-clip: text;
+            background-clip: text;
+}
+.wishlist-wrapper {
+    width: 70%;
+    min-height: 350px;
+    box-shadow: 0 0 10px black;
+    display: inline-block;
+    margin: 6% 0;
+    padding: 0 2%;
+}
+.category {
+    text-align: left;
+}
+
+.product {
+    display: inline-block;
+    color: var(--primary-bright);
+    background-color: var(--primary-bright);
+    border: solid 2px black;
+    color: black;
+    width: 19%;
+    min-width: 250px;
+    max-width: 400px;
+    margin: 5px;
+    text-align: center;
+    transition: 1s ease;
+    margin-bottom: 50px;
+}
+
+.product:hover {
+    border: solid 2px var(--special-first);
+    box-shadow: 0 0 15px var(--special-first);
+}
+
+.product:active {
+    border-color: var(--special-second);
+}
+.ico {
+    pointer-events: none;
+}
+
+.add, .remove {
+    cursor: pointer;
+    width: 50%;
+    border: none;
+    height: 40px;
+    background-color: black;
+    box-shadow: inset 0 0 5px black;
+    margin-top: -5px;
+}
+
+.add {
+    color: var(--special-first);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, var(--special-first) 0%, black 100%);
+}
+
+.remove {
+    color: var(--special-second);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, black 0%, var(--special-second) 100%);
+}
+
+.add:hover, .remove:hover {
+    color: white;
+}
+
+.add:active, .remove:active {
+    color: black;
+}
+
+.add:focus, .remove:focus {
+    border: none;
+    outline: none;
+}

@@ -1,0 +1,51 @@
+.container {
+    background-color: black;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.element {
+    display: inline-block;
+}
+
+.link {
+    display: inline-block;
+    height: 100px;
+    vertical-align: top;
+    padding-top: 0px;
+    color: var(--primary-bright);
+}
+
+.title {
+    font-size: xx-large;
+}
+
+.banner-img {
+    max-width: 100%;
+}
+
+.btn {
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: var(--special-second);
+    text-align: center;
+    border: solid 1px var(--special-second);
+}
+
+.btn:hover {
+    background-image: none;
+    background-color: var(--special-second);
+    color: var(--primary-bright);
+}
+
+.btn:active {
+    background-color: var(--primary-dark);
+    border: none;
+    color: var(--special-second);
+}

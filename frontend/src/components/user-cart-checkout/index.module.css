@@ -1,0 +1,48 @@
+.order {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    height: 400px;
+    background-color: black;
+    color: white;
+    margin-left: 1%;
+    padding: 2% 0;
+}
+
+.heading {
+    font-size: large;
+    border-bottom: solid 1px white;
+    margin: 20px;
+    padding-bottom: 20px;
+}
+
+.checkout {
+    cursor: pointer;
+    width: 90%;
+    height: 50px;
+    font-size: larger;
+    background-color: var(--special-first);
+    border: none;
+    margin-top: 20px;
+    vertical-align: bottom;
+}
+
+.checkout:hover {
+    color: white;
+}
+
+.order-info p, .total-price p {
+    width: 50%;
+    display: inline-block;
+}
+
+.order-info {
+    margin: 20px;
+    border-bottom: solid 1px white;
+    padding-bottom: 20px;
+}
+
+.total-price {
+    font-size: large;
+    margin: 20px;
+}
