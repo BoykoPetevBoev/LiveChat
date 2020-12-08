@@ -25,9 +25,6 @@
     opacity: 0.9;
     animation: fadeInDown;
     animation-duration: .5s;
-    -webkit-box-shadow: inset 0px 0px 114px 78px rgba(0, 0, 0, 1);
-    -moz-box-shadow: inset 0px 0px 114px 78px rgba(0, 0, 0, 1);
-    box-shadow: inset 0px 0px 114px 78px rgba(0, 0, 0, 1);
 }
 
 .form-holder h1 {

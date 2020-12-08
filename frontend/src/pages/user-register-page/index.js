@@ -9,13 +9,11 @@ import Input from '../../components/user-input';
 import { userRegister } from '../../utils/requester';
 
 function RegisterPage() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
-    const [errFirstName, setErrFirstName] = useState(null);
-    const [errLastName, setErrLastName] = useState(null);
+    const [errUsername, setErrUsername] = useState(null);
     const [errEmail, setErrEmail] = useState(null);
     const [errPassword, setErrPassword] = useState(null);
     const [errRePassword, setErrRePassword] = useState(null);
@@ -23,19 +21,14 @@ function RegisterPage() {
     const history = useHistory();
 
     const validateForm = () => {
-        setErrFirstName(null);
-        setErrLastName(null);
+        setErrUsername(null);
         setErrEmail(null);
         setErrPassword(null);
         setErrRePassword(null);
 
         let result = true;
-        if (firstName === '' || firstName.length < 2 || firstName.length > 50) {
-            setErrFirstName('Your first name must be between 2 and 50 characters!');
-            result = false;
-        }
-        if (lastName === '' || lastName.length < 2 || lastName.length > 50) {
-            setErrLastName('Your last name must be between 2 and 50 characters!');
+        if (username === '' || username.length < 2 || username.length > 50) {
+            setErrUsername('Your username must be between 2 and 50 characters!');
             result = false;
         }
         if (email === '' || !email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
@@ -54,8 +47,7 @@ function RegisterPage() {
     }
     const registerHandler = async () => {
         const body = {
-            firstName,
-            lastName,
+            username,
             email,
             password
         };
@@ -85,20 +77,12 @@ function RegisterPage() {
             <FormHolder className='register' title='Sign Up for Free'>
                 <form onSubmit={onSubmit}>
                     <Input
-                        name="firstName"
-                        err={errFirstName}
+                        name="username"
+                        err={errUsername}
                         type="text"
-                        placeholder='First Name'
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                    <Input
-                        name="lastName"
-                        err={errLastName}
-                        type="text"
-                        placeholder='Last Name'
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                        placeholder='Username'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <Input
                         name="email"
