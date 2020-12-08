@@ -1,0 +1,21 @@
+.page {
+    height: 100vh;
+    background: rgb(191,191,191);
+    background: linear-gradient(0deg, rgba(191,191,191,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.content {
+    width: 700px;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 200px;
+}
+
+.content h1 {
+    font-size: 50px;
+}
+
+.content p {
+    font-size: 18px;
+}

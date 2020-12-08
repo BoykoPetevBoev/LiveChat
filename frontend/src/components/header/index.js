@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import styles from './index.module.css';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../Context';
+import { Link } from 'react-router-dom';
 
-import HeaderButtons from '../header-button';
-import ShoppingInfo from '../shopping-info';
 
 function Header() {
     const context = useContext(UserContext);
@@ -18,28 +17,24 @@ function Header() {
 
     return (
         <div className={styles.container}>
-            <nav className={styles.header}>
 
-                <div className={styles.section}>
-                    <HeaderButtons name='Home' path='/' />
-                    {isAdmin ? <HeaderButtons name='Admin' path='/admin' /> : null}
-                </div>
+            <div className={styles.logo}>
+                <h1>LOGO</h1>
+            </div>
 
-                <div className={styles.section}>
-                    <div className={styles['header-logo']}>
-                        <p>GAME ZONE</p>
-                    </div>
-                </div>
+            <nav className={styles.navigation}>
 
-                <div className={styles.section}>
-                    {loggedIn ? <HeaderButtons name='Profile' path='/profile' /> : null}
-                    {loggedIn ? <HeaderButtons name='Logout' path='/' onClick={logout} /> : null}
-                    {loggedIn ? null : <HeaderButtons name='Login' path='/login' />}
-                    {loggedIn ? null : <HeaderButtons name='Register' path='/register' />}
-                </div>
-
+                <Link className={styles.button} to='/'> Home </Link>
+                <Link className={styles.button} to='/about'> About </Link>
+                <Link className={styles.button} to='/register'> Register </Link>
+                <Link className={styles.button} to='/login'> Login </Link>
+                {/* 
+                <HeaderButtons name='Home' path='/' />
+                {loggedIn ? <HeaderButtons name='Logout' path='/' onClick={logout} /> : null}
+                {loggedIn ? null : <HeaderButtons name='Login' path='/login' />}
+                {loggedIn ? null : <HeaderButtons name='Register' path='/register' />} */}
             </nav>
-            {loggedIn ? <ShoppingInfo /> : null}
+
         </div>
     )
 }

@@ -1,90 +1,18 @@
-html {
-  height: 100%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, 'Varela Round', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   vertical-align: top;
-}
 
-.error-div {
-  height: 100%;
-  width: 100%;
-}
-
-#root {
-  height: 100%;
-  background-color: black;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-:root {
-  --primary-bright: #ffffff;
-  --primary-dark: #111821;
-  --primary-dark: black;
-  --primary-dark-second: #102b3e;
-  --special-first: #3ac6ea;
-  --special-second: #D1285D;
-  --special-third: #aed103;
-  --primary-color: #ced8e1;
-  --secondary-color: #102b3e;
-  /* --special-color:  #3ac6ea; */
-  --special-color: #3ac6ea;
-  --special-color-red: #e80000;
-  --special-color-green: #59c562;
-  --special-color-purpure: #6964e2;
-}
-
-.pageWidth {
-  width: 70%;
-}
-
-.mainContainer {
-  background-color: var(--secondary-color);
-  border: solid 2px var(--special-color);
-  box-shadow: 0 0 10px 5px var(--secondary-color);
-  margin-top: 100px;
-  margin-bottom: 100px;
-  text-align: center;
-  padding: 40px;
-  color: var(--special-color-green);
-}
-
-.container {
-  max-width: 960px;
 }
 
 a {
   text-decoration: none;
-}
-
-html, body, #eventsHolder {
-  min-height: 100%;
-  margin: 0;
-  background-color: var(--primary-color);
-  text-decoration: none;
-}
-
-.reg {
-  margin-right: 20px;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--special-color);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--special-color-green);
+  color: black;
 }
