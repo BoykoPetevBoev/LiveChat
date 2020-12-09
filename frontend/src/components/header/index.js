@@ -3,7 +3,7 @@ import styles from './index.module.css';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../Context';
 import { Link } from 'react-router-dom';
-
+import logo from './logo.png'
 
 function Header() {
     const context = useContext(UserContext);
@@ -19,7 +19,9 @@ function Header() {
         <div className={styles.container}>
 
             <div className={styles.logo}>
-                <h1>LOGO</h1>
+                <Link to='/'>
+                    <img src={logo} />
+                </Link>
             </div>
 
             <nav className={styles.navigation}>

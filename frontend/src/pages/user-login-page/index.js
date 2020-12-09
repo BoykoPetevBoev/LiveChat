@@ -23,7 +23,7 @@ function LoginPage() {
             setErr('Invalid email or password!');
             return;
         }
-        const user = await userLogin({email, password});
+        const user = await userLogin({ email, password });
         if (user) {
             context.login(user);
             history.push('/');
@@ -34,29 +34,33 @@ function LoginPage() {
     }
 
     return (
-        <div className={styles.background}>
+        <div className={styles.container}>
             <Header />
-            <FormHolder className='login' title="Welcome Back!">
-                <form onSubmit={onSubmit}>
-                    <Input
-                        name='email'
-                        err={err}
-                        type='text'
-                        placeholder='Email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input
-                        name='password'
-                        err={err ? true : false}
-                        type='password'
-                        placeholder='Password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <SubmitButton value='LOGIN' />
-                </form>
-            </FormHolder>
+            <main>
+
+                <FormHolder className='login' title="Welcome Back!">
+                    <form className='form' onSubmit={onSubmit}>
+                        <Input
+                            name='email'
+                            err={err}
+                            type='text'
+                            placeholder='Email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Input
+                            name='password'
+                            err={err ? true : false}
+                            type='password'
+                            placeholder='Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <SubmitButton value='LOGIN' />
+                    </form>
+                </FormHolder>
+
+            </main>
         </div>
     )
 }
