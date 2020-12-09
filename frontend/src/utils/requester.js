@@ -41,12 +41,21 @@ async function fetchRequest(method, body, url) {
 }
 
 async function userLogin(body) {
+<<<<<<< HEAD
     const promise = await axiosRequest('POST', body, `${url}/login`);
+=======
+    console.log(body);
+    const promise = await fetchRequest('POST', {email: 'boyko@boev.com', password: '12345'}, `https://localhost:44310/api/People`);
+>>>>>>> 9da922cff91ae8f09db26caca38f4227fbcdeb41
     return await handleUserRequest(promise);
 }
 
 async function userRegister(body) {
+<<<<<<< HEAD
     const promise = await httpRequest('POST', body, `${url}/register`);
+=======
+    const promise = await fetchRequest('POST', body, `${url}/api/People`);
+>>>>>>> 9da922cff91ae8f09db26caca38f4227fbcdeb41
     return await handleUserRequest(promise);
 }
 
