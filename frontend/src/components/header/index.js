@@ -27,6 +27,7 @@ function Header() {
             <nav className={styles.navigation}>
 
                 <Link className={styles.button} to='/'> Home </Link>
+                <Link className={styles.button} to='/chat'> Chat </Link>
                 <Link className={styles.button} to='/'> About </Link>
                 <Link className={styles.button} to='/register'> Register </Link>
                 <Link className={styles.button} to='/login'> Login </Link>

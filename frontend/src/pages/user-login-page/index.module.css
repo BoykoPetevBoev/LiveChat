@@ -9,3 +9,15 @@
     height: 300px;
     /* margin-top: 100px; */
 }
+
+.link {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link a {
+    color: blue;
+    padding: 0 10px;
+}

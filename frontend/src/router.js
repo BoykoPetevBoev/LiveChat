@@ -5,6 +5,7 @@ import HomePage from './pages/home-page';
 import RegisterPage from './pages/user-register-page';
 import LoginPage from './pages/user-login-page';
 import ErrorPage from './pages/error-page';
+import ChatPage from './pages/chat-page';
 
 import UserContext from './Context';
 
@@ -18,6 +19,10 @@ function App() {
         <Route exact path='/'>
           <HomePage />
         </Route>
+        
+        <Route exact path='/chat'>
+          <ChatPage />
+        </Route>
 
         <Route exact path='/login'>
           {loggedIn ? <ErrorPage /> : <LoginPage />}
@@ -26,6 +31,7 @@ function App() {
         <Route exact path='/register'>
           {loggedIn ? <ErrorPage /> : <RegisterPage />}
         </Route>
+
 
         <Route component={ErrorPage} />
       </Switch>

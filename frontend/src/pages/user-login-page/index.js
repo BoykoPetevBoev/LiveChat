@@ -7,6 +7,7 @@ import SubmitButton from '../../components/user-submit-button';
 import Input from '../../components/user-input';
 import UserContext from '../../Context';
 import { userLogin } from '../../utils/requester';
+import { Link } from 'react-router-dom';
 
 
 function LoginPage() {
@@ -57,6 +58,10 @@ function LoginPage() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <SubmitButton value='LOGIN' />
+                        <div className={styles.link}>
+                            <p>Don't have an account?</p>
+                            <Link to='/register'>Sign up</Link>
+                        </div>
                     </form>
                 </FormHolder>
 

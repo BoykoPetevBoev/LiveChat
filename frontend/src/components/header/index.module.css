@@ -3,14 +3,14 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 70px;
+  height: 7vh;
   font-weight: 900;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 .navigation {
   width: 25%;
-  min-width: 300px;
+  min-width: 500px;
   display: flex;
   justify-content: space-around;
 }
@@ -37,14 +37,11 @@
 }
 
 .logo {
-  height: 222px;
-  width: 222px;
-  border-radius: 90%;
-  border: solid 5px #87c13f;
+  height: 100%;
+  /* border-radius: 90%; */
+  /* border: solid 5px #87c13f; */
 }
 
 .logo img {
-  margin-top: 60px;
-  max-width: 300px;
-  max-height: 300px;
+  height: 100%;
 }
