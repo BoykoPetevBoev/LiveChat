@@ -9,7 +9,7 @@ function Chat() {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if(!message) return;
+        if (!message) return;
 
         setMessages([message, ...messages]);
         setMessage('');
@@ -17,14 +17,16 @@ function Chat() {
 
     const renderMessages = (msg) => {
         return (
-            <p>{msg}</p>
+            <div>
+                <p>{msg}</p>
+            </div>
         )
     }
 
     return (
         <div className={styles.container}>
             <div className={styles.chat}>
-               {messages.map(msg => renderMessages(msg))}
+                {messages.map(msg => renderMessages(msg))}
             </div>
             <form className={styles.form} onSubmit={onSubmit}>
                 <input
@@ -33,7 +35,12 @@ function Chat() {
                     placeholder="Aa"
                     value={message}
                     onChange={e => setMessage(e.target.value)}
-                ></input>
+                />
+                <button 
+                    type="submit"
+                    value="Send"
+                    className={styles['send-button']}
+                >Send</button>
             </form>
         </div>
     )
