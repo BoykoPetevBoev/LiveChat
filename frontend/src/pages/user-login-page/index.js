@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.css';
 import Header from '../../components/header';
 import FormHolder from '../../components/user-form-holder';

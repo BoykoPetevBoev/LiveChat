@@ -1,0 +1,39 @@
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 92vh;
+}
+.send-message {
+    width: 80%;
+}
+.chat {
+    height: 100px;
+    flex-grow: 20;
+    text-align: right;
+    padding: 30px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: scroll;
+}
+
+.chat p {
+    border-radius: 20px;
+    height: 35px;
+    padding: 8px 12px;
+    background-color: #1877F2;
+    box-sizing: border-box;
+    color: white;
+}
+.form {
+    flex-grow: 1;
+    /* max-height: 53px; */
+    vertical-align: bottom;
+}
+.form .input{
+    height: 40px;
+    width: 70%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    border-radius: 20px;
+}
