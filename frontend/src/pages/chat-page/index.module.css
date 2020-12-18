@@ -1,0 +1,23 @@
+.container {
+    min-height: 100vh;
+}
+
+.main {
+    height: 93vh;
+    display: flex;
+    align-items: stretch ;
+}
+
+.main div {
+   
+}
+
+.main .aside {
+    flex-grow: 1;
+    border-top: solid 1px rgba(191,191,191,1);
+}
+
+.main .chat-holder {
+    border: solid 1px rgba(191,191,191,1);
+    flex-grow: 4;
+}

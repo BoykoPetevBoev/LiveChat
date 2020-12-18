@@ -1,17 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
-
 .container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 70px;
+  height: 7vh;
   font-weight: 900;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 .navigation {
   width: 25%;
-  min-width: 300px;
+  min-width: 500px;
   display: flex;
   justify-content: space-around;
 }
@@ -38,5 +37,11 @@
 }
 
 .logo {
-  font-family: 'Saira Stencil One', cursive;
+  height: 100%;
+  /* border-radius: 90%; */
+  /* border: solid 5px #87c13f; */
+}
+
+.logo img {
+  height: 100%;
 }

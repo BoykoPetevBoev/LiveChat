@@ -7,6 +7,7 @@ import FormHolder from '../../components/user-form-holder';
 import SubmitButton from '../../components/user-submit-button';
 import Input from '../../components/user-input';
 import { userRegister } from '../../utils/requester';
+import {Link} from 'react-router-dom';
 
 function RegisterPage() {
     const [username, setUsername] = useState('');
@@ -27,8 +28,8 @@ function RegisterPage() {
         setErrRePassword(null);
 
         let result = true;
-        if (username === '' || username.length < 2 || username.length > 50) {
-            setErrUsername('Your username must be between 2 and 50 characters!');
+        if (username === '' || username.length < 2 || username.length > 20) {
+            setErrUsername('Your username must be between 2 and 20 characters!');
             result = false;
         }
         if (email === '' || !email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
@@ -109,6 +110,10 @@ function RegisterPage() {
                         onChange={(e) => setRePassword(e.target.value)}
                     />
                     <SubmitButton value='GET STARTED' />
+                    <div className={styles.link}>
+                            <p>Already have an account?</p>
+                            <Link to='/login'>Login</Link>
+                        </div>
                 </form>
             </FormHolder>
         </div>

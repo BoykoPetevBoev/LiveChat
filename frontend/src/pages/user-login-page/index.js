@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.css';
 import Header from '../../components/header';
 import FormHolder from '../../components/user-form-holder';
@@ -7,6 +7,7 @@ import SubmitButton from '../../components/user-submit-button';
 import Input from '../../components/user-input';
 import UserContext from '../../Context';
 import { userLogin } from '../../utils/requester';
+import { Link } from 'react-router-dom';
 
 
 function LoginPage() {
@@ -23,7 +24,7 @@ function LoginPage() {
             setErr('Invalid email or password!');
             return;
         }
-        const user = await userLogin({email, password});
+        const user = await userLogin({ email, password });
         if (user) {
             context.login(user);
             history.push('/');
@@ -34,29 +35,37 @@ function LoginPage() {
     }
 
     return (
-        <div className={styles.background}>
+        <div className={styles.container}>
             <Header />
-            <FormHolder className='login' title="Welcome Back!">
-                <form onSubmit={onSubmit}>
-                    <Input
-                        name='email'
-                        err={err}
-                        type='text'
-                        placeholder='Email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input
-                        name='password'
-                        err={err ? true : false}
-                        type='password'
-                        placeholder='Password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <SubmitButton value='LOGIN' />
-                </form>
-            </FormHolder>
+            <main>
+
+                <FormHolder className='login' title="Welcome Back!">
+                    <form className='form' onSubmit={onSubmit}>
+                        <Input
+                            name='email'
+                            err={err}
+                            type='text'
+                            placeholder='Email'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Input
+                            name='password'
+                            err={err ? true : false}
+                            type='password'
+                            placeholder='Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <SubmitButton value='LOGIN' />
+                        <div className={styles.link}>
+                            <p>Don't have an account?</p>
+                            <Link to='/register'>Sign up</Link>
+                        </div>
+                    </form>
+                </FormHolder>
+
+            </main>
         </div>
     )
 }
