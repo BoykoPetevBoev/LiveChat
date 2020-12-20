@@ -12,7 +12,7 @@ async function fetchRequest(method, body, url) {
 }
 
 async function userLogin(body) {
-    const promise = await fetchRequest('POST', {email: 'boyko@boev.com', password: '12345'}, `https://localhost:44310/api/People`);
+    const promise = await fetchRequest('POST', body, `https://localhost:44310/api/People`);
     return await handleResponse(promise);
 }
 
