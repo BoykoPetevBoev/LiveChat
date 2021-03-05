@@ -1,33 +1,38 @@
-const url = "http://localhost/44310/"
 
-async function fetchRequest(method, body, url) {
-<<<<<<< HEAD
-    
-=======
-    console.log(body)
->>>>>>> 8528cec0feb26a07903680cfd05c7b8090583044
-    const promise = await fetch(url, {
+const URL = "http://localhost:5000"
+
+function fetchRequest(method, body, url) {
+
+    const params = {
         method: method,
-        
         headers: { 'Content-Type': 'application/json' },
+        mode: 'cors',
+        credentials: 'same-origin',
         body: JSON.stringify(body)
-    });
-    return promise;
+    }
+    return fetch(url, params)
+        .then(res => promiseHandler(res))
+        .catch(err => errorHandler(err));
+}
+
+function promiseHandler(res) {
+    if (res.status < 300) return res.json();
+    else throw new Error('Something went wrong on api server!');
+}
+
+function errorHandler(err) {
+    console.error(err);
 }
 
 async function userLogin(body) {
-    const promise = await fetchRequest('POST', body, `https://localhost:44310/api/People`);
-    return await handleResponse(promise);
+    const response = await fetchRequest('POST', body, `${URL}/login`);
+    console.log(response);
+    return response;
 }
 
 async function userRegister(body) {
-    const promise = await fetchRequest('POST', body, `${url}api/People`);
-    return await handleResponse(promise);
-}
-
-async function handleResponse(promise) {
-    console.log(promise);
-    return promise;
+    const response = await fetchRequest('POST', body, `${URL}/register`);
+    return response;
 }
 
 module.exports = {

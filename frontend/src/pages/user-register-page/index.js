@@ -7,7 +7,7 @@ import FormHolder from '../../components/user-form-holder';
 import SubmitButton from '../../components/user-submit-button';
 import Input from '../../components/user-input';
 import { userRegister } from '../../utils/requester';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function RegisterPage() {
     const [username, setUsername] = useState('');
@@ -58,17 +58,14 @@ function RegisterPage() {
             context.login(user);
             history.push('/');
         }
-        else {
-            setErrEmail('Email is already registered!');
-        }
+        else setErrEmail('Email is already registered!');
+
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validateForm();
-        if (isValid) {
-            registerHandler();
-        }
+        if (isValid) registerHandler();
     }
 
     return (
@@ -111,9 +108,9 @@ function RegisterPage() {
                     />
                     <SubmitButton value='GET STARTED' />
                     <div className={styles.link}>
-                            <p>Already have an account?</p>
-                            <Link to='/login'>Login</Link>
-                        </div>
+                        <p>Already have an account?</p>
+                        <Link to='/login'>Login</Link>
+                    </div>
                 </form>
             </FormHolder>
         </div>
