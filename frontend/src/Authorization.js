@@ -42,9 +42,6 @@ function Authorization(props) {
         setUser(user);
         setLoggedIn(true);
         setLoading(false);
-        if (user && user._id === '5f32a1136431e10fd0cce82f') {
-            setIsAdmin(true);
-        }
     }
 
     const logout = () => {
