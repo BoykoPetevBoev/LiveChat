@@ -55,8 +55,8 @@ function RegisterPage() {
 
         const user = await userRegister(body);
         if (user) {
-            context.login(user);
-            history.push('/');
+            // context.login(user);
+            // history.push('/');
         }
         else setErrEmail('Email is already registered!');
 

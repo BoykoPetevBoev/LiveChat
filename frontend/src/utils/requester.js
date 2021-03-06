@@ -2,7 +2,6 @@
 const URL = "http://localhost:5000"
 
 function fetchRequest(method, body, url) {
-
     const params = {
         method: method,
         headers: { 'Content-Type': 'application/json' },
@@ -15,9 +14,12 @@ function fetchRequest(method, body, url) {
         .catch(err => errorHandler(err));
 }
 
-function promiseHandler(res) {
-    if (res.status < 300) return res.json();
-    else throw new Error('Something went wrong on api server!');
+async function promiseHandler(res) {
+    const result = res.ok
+        ? await res.json()
+        : undefined;
+
+    return result;
 }
 
 function errorHandler(err) {
@@ -26,7 +28,6 @@ function errorHandler(err) {
 
 async function userLogin(body) {
     const response = await fetchRequest('POST', body, `${URL}/login`);
-    console.log(response);
     return response;
 }
 
