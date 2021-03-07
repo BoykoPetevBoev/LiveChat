@@ -12,14 +12,14 @@
 }
 
 .form-holder {
-    box-sizing: content-box;
-    margin: 3% auto;
+    /* box-sizing: content-box; */
+    margin: auto;
     text-align: center;
     color: var(--special-second);
     background-color: var(--secondary-color);
-    padding: 3%;
-    width: 70%;
-    max-width: 500px;
+    padding: 2%;
+    width: 350px;
+    /* max-width: 500px; */
     opacity: 0.9;
     animation: fadeInDown;
     animation-duration: .5s;
@@ -29,7 +29,7 @@
     /* display: flex; */
     /* flex-direction: column; */
     /* justify-content: space-around; */
-    min-height: 500px;
+    /* min-height: 500px; */
     
 }
 
