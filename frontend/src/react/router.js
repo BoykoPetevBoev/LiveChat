@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import HomePage from './pages/home-page';
-import RegisterPage from './pages/user-register-page';
-import LoginPage from './pages/user-login-page';
-import ErrorPage from './pages/error-page';
-import ChatPage from './pages/chat-page';
+import HomePage from '../pages/home-page';
+import RegisterPage from '../pages/user-register-page';
+import LoginPage from '../pages/user-login-page';
+import ErrorPage from '../pages/error-page';
+import ChatPage from '../pages/chat-page';
 
 import UserContext from './Context';
 
 function App() {
-  const { loggedIn, isAdmin } = useContext(UserContext)
+  const { loggedIn } = useContext(UserContext)
   return (
 
     <Router>

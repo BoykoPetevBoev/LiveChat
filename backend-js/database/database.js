@@ -1,10 +1,12 @@
-const bcrypt = require('bcrypt');
 const UserSchema = require('./models/Users');
+const { hashPassword, checkPassword } = require('./utils');
 
-function createUser(userFormData) {
+async function createUser(userFormData) {
     userFormData.password = hashPassword(userFormData.password)
     const user = new UserSchema(userFormData);
-    console.log(user);
+    const successfull = await user.save();
+
+    return user;
 }
 
 async function getUser(selector) {
@@ -26,17 +28,6 @@ function errorHandler(err) {
 }
 
 
-function hashPassword(password){
-    if(typeof password !== 'string') return undefined;
-    const salt = bcrypt.genSaltSync(11);
-    const hashPassword = bcrypt.hashSync(password, salt);
-    return hashPassword;
-}
-async function checkPassword(password, hash){
-    if(typeof password !== 'string' || typeof hash !== 'string') return undefined;
-    const match = await bcrypt.compare(password, hash);
-    return match;
-}
 
 
 module.exports = {

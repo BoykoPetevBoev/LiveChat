@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom'
-import UserContext from '../../Context';
+import UserContext from '../../react/Context';
 import styles from './index.module.css';
 import Header from '../../components/header';
 import FormHolder from '../../components/user-form-holder';
@@ -55,9 +55,8 @@ function RegisterPage() {
 
         const user = await userRegister(body);
         if (user) {
-            console.log(`Register Page: ${user}`);
-            // context.login(user);
-            // history.push('/');
+            context.login(user);
+            history.push('/');
         }
         else setErrEmail('Email is already registered!');
 
