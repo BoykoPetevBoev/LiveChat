@@ -4,6 +4,7 @@
 
 .line {
     height: 10px;
+    font-size: small;
     color: #ec5a28;
 }
 
@@ -12,9 +13,9 @@
     border-radius: 20px;
     transition: .5s ease;
     border: none;
-    height: 40px;
+    height: 30px;
     width: 100%;
-    font-size: 18px;
+    font-size:medium;
     transition: .5s ease;
     cursor: pointer;
     padding-left: 20px;

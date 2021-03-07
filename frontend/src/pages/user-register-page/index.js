@@ -55,6 +55,7 @@ function RegisterPage() {
 
         const user = await userRegister(body);
         if (user) {
+            console.log(`Register Page: ${user}`);
             // context.login(user);
             // history.push('/');
         }

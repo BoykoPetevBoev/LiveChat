@@ -26,8 +26,7 @@ function LoginPage() {
         }
         const user = await userLogin({ email, password });
         if (user) {
-            // context.login(user);
-            // history.push('/');
+            console.log(`Login Page: ${user}`);
         }
         else {
             setErr('Invalid email or password!');

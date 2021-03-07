@@ -1,31 +1,25 @@
 const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
-const router = require('./router.js');
-const cors = require('cors');
 
-const PORT = process.env.PORT || 5000;
+const config = require('./config/config');
+const databaseConfig = require('./database/config');
+const expressConfig = require('./config/express');
+const expressRouter = require('./server/router');
+const socketIoConfig = require('./config/socketio');
+
+const router = express.Router();
 const app = express();
 const server = http.createServer(app);
-
 const io = socketio(server);
-io.on('connection', (socket) => {
-    console.log('We have new connection');
-    
-    socket.on('disconnect', () => {
-        console.log('Disconnect');
-    })
+const port = config.port;
+
+expressConfig(app, router);
+expressRouter(router);
+socketIoConfig(io);
+databaseConfig();
+
+server.listen(port, () => {
+    console.log(`Server has started on port ${port}`);
 })
 
-app.use(cors({
-    exposedHeaders: 'Authorization'
-}));
-app.use(express.json());
-app.use(express.static('static'));
-// app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }))
-app.use(router);
-
-server.listen(PORT, () => {
-    console.log('Server has started on port ' + PORT);
-})
