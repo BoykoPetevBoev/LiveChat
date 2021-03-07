@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './index.module.css';
 import { useHistory } from 'react-router-dom';
-import UserContext from '../../Context';
+import UserContext from '../../react/Context';
 import { Link } from 'react-router-dom';
 import logo from './logo.png'
 
@@ -29,13 +29,10 @@ function Header() {
                 <Link className={styles.button} to='/'> Home </Link>
                 <Link className={styles.button} to='/chat'> Chat </Link>
                 <Link className={styles.button} to='/'> About </Link>
-                <Link className={styles.button} to='/register'> Register </Link>
-                <Link className={styles.button} to='/login'> Login </Link>
-                {/* 
-                <HeaderButtons name='Home' path='/' />
-                {loggedIn ? <HeaderButtons name='Logout' path='/' onClick={logout} /> : null}
-                {loggedIn ? null : <HeaderButtons name='Login' path='/login' />}
-                {loggedIn ? null : <HeaderButtons name='Register' path='/register' />} */}
+
+                {loggedIn ? <Link className={styles.button} to='/' onClick={logout} > Logout </Link> : null}
+                {loggedIn ? null : <Link className={styles.button} to='/register'> Register </Link>}
+                {loggedIn ? null : <Link className={styles.button} to='/login'> Login </Link>}
             </nav>
 
         </div>

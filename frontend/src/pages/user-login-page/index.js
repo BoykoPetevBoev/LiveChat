@@ -5,7 +5,7 @@ import Header from '../../components/header';
 import FormHolder from '../../components/user-form-holder';
 import SubmitButton from '../../components/user-submit-button';
 import Input from '../../components/user-input';
-import UserContext from '../../Context';
+import UserContext from '../../react/Context';
 import { userLogin } from '../../utils/requester';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +26,8 @@ function LoginPage() {
         }
         const user = await userLogin({ email, password });
         if (user) {
-            console.log(`Login Page: ${user}`);
+            context.login(user);
+            history.push('/');
         }
         else {
             setErr('Invalid email or password!');

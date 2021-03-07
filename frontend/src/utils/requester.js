@@ -1,4 +1,3 @@
-
 const URL = "http://localhost:5000"
 
 function fetchRequest(method, body, url) {
@@ -28,11 +27,15 @@ function errorHandler(err) {
 
 async function userLogin(body) {
     const response = await fetchRequest('POST', body, `${URL}/login`);
+    console.log(response);
     return response;
 }
 
 async function userRegister(body) {
     const response = await fetchRequest('POST', body, `${URL}/register`);
+    if(response) {
+
+    }
     return response;
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserContext from './Context';
-import Loading from './components/loading';
-import { userAuthorization } from './utils/requester';
+import Loading from '../components/loading';
+import { userAuthorization } from '../utils/requester';
 
 function getCookie(name) {
     const cookieValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
