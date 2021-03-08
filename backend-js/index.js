@@ -20,6 +20,6 @@ socketIoConfig(io);
 databaseConfig();
 
 server.listen(port, () => {
-    console.log(`Server has started on port ${port}`);
+    console.log(`[server] Server has started on port ${port}`);
 })
 

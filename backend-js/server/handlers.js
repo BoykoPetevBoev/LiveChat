@@ -20,10 +20,9 @@ async function userLogin(req, res) {
 
 async function userRegister(req, res) {
     const user = req.body;
-    if (!user.username || !user.email || !user.password) {
+    if (!user.username || !user.email || !user.password) 
         return res.status(401).send('Invalid data').end();
-    }
-
+    
     const foundUser = await getUser({ email: user.email });
     if (foundUser)
         return res.status(401).send('This email is already registered!').end();

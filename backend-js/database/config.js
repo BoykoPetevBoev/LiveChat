@@ -13,7 +13,7 @@ function databaseConfig() {
     function databaseStatus(err) {
         err
         ? console.error(err)
-        : console.log('Database is setup and running');
+        : console.log('[database] Database is setup and running');
     }
 }
 
