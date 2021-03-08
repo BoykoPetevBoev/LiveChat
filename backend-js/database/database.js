@@ -6,6 +6,8 @@ async function createUser(userFormData) {
     const user = new UserSchema(userFormData);
     const successfull = await user.save();
 
+
+
     return user;
 }
 
@@ -24,7 +26,8 @@ async function getUser(selector) {
 // }
 
 function errorHandler(err) {
-    console.log(err);
+    console.error(err);
+    
 }
 
 
