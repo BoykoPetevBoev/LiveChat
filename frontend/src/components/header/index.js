@@ -30,6 +30,7 @@ function Header() {
                 <Link className={styles.button} to='/'> About </Link>
 
                 {loggedIn ? <Link className={styles.button} to='/chat'> Chat </Link> : null}
+                {loggedIn ? <Link className={styles.button} to='/friends'> Friends </Link> : null}
                 {loggedIn ? <Link className={styles.button} to='/' onClick={logout} > Logout </Link> : null}
                 {loggedIn ? null : <Link className={styles.button} to='/register'> Register </Link>}
                 {loggedIn ? null : <Link className={styles.button} to='/login'> Login </Link>}

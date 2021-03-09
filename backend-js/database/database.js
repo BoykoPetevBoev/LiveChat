@@ -6,8 +6,6 @@ async function createUser(userFormData) {
     const user = new UserSchema(userFormData);
     const successfull = await user.save();
 
-
-
     return user;
 }
 
@@ -30,11 +28,17 @@ function errorHandler(err) {
     
 }
 
+async function findUsers(username) {
+    const users = UserSchema.find(username)
+    return users;
+}
+
 
 
 
 module.exports = {
     // getAllUsers,
     createUser,
-    getUser
+    getUser,
+    findUsers
 }
