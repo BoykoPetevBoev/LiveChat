@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
-import UserContext from '../../react/Context';
 import styles from './index.module.css';
+import UserContext from '../../react/Context';
 import Header from '../../components/header';
 import FormHolder from '../../components/user-form-holder';
 import SubmitButton from '../../components/user-submit-button';
 import Input from '../../components/user-input';
 import { userRegister } from '../../utils/requester';
-import { Link } from 'react-router-dom';
 
 function RegisterPage() {
     const [username, setUsername] = useState('');

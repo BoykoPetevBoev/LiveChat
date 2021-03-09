@@ -9,7 +9,8 @@ function ErrorPage() {
     return (
         <div className={styles["container"]}>
             <Header />
-            <img className={styles.img} src={image} alt="404 NotFound" />
+            {/* <img className={styles.img} src={image} alt="404 NotFound" /> */}
+            <h1>404 Not Found</h1>
         </div>
     );
 }

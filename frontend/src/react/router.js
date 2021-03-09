@@ -6,6 +6,7 @@ import RegisterPage from '../pages/user-register-page';
 import LoginPage from '../pages/user-login-page';
 import ErrorPage from '../pages/error-page';
 import ChatPage from '../pages/chat-page';
+import FriendsPage from '../pages/friends-page';
 
 import UserContext from './Context';
 
@@ -22,6 +23,10 @@ function App() {
         
         <Route exact path='/chat'>
           <ChatPage />
+        </Route>
+
+        <Route exact path='/friends'>
+          <FriendsPage />
         </Route>
 
         <Route exact path='/login'>

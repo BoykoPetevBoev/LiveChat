@@ -39,7 +39,13 @@ async function userRegister(body) {
     return response;
 }
 
+async function findUsers(username) {
+    const response = await fetchRequest('GET', undefined, `${URL}/users?username=${username}`);
+    console.log(response);
+}
+
 module.exports = {
     userLogin,
-    userRegister
+    userRegister,
+    findUsers
 }
