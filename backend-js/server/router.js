@@ -6,6 +6,10 @@ function expressRouter(router){
 
     router.post('/login', userLogin);
     router.post('/register', userRegister);
+
+    router.use('*', (req, res) => {
+        res.status(404).json({erroe: 'Not found!'})
+    })
 }
 
 module.exports = expressRouter;
