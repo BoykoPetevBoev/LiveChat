@@ -2,13 +2,6 @@ const supertest = require('supertest');
 const expressConfig = require('../config/express');
 const UserSchema = require('../database/models/Users');
 const setupDB = require('./test-setup');
-setupDB('Chat-Test-Server');
-
-const {
-    createUser,
-    findUser,
-    findUsers
-} = require('../database/database');
 
 const app = expressConfig();
 const user = {
@@ -16,6 +9,7 @@ const user = {
     username: 'testServer',
     password: 'testServer'
 }
+setupDB('Chat-Test-Server');
 
 test('/register', async () => {
     const resValid = await supertest(app).post('/register').send(user);
