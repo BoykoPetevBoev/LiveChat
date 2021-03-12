@@ -1,12 +1,9 @@
-const mongoose = require('mongoose');
 const UserSchema = require('../database/models/Users');
 const setupDB = require('./test-setup');
-setupDB('Chat-Test-Database');
-
-const {
-    createUser,
-    findUser,
-    findUsers
+const { 
+    createUser, 
+    findUser, 
+    findUsers 
 } = require('../database/database');
 
 const user = {
@@ -14,6 +11,7 @@ const user = {
     username: 'testDatabase',
     password: 'testDatabase'
 }
+setupDB('Chat-Test-Database');
 
 test('Mongoose model schema', () => {
     const userModel = new UserSchema(user);
