@@ -6,7 +6,7 @@ const config = {
     dbUser: 'user',
     dbPassword: 123,
     dbAddress: 'softuni.dx3ut.mongodb.net',
-    // dbName: 'Chat-Test'
+    dbName: 'Chat-Test'
 }
 
 async function removeAllCollections() {
@@ -31,21 +31,22 @@ async function dropAllCollections() {
     }
 }
 
-module.exports = {
-    setupDB(dbName) {
+function setupDB(dbName) {
 
-        beforeAll(async () => {
-            const url = `mongodb+srv://${config.dbUser}:${config.dbPassword}@${config.dbAddress}/${dbName}?retryWrites=true&w=majority`;
-            await mongoose.connect(url, { useNewUrlParser: true,  useUnifiedTopology: true })
-        })
+    beforeAll(async () => {
+        const url = `mongodb+srv://${config.dbUser}:${config.dbPassword}@${config.dbAddress}/${dbName}?retryWrites=true&w=majority`;
+        await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+    })
 
-        afterEach(async () => {
-            await removeAllCollections()
-        })
+    afterEach(async () => {
+        await removeAllCollections()
+    })
 
-        afterAll(async () => {
-            await dropAllCollections()
-            await mongoose.connection.close()
-        })
-    }
+    afterAll(async () => {
+        await dropAllCollections()
+        await mongoose.connection.close()
+    })
 }
+
+// setupDB('Chat-Test')
+module.exports = setupDB;

@@ -1,7 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const expressRouter = require('../server/router');
 
-function expressConfig(app, router) {
+
+function expressConfig() {
+    const router = express.Router();
+    const app = express();
 
     app.use(cors({ exposedHeaders: 'Authorization' }));
     app.use(express.json());
@@ -9,6 +13,8 @@ function expressConfig(app, router) {
     app.use(express.urlencoded({ extended: true }))
     app.use(router);
     // app.use(cookieParser());
+
+    expressRouter(router);
     return app;
 }
 
