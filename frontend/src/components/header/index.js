@@ -26,14 +26,47 @@ function Header() {
 
             <nav className={styles.navigation}>
 
-                <Link className={styles.button} to='/'> Home </Link>
-                <Link className={styles.button} to='/'> About </Link>
+                <Link className={styles.button} to='/'>
+                    <div>
+                        <i class="fas fa-home"></i>
+                        <p>Home</p>
+                    </div>
+                </Link>
 
-                {loggedIn ? <Link className={styles.button} to='/chat'> Chat </Link> : null}
-                {loggedIn ? <Link className={styles.button} to='/friends'> Friends </Link> : null}
-                {loggedIn ? <Link className={styles.button} to='/' onClick={logout} > Logout </Link> : null}
-                {loggedIn ? null : <Link className={styles.button} to='/register'> Register </Link>}
-                {loggedIn ? null : <Link className={styles.button} to='/login'> Login </Link>}
+                {loggedIn ? <Link className={styles.button} to='/chat'>
+                    <div>
+                        <i class="fas fa-comments"></i>
+                        <p>Chat</p>
+                    </div>
+                </Link> : null}
+
+                {loggedIn ? <Link className={styles.button} to='/friends'>
+                    <div>
+                        <i class="fas fa-user-plus"></i>
+                        <p>Add Friend</p>
+                    </div>
+                </Link> : null}
+
+                {loggedIn ? <Link className={styles.button} to='/friends'>
+                    <div>
+                    <i class="fas fa-plus-circle"></i>
+                        <p>Add Group</p>
+                    </div>
+                </Link> : null}
+
+                {loggedIn ? <Link className={styles.button} to='/' onClick={logout} >
+                    <div>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Logout</p>
+                    </div>
+                </Link> : null}
+
+                {loggedIn ? null : <Link className={styles.button} to='/login'>
+                    <div>
+                        <i class="fas fa-sign-in-alt"></i>
+                        <p>Login</p>
+                    </div>
+                </Link>}
             </nav>
 
         </div>

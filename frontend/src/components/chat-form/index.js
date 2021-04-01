@@ -32,7 +32,7 @@ function Chat() {
                 <input
                     className={styles.input}
                     type="text"
-                    placeholder="Aa"
+                    placeholder="Aa..."
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                 />
@@ -40,7 +40,9 @@ function Chat() {
                     type="submit"
                     value="Send"
                     className={styles['send-button']}
-                >Send</button>
+                >
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </form>
         </div>
     )

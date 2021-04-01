@@ -10,12 +10,12 @@ const socketIoConfig = require('./config/socketio');
 
 const app = expressConfig()
 const server = http.createServer(app);
-// const io = socketio(server);
+const io = socketio(server);
 const port = config.port;
 
 // expressConfig(app, router);
 
-// socketIoConfig(io);
+socketIoConfig(io);
 databaseConfig();
 
 server.listen(port, () => {
