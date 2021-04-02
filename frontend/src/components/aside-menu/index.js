@@ -2,16 +2,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import styles from './index.module.css';
 
 function Menu() {
-
     return (
-        <div>
+        <div className={styles.aside}>
             <div>
                 <p> <i className="fas fa-user"></i> Friends</p>
-                <i className="fas fa-user-slash"></i>
+                {/* <i className="fas fa-user-slash"></i> */}
             </div>
             <div>
                 <p> <i className="fas fa-users"></i> Rooms</p>
-                <i className="fas fa-users-slash"></i>
+                {/* <i className="fas fa-users-slash"></i> */}
             </div>
         </div>
     )

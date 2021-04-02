@@ -1,0 +1,16 @@
+
+.form-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.form-holder form {
+    width: 300px;
+}
+
+.result-holder {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}   

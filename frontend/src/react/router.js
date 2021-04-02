@@ -7,6 +7,8 @@ import LoginPage from '../pages/user-login-page';
 import ErrorPage from '../pages/error-page';
 import ChatPage from '../pages/chat-page';
 import FriendsPage from '../pages/friends-page';
+import AllFriendsPage from '../pages/friends-all-page';
+import AddFriendsPage from '../pages/friends-add-page';
 
 import UserContext from './Context';
 
@@ -27,6 +29,14 @@ function App() {
 
         <Route exact path='/friends'>
           <FriendsPage />
+        </Route>
+
+        <Route exact path='/friends/all'>
+          <AllFriendsPage/>
+        </Route>
+
+        <Route exact path='/friends/add'>
+          <AddFriendsPage/>
         </Route>
 
         <Route exact path='/login'>

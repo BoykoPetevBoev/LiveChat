@@ -41,7 +41,7 @@ async function userRegister(body) {
 
 async function findUsers(username) {
     const response = await fetchRequest('GET', undefined, `${URL}/users?username=${username}`);
-    console.log(response);
+    return response;
 }
 
 module.exports = {
