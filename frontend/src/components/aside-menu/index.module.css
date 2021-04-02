@@ -1,0 +1,9 @@
+.aside {
+    padding-top: 30px;
+    min-width: 360px;
+    border-top: solid 1px rgba(191,191,191,1);
+}
+
+.aside div {
+    height: 30px;
+}

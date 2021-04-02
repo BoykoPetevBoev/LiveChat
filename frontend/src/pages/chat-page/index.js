@@ -3,24 +3,19 @@ import styles from './index.module.css';
 import Header from '../../components/header';
 import Chat from '../../components/chat-form';
 import Menu from '../../components/aside-menu';
-
+import Wrapper from '../../components/wrapper';
 
 
 function ChatPage() {
 
-
     return (
-        <div className={styles["container"]}>
+        <div className={styles.container}>
             <Header />
-            <main className={styles.main}>
-                <div className={styles.aside}>
-                    <Menu></Menu>
-                </div>
+            <Wrapper>
                 <div className={styles['chat-holder']}>
                     <Chat></Chat>
                 </div>
-                {/* <div className={styles.aside}></div> */}
-            </main>
+            </Wrapper>
         </div>
     );
 }

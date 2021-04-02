@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.links {
+    border: solid 2px #87c13f;
+    min-height: 100px;
+    min-width: 300px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.links:hover {
+    background-color: #87c13f;
+}

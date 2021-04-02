@@ -1,0 +1,34 @@
+.wrapper {
+    /* border: solid 2px #87c13f; */
+    box-shadow: 0 0 10px grey;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    min-width: 200px;
+    margin: 20px;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.img {
+    height: 50px;
+    width: 50px;
+    box-shadow: 0 0 5px gray;
+    border-radius: 50px;
+}
+
+.btn {
+    border: none;
+    height: 30px;
+    width: 100px;
+    background-color: #66ad00;
+    color: #fff;
+    font-size: medium;
+    transition: .2s ease;
+    cursor: pointer;
+    border-radius: 20px;
+}

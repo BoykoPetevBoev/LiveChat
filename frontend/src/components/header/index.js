@@ -43,14 +43,14 @@ function Header() {
                 {loggedIn ? <Link className={styles.button} to='/friends'>
                     <div>
                         <i class="fas fa-user-plus"></i>
-                        <p>Add Friend</p>
+                        <p>Friends</p>
                     </div>
                 </Link> : null}
 
                 {loggedIn ? <Link className={styles.button} to='/friends'>
                     <div>
                     <i class="fas fa-plus-circle"></i>
-                        <p>Add Group</p>
+                        <p>New Group</p>
                     </div>
                 </Link> : null}
 
