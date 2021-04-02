@@ -24,11 +24,24 @@ async function findUser(selector) {
     } catch (err) { return errorHandler(err) }
 }
 
+async function findUserById(id) {
+    if (!id) return undefined;
+    try {
+        return await UserSchema.findById(id)
+    } catch (err) { return errorHandler(err) }
+}
+
 async function findUsers(selector) {
     if (invalidSelector(selector))
         return undefined;
     try {
         return UserSchema.find(selector)
+    } catch (err) { return errorHandler(err) }
+}
+
+async function updateUser(user) {
+    try {
+        return await UserSchema.findOneAndUpdate({ _id: user._id }, user)
     } catch (err) { return errorHandler(err) }
 }
 
@@ -38,6 +51,8 @@ function findAllUsers() {
     } catch (err) { return errorHandler(err) }
 }
 
+
+
 function errorHandler(err) {
     console.error(err);
     return undefined;
@@ -46,6 +61,8 @@ function errorHandler(err) {
 module.exports = {
     createUser,
     findUser,
+    findUserById,
     findUsers,
     findAllUsers,
+    updateUser,
 }

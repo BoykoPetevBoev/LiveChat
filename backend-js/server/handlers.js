@@ -2,8 +2,10 @@ const { checkPassword } = require('../database/utils')
 const {
     createUser,
     findUser,
+    findUserById,
+    findUsers,
     findAllUsers,
-    findUsers } = require('../database/database');
+    updateUser } = require('../database/database');
 
 async function userLogin(req, res) {
     try {
@@ -28,8 +30,8 @@ async function userRegister(req, res) {
     try {
         const user = req.body;
         if (!user.username || !user.email || !user.password)
-        return res.status(401).send('Invalid data').end();
-        
+            return res.status(401).send('Invalid data').end();
+
         const foundUser = await findUser({ email: user.email });
         if (foundUser)
             return res.status(401).send('This email is already registered!').end();
@@ -58,6 +60,28 @@ async function getUsersByUsername(req, res) {
     catch (err) { errorHandler(err, req, res) }
 }
 
+async function sendFriendRequest(req, res) {
+    try {
+        const { user, id } = req.body;
+        const sender = await findUserById(user._id);
+        const receiver = await findUserById(id);
+
+        if (!sender.friendSend.includes(id)) {
+            sender.friendSend.push(id);
+            updateUser(sender);
+        }
+
+        if (!receiver.friendRequests.includes(user._id)) {
+            receiver.friendRequests.push(user._id);
+            updateUser(receiver);
+        }
+
+        return res.status(200).send(users);
+    }
+    catch (err) { errorHandler(err, req, res) }
+
+}
+
 function errorHandler(err, req, res) {
     console.error(err);
     return res.status(500).send({ error: 'Something failed!' });
@@ -67,5 +91,6 @@ module.exports = {
     userLogin,
     userRegister,
     showUsers,
-    getUsersByUsername
+    getUsersByUsername,
+    sendFriendRequest
 }

@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
 import Header from '../../components/header';
-import image from './404.jpg'
-import { Link } from 'react-router-dom'
 
 function ErrorPage() {
 

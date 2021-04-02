@@ -23,6 +23,17 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    friendRequests: [{
+        type: Schema.ObjectId,
+        ref: 'User'
+    }],
+    friendSend: [{
+        type: Schema.ObjectId,
+        ref: 'User'
+    }],
+    image: {
+        type: String
+    }
 })
 
 module.exports = mongoose.model('User', UserSchema);

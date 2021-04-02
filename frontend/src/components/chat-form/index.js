@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState} from 'react';
 import styles from './index.module.css';
 
 function Chat() {
@@ -41,7 +41,7 @@ function Chat() {
                     value="Send"
                     className={styles['send-button']}
                 >
-                    <i class="fas fa-arrow-right"></i>
+                    <i className="fas fa-arrow-right"></i>
                 </button>
             </form>
         </div>

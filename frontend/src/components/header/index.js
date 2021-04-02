@@ -8,7 +8,7 @@ import logo from './logo.png'
 function Header() {
     const context = useContext(UserContext);
     const history = useHistory();
-    const { loggedIn, isAdmin } = context;
+    const { loggedIn } = context;
 
     const logout = () => {
         context.logout();
@@ -20,7 +20,7 @@ function Header() {
 
             <div className={styles.logo}>
                 <Link to='/'>
-                    <img src={logo} />
+                    <img src={logo} alt='Live Chat'/>
                 </Link>
             </div>
 
@@ -28,42 +28,42 @@ function Header() {
 
                 <Link className={styles.button} to='/'>
                     <div>
-                        <i class="fas fa-home"></i>
+                        <i className="fas fa-home"></i>
                         <p>Home</p>
                     </div>
                 </Link>
 
                 {loggedIn ? <Link className={styles.button} to='/chat'>
                     <div>
-                        <i class="fas fa-comments"></i>
+                        <i className="fas fa-comments"></i>
                         <p>Chat</p>
                     </div>
                 </Link> : null}
 
                 {loggedIn ? <Link className={styles.button} to='/friends'>
                     <div>
-                        <i class="fas fa-user-plus"></i>
+                        <i className="fas fa-user-plus"></i>
                         <p>Friends</p>
                     </div>
                 </Link> : null}
 
                 {loggedIn ? <Link className={styles.button} to='/friends'>
                     <div>
-                    <i class="fas fa-plus-circle"></i>
+                    <i className="fas fa-plus-circle"></i>
                         <p>New Group</p>
                     </div>
                 </Link> : null}
 
                 {loggedIn ? <Link className={styles.button} to='/' onClick={logout} >
                     <div>
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i className="fas fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </div>
                 </Link> : null}
 
                 {loggedIn ? null : <Link className={styles.button} to='/login'>
                     <div>
-                        <i class="fas fa-sign-in-alt"></i>
+                        <i className="fas fa-sign-in-alt"></i>
                         <p>Login</p>
                     </div>
                 </Link>}
