@@ -15,7 +15,7 @@ function Authorization(props) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = getCookie('GameZoneToken');
+        const token = getCookie('MyToken');
         if (!token) {
             logout();
             return

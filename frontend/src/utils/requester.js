@@ -27,15 +27,11 @@ function errorHandler(err) {
 
 async function userLogin(body) {
     const response = await fetchRequest('POST', body, `${URL}/login`);
-    console.log(response);
     return response;
 }
 
 async function userRegister(body) {
     const response = await fetchRequest('POST', body, `${URL}/register`);
-    if(response) {
-
-    }
     return response;
 }
 
@@ -44,8 +40,14 @@ async function findUsers(username) {
     return response;
 }
 
+async function sendFriendRequest(body) {
+    const response = await fetchRequest('POST', body, `${URL}/send-friend-request`);
+    return response;
+}
+
 module.exports = {
     userLogin,
     userRegister,
-    findUsers
+    findUsers,
+    sendFriendRequest
 }

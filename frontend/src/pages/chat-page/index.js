@@ -2,9 +2,7 @@ import React from 'react';
 import styles from './index.module.css';
 import Header from '../../components/header';
 import Chat from '../../components/chat-form';
-import Menu from '../../components/aside-menu';
 import Wrapper from '../../components/wrapper';
-
 
 function ChatPage() {
 

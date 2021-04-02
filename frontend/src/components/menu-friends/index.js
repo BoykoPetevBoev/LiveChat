@@ -8,21 +8,21 @@ function FriendsMenu() {
 
             <Link to='/friends/add'>
                 <div className={styles.links}>
-                    <i class="fas fa-user-plus"></i>
+                    <i className="fas fa-user-plus"></i>
                     <p>Add Friends</p>
                 </div>
             </Link>
 
             <Link to='/friends'>
                 <div className={styles.links}>
-                    <i class="fas fa-user-check"></i>
+                    <i className="fas fa-user-check"></i>
                     <p>Pending</p>
                 </div>
             </Link>
 
             <Link to='/friends/all'>
                 <div className={styles.links}>
-                    <i class="fas fa-user-friends"></i>
+                    <i className="fas fa-user-friends"></i>
                     <p>All Friends</p>
                 </div>
             </Link>
