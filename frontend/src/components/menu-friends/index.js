@@ -6,7 +6,7 @@ function FriendsMenu() {
     return (
         <div className={styles.container}>
 
-            <Link to='/friends/add'>
+            <Link className={styles.link} to='/friends/add'>
                 <div className={styles.links}>
                     <i className="fas fa-user-plus"></i>
                     <p>Add Friends</p>

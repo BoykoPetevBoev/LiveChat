@@ -18,4 +18,10 @@
 .link a {
     color: blue;
     padding: 0 10px;
+    font-weight: bold;
+}
+
+.main {
+    min-height: 93vh;
+    display: flex;
 }

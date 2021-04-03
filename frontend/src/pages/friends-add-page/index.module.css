@@ -1,7 +1,7 @@
-
 .form-holder {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .form-holder form {
@@ -13,4 +13,8 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-}   
+    border: dotted 2px #87c13f;
+    border-radius: 20px;
+    width: 70%;
+    margin: 20px 0;
+}

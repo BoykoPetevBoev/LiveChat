@@ -42,14 +42,12 @@ function AllFriendsPage() {
             <Header />
             <Wrapper>
                 <FriendsMenu />
-                <div className={styles.holder}>
-                    <div>
-                        <h3>All Friends</h3>
-                    </div>
-                    <div className={styles.friends}>
-                        <RenderUsers users={user.friends} buttons={{ remove: removeFriendFromList }} />
-                    </div>
+                <h2>All Friends</h2>
+
+                <div className={styles.friends}>
+                    <RenderUsers users={user.friends} buttons={{ remove: removeFriendFromList }} />
                 </div>
+
             </Wrapper>
         </div>
     );

@@ -37,7 +37,7 @@ function LoginPage() {
     return (
         <div className={styles.container}>
             <Header />
-            <main>
+            <main className={styles.main}>
 
                 <FormHolder className='login' title="Welcome Back!">
                     <form className='form' onSubmit={onSubmit}>

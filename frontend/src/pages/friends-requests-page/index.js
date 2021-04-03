@@ -37,7 +37,7 @@ function FriendRequestsPage() {
     const RenderUsers = (props) => {
         const users = props.users
         const buttons = props.buttons
-        if (!users || users.length === 0) return <p>There is no request in this section</p>;
+        if (!users || users.length === 0) return <p>There is no requests in this section</p>;
         return (
             users.map((user) => {
                 return (<UserBadge user={user} {...buttons} key={user._id} />)
@@ -50,20 +50,19 @@ function FriendRequestsPage() {
             <Header />
             <Wrapper>
                 <FriendsMenu />
-                <div className={styles.holder}>
-                    <h3>Friend Requests</h3>
-                    <div>
-                        <p>Your sent requests</p>
-                        <div className={styles.requests}>
-                            <RenderUsers users={user.sentRequests} buttons={{ delete: removeUser }} />
-                        </div>
-                        <p>Your received requests</p>
-                        <div className={styles.requests}>
-                            <RenderUsers users={user.receivedRequests} buttons={{ confirm: addFriend, delete: removeUser }} />
-                        </div>
-                    </div>
+                <h2>Friend Requests</h2>
+
+                <p className={styles.heading}>Your received requests</p>
+                <div className={styles.requests}>
+                    <RenderUsers users={user.receivedRequests} buttons={{ confirm: addFriend, delete: removeUser }} />
+                </div>
+
+                <p className={styles.heading}>Your sent requests</p>
+                <div className={styles.requests}>
+                    <RenderUsers users={user.sentRequests} buttons={{ delete: removeUser }} />
                 </div>
             </Wrapper>
+
         </div>
     );
 }
