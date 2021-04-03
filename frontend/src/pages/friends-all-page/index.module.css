@@ -1,0 +1,11 @@
+.friends {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* box-shadow: 0 0 5px grey; */
+    width: 90%;
+    margin: auto;
+    border-radius: 20px;
+    /* background-color: #f0f8ff; */
+}

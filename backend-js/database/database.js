@@ -24,7 +24,7 @@ async function findUser(selector) {
             .findOne(selector)
             .populate('sentRequests')
             .populate('receivedRequests')
-        // .populate('friends')
+            .populate('friends')
         // .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
@@ -36,7 +36,7 @@ async function findUserById(id) {
             .findById(id)
             .populate('sentRequests')
             .populate('receivedRequests')
-        // .populate('friends')
+            .populate('friends')
         // .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
@@ -55,6 +55,8 @@ async function updateUser(user) {
             .findOneAndUpdate({ _id: user._id }, user, { new: true })
             .populate('sentRequests')
             .populate('receivedRequests')
+            .populate('friends')
+
     } catch (err) { return errorHandler(err) }
 }
 

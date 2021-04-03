@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styles from './index.module.css';
 
 function UserBadge(props) {
@@ -23,6 +23,9 @@ function UserBadge(props) {
                 : null}
             {typeof props.delete === 'function'
                 ? <button className={styles.btn2} onClick={props.delete} value={id}>Delete</button>
+                : null}
+            {typeof props.remove === 'function'
+                ? <button className={styles.btn2} onClick={props.remove} value={id}>Remove</button>
                 : null}
 
         </div>

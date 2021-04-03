@@ -4,7 +4,9 @@ const {
     showUsers, 
     getUsersByUsername, 
     sendFriendRequest, 
-    removeFriendRequest } = require('./handlers');
+    removeFriendRequest,
+    acceptFriendRequest,
+    removeFriend } = require('./handlers');
 
 function expressRouter(router){   
     router.get('/', showUsers);
@@ -14,6 +16,8 @@ function expressRouter(router){
     router.post('/login', userLogin);
     router.post('/send-friend-request', sendFriendRequest)
     router.post('/remove-friend-request', removeFriendRequest)
+    router.post('/accept-friend-request', acceptFriendRequest)
+    router.post('/remove-friend', removeFriend)
 
     router.use('*', (req, res) => {
         res.status(404).json({erroe: 'Not found!'});
