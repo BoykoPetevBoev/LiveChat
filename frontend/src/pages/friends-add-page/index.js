@@ -1,21 +1,33 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import UserContext from '../../react/Context';
 import styles from './index.module.css';
 import Header from '../../components/header';
 import Input from '../../components/user-input';
 import SubmitButton from '../../components/user-submit-button';
-import UserContext from '../../react/Context';
-import { findUsers } from '../../utils/requester';
 import Wrapper from '../../components/wrapper';
-
 import FriendsMenu from '../../components/menu-friends';
 import UserBadge from '../../components/user-badge';
-
-
+import { findUsers } from '../../utils/requester';
+import { sendFriendRequest, removeFriendRequest } from '../../utils/requester';
 
 function AddFriendsPage() {
+    const history = useHistory();
+    const context = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [users, setUsers] = useState([]);
-    const context = useContext(UserContext);
+    const [user, setUser] = useState(context.user);
+
+
+    const addUser = async (e) => {
+        const id = e.target.value;
+        const response = await sendFriendRequest({ user, id });
+        if (!response) return;
+
+        setUser(response);
+        context.updateUser(response);
+        history.push('/friends/requests');
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -35,10 +47,12 @@ function AddFriendsPage() {
             users.map((user, index) => {
                 if (
                     context?.user?._id === user._id ||
-                    context?.user?.friendRequests?.includes(user._id) ||
-                    context?.user?.friendSend?.includes(user._id)
+                    context?.user?.sentRequests?.includes(user._id) ||
+                    context?.user?.receivedRequests?.includes(user._id) ||
+                    context?.user?.sentRequests?.some(u => u._id === user._id) ||
+                    context?.user?.receivedRequests?.some(u => u._id === user._id)
                 ) return null;
-                return (<UserBadge user={user} />)
+                return (<UserBadge user={user} addUser={addUser} key={user._id}/>)
             })
         )
     }

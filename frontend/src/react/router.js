@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import UserContext from './Context';
 
 import HomePage from '../pages/home-page';
 import RegisterPage from '../pages/user-register-page';
@@ -9,8 +10,7 @@ import ChatPage from '../pages/chat-page';
 import FriendsPage from '../pages/friends-page';
 import AllFriendsPage from '../pages/friends-all-page';
 import AddFriendsPage from '../pages/friends-add-page';
-
-import UserContext from './Context';
+import FriendRequestsPage from '../pages/friends-requests-page';
 
 function App() {
   const { loggedIn } = useContext(UserContext)
@@ -33,6 +33,10 @@ function App() {
 
         <Route exact path='/friends/all'>
           <AllFriendsPage/>
+        </Route>
+
+        <Route exact path='/friends/requests'>
+          <FriendRequestsPage/>
         </Route>
 
         <Route exact path='/friends/add'>

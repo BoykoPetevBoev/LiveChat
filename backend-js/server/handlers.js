@@ -63,23 +63,56 @@ async function getUsersByUsername(req, res) {
 async function sendFriendRequest(req, res) {
     try {
         const { user, id } = req.body;
-        const sender = await findUserById(user._id);
-        const receiver = await findUserById(id);
+        console.log(id, user);
+        let sender = await findUserById(user._id);
+        let receiver = await findUserById(id);
 
-        if (!sender.friendSend.includes(id)) {
-            sender.friendSend.push(id);
-            updateUser(sender);
+        if (!sender.sentRequests.some(u => u._id === id)) {
+            sender.sentRequests.push(id);
+            sender = await updateUser(sender);
         }
 
-        if (!receiver.friendRequests.includes(user._id)) {
-            receiver.friendRequests.push(user._id);
-            updateUser(receiver);
+        if (!receiver.receivedRequests.some(u => u._id === user._id)) {
+            receiver.receivedRequests.push(user._id);
+            receiver = await updateUser(receiver);
+        }
+        return res.status(200).send(sender);
+    } catch (err) { errorHandler(err, req, res) }
+}
+
+async function removeFriendRequest(req, res) {
+    try {
+        const { user, id } = req.body;
+        let receiver = await findUserById(user._id);
+        let sender = await findUserById(id);
+
+        if (sender.sentRequests.some(u => u._id == user._id)) {
+            const index = sender.sentRequests.findIndex(element => element._id == user._id);
+            sender.sentRequests.splice(index, 1);
+            sender = await updateUser(sender);
         }
 
-        return res.status(200).send(users);
-    }
-    catch (err) { errorHandler(err, req, res) }
+        if (sender.receivedRequests.some(u => u._id == user._id)) {
+            const index = sender.receivedRequests.findIndex(element => element._id == user._id);
+            sender.receivedRequests.splice(index, 1);
+            sender = await updateUser(sender);
+        }
+        
+        if (receiver.sentRequests.some(u => u._id == id)) {
+            const index = receiver.sentRequests.findIndex(element => element._id == id);
+            receiver.sentRequests.splice(index, 1);
+            receiver = await updateUser(receiver);
+        }
 
+        if (receiver.receivedRequests.some(u => u._id == id)) {
+            const index = receiver.receivedRequests.findIndex(element => element._id == id);
+            receiver.receivedRequests.splice(index, 1);
+            receiver = await updateUser(receiver);
+        }
+
+
+        return res.status(200).send(receiver);
+    } catch (err) { errorHandler(err, req, res) }
 }
 
 function errorHandler(err, req, res) {
@@ -92,5 +125,6 @@ module.exports = {
     userRegister,
     showUsers,
     getUsersByUsername,
-    sendFriendRequest
+    sendFriendRequest,
+    removeFriendRequest
 }
