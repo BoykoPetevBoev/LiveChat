@@ -23,11 +23,11 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    friendRequests: [{
+    receivedRequests: [{
         type: Schema.ObjectId,
         ref: 'User'
     }],
-    friendSend: [{
+    sentRequests: [{
         type: Schema.ObjectId,
         ref: 'User'
     }],

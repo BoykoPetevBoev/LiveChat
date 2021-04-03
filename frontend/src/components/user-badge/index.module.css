@@ -7,7 +7,8 @@
     align-items: center;
     padding: 10px;
     min-width: 200px;
-    margin: 20px;
+    margin: 10px;
+    background-color: #fff;
 }
 
 .username {
@@ -21,7 +22,7 @@
     border-radius: 50px;
 }
 
-.btn {
+.btn, .btn2 {
     border: none;
     height: 30px;
     width: 120px;
@@ -31,4 +32,11 @@
     transition: .2s ease;
     cursor: pointer;
     border-radius: 20px;
+    margin: 5px;
+    box-shadow: 0 0 5px grey;
+}
+
+.btn2 {
+    background-color: #fff;
+    color: black;
 }

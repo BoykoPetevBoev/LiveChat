@@ -45,9 +45,15 @@ async function sendFriendRequest(body) {
     return response;
 }
 
+async function removeFriendRequest(body){
+    const response = await fetchRequest('POST', body, `${URL}/remove-friend-request`);
+    return response;
+}
+
 module.exports = {
     userLogin,
     userRegister,
     findUsers,
-    sendFriendRequest
+    sendFriendRequest,
+    removeFriendRequest
 }

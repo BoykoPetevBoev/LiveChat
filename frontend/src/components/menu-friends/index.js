@@ -13,7 +13,7 @@ function FriendsMenu() {
                 </div>
             </Link>
 
-            <Link to='/friends'>
+            <Link to='/friends/requests'>
                 <div className={styles.links}>
                     <i className="fas fa-user-check"></i>
                     <p>Pending</p>

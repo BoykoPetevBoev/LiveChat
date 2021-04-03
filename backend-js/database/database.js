@@ -20,14 +20,24 @@ async function findUser(selector) {
     if (invalidSelector(selector))
         return undefined;
     try {
-        return await UserSchema.findOne(selector).exec();
+        return await UserSchema
+            .findOne(selector)
+            .populate('sentRequests')
+            .populate('receivedRequests')
+        // .populate('friends')
+        // .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
 
 async function findUserById(id) {
     if (!id) return undefined;
     try {
-        return await UserSchema.findById(id)
+        return await UserSchema
+            .findById(id)
+            .populate('sentRequests')
+            .populate('receivedRequests')
+        // .populate('friends')
+        // .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
 
@@ -41,7 +51,10 @@ async function findUsers(selector) {
 
 async function updateUser(user) {
     try {
-        return await UserSchema.findOneAndUpdate({ _id: user._id }, user)
+        return await UserSchema
+            .findOneAndUpdate({ _id: user._id }, user, { new: true })
+            .populate('sentRequests')
+            .populate('receivedRequests')
     } catch (err) { return errorHandler(err) }
 }
 
