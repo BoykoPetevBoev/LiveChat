@@ -2,14 +2,14 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
+
 import Header from '../../components/header';
 import Input from '../../components/user-input';
 import SubmitButton from '../../components/user-submit-button';
 import Wrapper from '../../components/wrapper';
 import FriendsMenu from '../../components/menu-friends';
 import UserBadge from '../../components/user-badge';
-import { findUsers } from '../../utils/requester';
-import { sendFriendRequest, removeFriendRequest } from '../../utils/requester';
+import { sendFriendRequest, findUsers } from '../../utils/requester';
 
 function AddFriendsPage() {
     const history = useHistory();

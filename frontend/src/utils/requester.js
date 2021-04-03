@@ -50,10 +50,22 @@ async function removeFriendRequest(body){
     return response;
 }
 
+async function acceptFriendRequest(body) {
+    const response = await fetchRequest('POST', body, `${URL}/accept-friend-request`);
+    return response;
+}
+
+async function removeFriend(body) {
+    const response = await fetchRequest('POST', body, `${URL}/remove-friend`);
+    return response;
+}
+
 module.exports = {
     userLogin,
     userRegister,
     findUsers,
     sendFriendRequest,
-    removeFriendRequest
+    removeFriendRequest,
+    acceptFriendRequest,
+    removeFriend
 }

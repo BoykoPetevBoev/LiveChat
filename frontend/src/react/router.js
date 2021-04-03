@@ -22,25 +22,26 @@ function App() {
         <Route exact path='/'>
           <HomePage />
         </Route>
-        
+
         <Route exact path='/chat'>
           <ChatPage />
         </Route>
 
         <Route exact path='/friends'>
-          <FriendsPage />
+          {loggedIn ?<FriendsPage />  : <ErrorPage />}
         </Route>
 
         <Route exact path='/friends/all'>
-          <AllFriendsPage/>
+          {loggedIn ? <AllFriendsPage /> : <ErrorPage />}
         </Route>
 
         <Route exact path='/friends/requests'>
-          <FriendRequestsPage/>
+          {loggedIn ? <FriendRequestsPage /> : <ErrorPage />}
+
         </Route>
 
         <Route exact path='/friends/add'>
-          <AddFriendsPage/>
+          {loggedIn ? <AddFriendsPage /> : <ErrorPage />}
         </Route>
 
         <Route exact path='/login'>
