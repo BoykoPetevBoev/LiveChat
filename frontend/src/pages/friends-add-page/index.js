@@ -62,8 +62,9 @@ function AddFriendsPage() {
             <Header />
             <Wrapper>
                 <FriendsMenu />
-                <h3>Add Friend</h3>
 
+                <h2>Add Friend</h2>
+                
                 <div className={styles['form-holder']}>
                     <form onSubmit={onSubmit}>
                         <Input

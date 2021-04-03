@@ -1,5 +1,5 @@
 .main {
-    height: 93vh;
+    min-height: 93vh;
     display: flex;
 }
 
@@ -14,4 +14,10 @@
     /* padding: 2%; */
     /* flex-wrap: wrap; */
     overflow-y: auto;
+}
+
+.holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

@@ -71,48 +71,51 @@ function RegisterPage() {
     return (
         <div className={styles.background}>
             <Header />
+            <main className={styles.main}>
 
-            <FormHolder className='register' title='Sign Up for Free'>
-                <form onSubmit={onSubmit}>
-                    <Input
-                        name="username"
-                        err={errUsername}
-                        type="text"
-                        placeholder='Username'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <Input
-                        name="email"
-                        err={errEmail}
-                        type="text"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Input
-                        err={errPassword}
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <Input
-                        err={errRePassword}
-                        type="password"
-                        name="rePassword"
-                        placeholder="Confirm Password"
-                        value={rePassword}
-                        onChange={(e) => setRePassword(e.target.value)}
-                    />
-                    <SubmitButton value='GET STARTED' />
-                    <div className={styles.link}>
-                        <p>Already have an account?</p>
-                        <Link to='/login'>Login</Link>
-                    </div>
-                </form>
-            </FormHolder>
+                <FormHolder className='register' title='Sign Up for Free'>
+                    <form onSubmit={onSubmit}>
+                        <Input
+                            name="username"
+                            err={errUsername}
+                            type="text"
+                            placeholder='Username'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <Input
+                            name="email"
+                            err={errEmail}
+                            type="text"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <Input
+                            err={errPassword}
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <Input
+                            err={errRePassword}
+                            type="password"
+                            name="rePassword"
+                            placeholder="Confirm Password"
+                            value={rePassword}
+                            onChange={(e) => setRePassword(e.target.value)}
+                        />
+                        <SubmitButton value='GET STARTED' />
+                        <div className={styles.link}>
+                            <p>Already have an account?</p>
+                            <Link to='/login'>Login</Link>
+                        </div>
+                    </form>
+                </FormHolder>
+
+            </main>
         </div>
     )
 }

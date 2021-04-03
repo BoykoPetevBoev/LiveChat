@@ -1,11 +1,16 @@
-.requests {
+.requests, .empty {
     padding: 30px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* box-shadow: 0 0 5px grey; */
-    width: 90%;
-    margin: auto;
+
+    width: 70%;
+    /* margin: auto; */
     border-radius: 20px;
-    /* background-color: #f0f8ff; */
+    border: dotted 2px #87c13f;
+    margin: 20px 0;
 }
+
+.heading {
+    font-weight: bold;
+}   

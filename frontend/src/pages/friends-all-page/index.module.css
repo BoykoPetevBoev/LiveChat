@@ -3,9 +3,8 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* box-shadow: 0 0 5px grey; */
-    width: 90%;
-    margin: auto;
+    border: dotted 2px #87c13f;
     border-radius: 20px;
-    /* background-color: #f0f8ff; */
+    width: 70%;
+    margin: 20px 0;
 }

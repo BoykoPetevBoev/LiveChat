@@ -8,16 +8,19 @@
 .links {
     border: solid 2px #87c13f;
     min-height: 60px;
-    min-width: 300px;
+    width: 300px;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    margin: 10px;
+    padding: 10px;
 }
 
 .links:hover {
     background-color: #87c13f;
+    /* background-color: white; */
 }
 
 .links p {
