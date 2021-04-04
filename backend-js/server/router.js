@@ -1,16 +1,16 @@
 const { 
     userLogin, 
-    userRegister, 
-    showUsers, 
+    userRegister,
     getUsersByUsername, 
     sendFriendRequest, 
     removeFriendRequest,
     acceptFriendRequest,
-    removeFriend } = require('./handlers');
+    removeFriend,
+    userAuthorization } = require('./handlers');
 
 function expressRouter(router){   
-    router.get('/', showUsers);
     router.get('/users', getUsersByUsername);
+    router.get('/verify', userAuthorization);
 
     router.post('/register', userRegister);
     router.post('/login', userLogin);

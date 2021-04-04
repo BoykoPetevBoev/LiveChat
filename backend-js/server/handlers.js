@@ -7,6 +7,11 @@ const {
     findAllUsers,
     updateUser } = require('../database/database');
 
+const {
+    setToken,
+    verifyToken
+} = require('./utils');
+
 async function userLogin(req, res) {
     try {
         const user = req.body;
@@ -21,7 +26,8 @@ async function userLogin(req, res) {
         if (!matchPassword)
             return res.status(401).end();
 
-        return res.status(200).send(foundUser);
+        const token = setToken(foundUser);
+        return res.status(200).header('Authorization', token).send(foundUser);
     }
     catch (err) { errorHandler(err, req, res) }
 }
@@ -37,23 +43,31 @@ async function userRegister(req, res) {
             return res.status(401).send('This email is already registered!').end();
 
         const createdUser = await createUser(user);
-        return res.status(200).send(createdUser);
+        const token = setToken(foundUser);
+        return res.status(200).header('Authorization', token).send(createdUser);
     }
     catch (err) { errorHandler(err, req, res) }
 }
 
-async function showUsers(req, res) {
+async function userAuthorization(req, res) {
     try {
-        return res.status(200).send("Hello World!");
-        const users = await findAllUsers();
-        return users.rows;
-    }
+        const { token } = req.query;
+        if(!token) return res.status(401).end();
+
+        const tokenStatus = await verifyToken(token);
+        if (!tokenStatus) return res.status(401).end();
+
+        const user = await findUserById(tokenStatus.id);
+        return res.status(200).header('Authorization', token).send(user);
+    } 
     catch (err) { errorHandler(err, req, res) }
 }
 
 async function getUsersByUsername(req, res) {
     try {
         const { username } = req.query;
+        if(!username) return res.status(401).end();
+
         const users = await findUsers({ username });
         return res.status(200).send(users);
     }
@@ -167,7 +181,7 @@ function errorHandler(err, req, res) {
 module.exports = {
     userLogin,
     userRegister,
-    showUsers,
+    userAuthorization,
     getUsersByUsername,
     sendFriendRequest,
     removeFriendRequest,
