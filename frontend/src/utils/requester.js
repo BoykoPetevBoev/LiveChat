@@ -14,6 +14,10 @@ function fetchRequest(method, body, url) {
 }
 
 async function promiseHandler(res) {
+    const token = res?.headers?.get('Authorization')
+    if (token)
+        document.cookie = `Token=${token}`;
+
     const result = res.ok
         ? await res.json()
         : undefined;
@@ -35,6 +39,11 @@ async function userRegister(body) {
     return response;
 }
 
+async function userAuthorization(token) {
+    const response = await fetchRequest('GET', undefined, `${URL}/verify?token=${token}`);
+    return response;
+}
+
 async function findUsers(username) {
     const response = await fetchRequest('GET', undefined, `${URL}/users?username=${username}`);
     return response;
@@ -45,7 +54,7 @@ async function sendFriendRequest(body) {
     return response;
 }
 
-async function removeFriendRequest(body){
+async function removeFriendRequest(body) {
     const response = await fetchRequest('POST', body, `${URL}/remove-friend-request`);
     return response;
 }
@@ -63,6 +72,7 @@ async function removeFriend(body) {
 module.exports = {
     userLogin,
     userRegister,
+    userAuthorization,
     findUsers,
     sendFriendRequest,
     removeFriendRequest,

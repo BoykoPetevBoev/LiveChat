@@ -15,20 +15,14 @@ function Authorization(props) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = getCookie('MyToken');
-        if (!token) {
-            logout();
-            return
-        }
+        const token = getCookie('Token');
+        if (!token) return logout();
         sendRequest(token);
     }, []);
 
     const sendRequest = async (token) => {
-        const response = await userAuthorization(token);
-
-        response.status
-            ? login(response.user)
-            : logout()
+        const user = await userAuthorization(token);
+        user ? login(user) : logout();
     }
 
     const updateUser = (user) => {
@@ -45,7 +39,7 @@ function Authorization(props) {
     }
 
     const logout = () => {
-        document.cookie = 'GameZoneToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        document.cookie = 'Token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         setUser(null);
         setLoggedIn(false);
         setIsAdmin(false);
