@@ -14,9 +14,8 @@ function fetchRequest(method, body, url) {
 }
 
 async function promiseHandler(res) {
-    const token = res?.headers?.get('Authorization')
-    if (token)
-        document.cookie = `Token=${token}`;
+    const token = res?.headers?.get('Authorization');
+    if (token) localStorage.setItem('token', token);
 
     const result = res.ok
         ? await res.json()
@@ -27,46 +26,38 @@ async function promiseHandler(res) {
 
 function errorHandler(err) {
     console.error(err);
+    return undefined;
 }
-
-async function userLogin(body) {
-    const response = await fetchRequest('POST', body, `${URL}/login`);
-    return response;
-}
-
-async function userRegister(body) {
-    const response = await fetchRequest('POST', body, `${URL}/register`);
-    return response;
-}
-
 async function userAuthorization(token) {
-    const response = await fetchRequest('GET', undefined, `${URL}/verify?token=${token}`);
-    return response;
+    return await fetchRequest('GET', undefined, `${URL}/verify?token=${token}`);
 }
 
 async function findUsers(username) {
-    const response = await fetchRequest('GET', undefined, `${URL}/users?username=${username}`);
-    return response;
+    return await fetchRequest('GET', undefined, `${URL}/users?username=${username}`);
+}
+
+async function userLogin(body) {
+    return await fetchRequest('POST', body, `${URL}/login`);
+}
+
+async function userRegister(body) {
+    return await fetchRequest('POST', body, `${URL}/register`);
 }
 
 async function sendFriendRequest(body) {
-    const response = await fetchRequest('POST', body, `${URL}/send-friend-request`);
-    return response;
+    return await fetchRequest('POST', body, `${URL}/send-friend-request`);
 }
 
 async function removeFriendRequest(body) {
-    const response = await fetchRequest('POST', body, `${URL}/remove-friend-request`);
-    return response;
+    return await fetchRequest('POST', body, `${URL}/remove-friend-request`);
 }
 
 async function acceptFriendRequest(body) {
-    const response = await fetchRequest('POST', body, `${URL}/accept-friend-request`);
-    return response;
+    return await fetchRequest('POST', body, `${URL}/accept-friend-request`);
 }
 
 async function removeFriend(body) {
-    const response = await fetchRequest('POST', body, `${URL}/remove-friend`);
-    return response;
+    return await fetchRequest('POST', body, `${URL}/remove-friend`);
 }
 
 module.exports = {

@@ -15,12 +15,6 @@
     font-weight: bold;
 }
 
-.img {
-    height: 50px;
-    width: 50px;
-    box-shadow: 0 0 5px gray;
-    border-radius: 50px;
-}
 
 .btn, .btn2 {
     border: none;

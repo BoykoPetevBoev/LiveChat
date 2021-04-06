@@ -1,12 +1,23 @@
 const UserSchema = require('./models/Users');
+const RoomSchema = require('./models/Room');
 const { hashPassword, checkPassword } = require('./utils');
 
 const invalidSelector = (selector) => {
     return !selector || typeof selector !== 'object';
 }
 
+async function createRoom(room) {
+    if (!room || !room.name || !room.type)
+        return undefined;
+    try {
+        const roomModel = new RoomSchema(room);
+        const savedRoom = await roomModel.save();
+        return savedRoom;
+    } catch (err) { return errorHandler(err) }
+}
+
 async function createUser(user) {
-    if (!user.username || !user.email || !user.password)
+    if (!user || !user.username || !user.email || !user.password)
         return undefined;
     try {
         user.password = hashPassword(user.password)
@@ -25,7 +36,7 @@ async function findUser(selector) {
             .populate('sentRequests')
             .populate('receivedRequests')
             .populate('friends')
-        // .populate('rooms')
+            .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
 
@@ -37,7 +48,7 @@ async function findUserById(id) {
             .populate('sentRequests')
             .populate('receivedRequests')
             .populate('friends')
-        // .populate('rooms')
+            .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
 
@@ -56,17 +67,9 @@ async function updateUser(user) {
             .populate('sentRequests')
             .populate('receivedRequests')
             .populate('friends')
-
+            .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
-
-function findAllUsers() {
-    try {
-        return []
-    } catch (err) { return errorHandler(err) }
-}
-
-
 
 function errorHandler(err) {
     console.error(err);
@@ -75,9 +78,9 @@ function errorHandler(err) {
 
 module.exports = {
     createUser,
+    createRoom,
     findUser,
     findUserById,
     findUsers,
-    findAllUsers,
     updateUser,
 }

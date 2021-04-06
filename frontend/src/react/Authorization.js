@@ -4,18 +4,17 @@ import Loading from '../components/loading';
 import { userAuthorization } from '../utils/requester';
 
 function getCookie(name) {
-    const cookieValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return cookieValue ? cookieValue[2] : null;
+    const cookieValue = localStorage.getItem(name);;
+    return cookieValue;
 }
 
 function Authorization(props) {
     const [user, setUser] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = getCookie('Token');
+        const token = getCookie('token');
         if (!token) return logout();
         sendRequest(token);
     }, []);
@@ -39,21 +38,17 @@ function Authorization(props) {
     }
 
     const logout = () => {
-        document.cookie = 'Token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        localStorage.removeItem('token');;
         setUser(null);
         setLoggedIn(false);
-        setIsAdmin(false);
         setLoading(false);
     }
 
-    if (loading) {
-        return <Loading />
-    }
-
+    if (loading) return <Loading />
+    
     return (
         <UserContext.Provider value={{
             loggedIn,
-            isAdmin,
             user,
             updateUser,
             login,

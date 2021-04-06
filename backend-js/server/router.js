@@ -22,7 +22,6 @@ function expressRouter(router){
     router.use('*', (req, res) => {
         res.status(404).json({erroe: 'Not found!'});
     })
-    
 }
 
 module.exports = expressRouter;
