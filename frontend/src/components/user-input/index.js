@@ -13,7 +13,8 @@ function Input({name, err, type, placeholder, value, onChange}) {
                 type={type}
                 placeholder={placeholder}
                 value={value}
-                onChange={onChange} />
+                onChange={onChange} 
+                autoComplete="on"/>
         </div >
     )
 }

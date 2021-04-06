@@ -1,9 +1,36 @@
 .aside {
     padding-top: 30px;
     min-width: 360px;
-    border-top: solid 1px rgba(191,191,191,1);
+    border-top: solid 1px rgba(191, 191, 191, 1);
 }
 
-.aside div {
-    height: 30px;
+.heading {
+    font-size: 20px;
+}
+
+.friend {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    justify-content: space-around;
+}
+
+.username {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 200px
+}
+
+.username p {
+    margin: 0;
+}
+.username p:first-child {
+    font-weight: bold;
+}
+
+.friend:hover {
+    background-color: aliceblue;
 }

@@ -42,17 +42,17 @@ function AddFriendsPage() {
 
     const renderUsers = () => {
         if (users.length === 0) return <p>Find Friends</p>;
-
+        
         return (
-            users.map((user, index) => {
+            users.map((friend, index) => {
                 if (
-                    context?.user?._id === user._id ||
-                    context?.user?.sentRequests?.includes(user._id) ||
-                    context?.user?.receivedRequests?.includes(user._id) ||
-                    context?.user?.sentRequests?.some(u => u._id === user._id) ||
-                    context?.user?.receivedRequests?.some(u => u._id === user._id)
+                    user._id === friend._id ||
+                    user.sentRequests.some(u => u._id === friend._id) ||
+                    user.receivedRequests.some(u => u._id === friend._id) ||
+                    user.friends?.some(u => u._id === friend._id) 
                 ) return null;
-                return (<UserBadge user={user} addUser={addUser} key={user._id}/>)
+  
+                return (<UserBadge user={friend} addUser={addUser} key={friend._id}/>)
             })
         )
     }

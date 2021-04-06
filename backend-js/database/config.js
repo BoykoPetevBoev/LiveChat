@@ -7,7 +7,8 @@ function databaseConfig() {
     return mongoose.connect(databaseUrl, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useFindAndModify: false
     }, databaseStatus);
 
     function databaseStatus(err) {

@@ -3,7 +3,12 @@ const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
     name: {
-        type: String
+        type: String,
+        require: true
+    },
+    type: {
+        type: String,
+        require: true
     },
     messages: [],
     members: [{
