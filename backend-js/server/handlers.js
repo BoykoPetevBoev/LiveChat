@@ -4,6 +4,7 @@ const {
     createRoom,
     findUser,
     findUserById,
+    findChatById,
     findUsers,
     updateUser } = require('../database/database');
 
@@ -46,7 +47,7 @@ async function userRegister(req, res) {
             return res.status(401).send('This email is already registered!').end();
 
         const createdUser = await createUser(user);
-        const token = setToken(foundUser);
+        const token = setToken(createdUser);
         return res.status(200).header('Authorization', token).send(createdUser);
     }
     catch (err) { errorHandler(err, req, res) }
@@ -172,6 +173,16 @@ async function removeFriend(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
+async function getChat(req, res) {
+    try {
+        const { id } = req.query;
+        if(!id)  return res.status(401).send('Invalid data').end();
+
+        const chat = await findChatById(id);
+        return res.status(200).send(chat);
+    } catch (err) { errorHandler(err, req, res) }
+}
+
 function errorHandler(err, req, res) {
     console.error(err);
     return res.status(500).send({ error: 'Something failed!' });
@@ -185,5 +196,6 @@ module.exports = {
     sendFriendRequest,
     removeFriendRequest,
     acceptFriendRequest,
-    removeFriend
+    removeFriend,
+    getChat
 }

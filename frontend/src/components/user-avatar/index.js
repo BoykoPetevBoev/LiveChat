@@ -3,15 +3,15 @@ import styles from './index.module.css';
 
 function UserAvatar(props) {
     const [username, setUsername] = useState(props.username);
-    const [color, setColor] = useState('#66ad00');
+    // const [color, setColor] = useState('#66ad00');
 
     useEffect(() => {
         setUsername(props.username);
-        setColor('#66ad00');
+        // setColor('#66ad00');
     }, [props.username])
 
     return (
-        <div className={styles.img} style={{'backgroundColor': color}}>
+        <div className={styles.img}>
             <p>{username[0]}</p>
         </div>
     );

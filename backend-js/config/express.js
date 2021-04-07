@@ -7,6 +7,7 @@ function expressConfig() {
     const router = express.Router();
     const app = express();
 
+    app.use(cors());
     app.use(cors({ exposedHeaders: 'Authorization' }));
     app.use(express.json());
     app.use(express.static('static'));

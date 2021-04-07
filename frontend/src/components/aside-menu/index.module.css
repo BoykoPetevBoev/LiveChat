@@ -1,5 +1,5 @@
 .aside {
-    padding-top: 30px;
+    padding-top: 10px;
     min-width: 360px;
     border-top: solid 1px rgba(191, 191, 191, 1);
 }
@@ -8,29 +8,12 @@
     font-size: 20px;
 }
 
-.friend {
+.user-options {
     display: flex;
-    flex-direction: row;
-    padding: 8px;
     justify-content: space-around;
+    background: #f0f8ff;
+    height: 30px;
+    align-items: center;
+    margin-top: 10px;
 }
 
-.username {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 200px
-}
-
-.username p {
-    margin: 0;
-}
-.username p:first-child {
-    font-weight: bold;
-}
-
-.friend:hover {
-    background-color: aliceblue;
-}
