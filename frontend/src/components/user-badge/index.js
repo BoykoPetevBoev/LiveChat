@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
-import UserAvatar from '../user-avatar';
+import UserList from '../user-list';
 
 function UserBadge(props) {
     const [user, setUser] = useState(props.user);
@@ -11,10 +11,8 @@ function UserBadge(props) {
 
     return (
         <div className={styles.wrapper}>
-
-            <UserAvatar username={user.username}/>
-            <p className={styles.username}>{user.username}</p>
-            <p>{user.email}</p>
+            
+            <UserList user={user}/>
 
             {typeof props.addUser === 'function'
                 ? <button className={styles.btn} onClick={props.addUser} value={user._id}>+ Add User</button>

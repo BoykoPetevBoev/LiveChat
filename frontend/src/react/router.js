@@ -26,6 +26,10 @@ function App() {
         <Route exact path='/chat'>
           <ChatPage />
         </Route>
+        
+        <Route exact path='/chat/:id' component={ChatPage}>
+          {/* <ChatPage /> */}
+        </Route>
 
         <Route exact path='/friends'>
           {loggedIn ?<FriendsPage />  : <ErrorPage />}

@@ -4,9 +4,11 @@
     flex-direction: column;
     height: 92vh;
 }
+
 .send-message {
     width: 80%;
 }
+
 .chat {
     display: flex;
     flex-grow: 20;

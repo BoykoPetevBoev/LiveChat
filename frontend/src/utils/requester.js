@@ -14,8 +14,7 @@ function fetchRequest(method, body, url) {
 }
 
 async function promiseHandler(res) {
-    const token = res?.headers?.get('Authorization');
-    if (token) localStorage.setItem('token', token);
+    tokenHandler(res);
 
     const result = res.ok
         ? await res.json()
@@ -28,35 +27,55 @@ function errorHandler(err) {
     console.error(err);
     return undefined;
 }
+
+function tokenHandler(res) {
+    const token = res?.headers?.get('Authorization');
+    if (token)
+        localStorage.setItem('token', token);
+}
+
 async function userAuthorization(token) {
+    if (!token) return;
     return await fetchRequest('GET', undefined, `${URL}/verify?token=${token}`);
 }
 
 async function findUsers(username) {
+    if (!username) return;
     return await fetchRequest('GET', undefined, `${URL}/users?username=${username}`);
 }
 
+async function getChat(id) {
+    if (!id) return;
+    return await fetchRequest('GET', undefined, `${URL}/chat?id=${id}`)
+}
+
 async function userLogin(body) {
+    if (!body) return;
     return await fetchRequest('POST', body, `${URL}/login`);
 }
 
 async function userRegister(body) {
+    if (!body) return;
     return await fetchRequest('POST', body, `${URL}/register`);
 }
 
 async function sendFriendRequest(body) {
+    if (!body) return;
     return await fetchRequest('POST', body, `${URL}/send-friend-request`);
 }
 
 async function removeFriendRequest(body) {
+    if (!body) return;
     return await fetchRequest('POST', body, `${URL}/remove-friend-request`);
 }
 
 async function acceptFriendRequest(body) {
+    if (!body) return;
     return await fetchRequest('POST', body, `${URL}/accept-friend-request`);
 }
 
 async function removeFriend(body) {
+    if (!body) return;
     return await fetchRequest('POST', body, `${URL}/remove-friend`);
 }
 
@@ -68,5 +87,6 @@ module.exports = {
     sendFriendRequest,
     removeFriendRequest,
     acceptFriendRequest,
-    removeFriend
+    removeFriend,
+    getChat
 }

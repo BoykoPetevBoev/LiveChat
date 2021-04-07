@@ -52,6 +52,15 @@ async function findUserById(id) {
     } catch (err) { return errorHandler(err) }
 }
 
+async function findChatById(id) {
+    if(!id) return undefined;
+    try {
+        return await RoomSchema
+            .findById(id)
+            .populate('members')
+    } catch (err) { return errorHandler(err) }
+}
+
 async function findUsers(selector) {
     if (invalidSelector(selector))
         return undefined;
@@ -81,6 +90,7 @@ module.exports = {
     createRoom,
     findUser,
     findUserById,
+    findChatById,
     findUsers,
     updateUser,
 }
