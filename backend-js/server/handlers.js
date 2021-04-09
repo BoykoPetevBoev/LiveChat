@@ -44,7 +44,7 @@ async function userRegister(req, res) {
 
         const foundUser = await findUser({ email: user.email });
         if (foundUser)
-            return res.status(401).send('This email is already registered!').end();
+            return res.status(401).end();
 
         const createdUser = await createUser(user);
         const token = setToken(createdUser);
@@ -90,10 +90,10 @@ async function sendFriendRequest(req, res) {
         if (areTheyFriends(sender, receiver))
             return res.status(401).send('They are already friends').end();
 
-        sender.sentRequests = addId(sender.sentRequests, id);
+        sender.sentRequests = addId(sender.sentRequests, receiver._id);
         sender = await updateUser(sender);
 
-        receiver.receivedRequests = addId(receiver.receivedRequests, user._id);
+        receiver.receivedRequests = addId(receiver.receivedRequests, sender._id);
         receiver = await updateUser(receiver);
 
         return res.status(200).send(sender);

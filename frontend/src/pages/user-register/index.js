@@ -5,7 +5,7 @@ import styles from './index.module.css';
 import UserContext from '../../react/Context';
 import Header from '../../components/header';
 import FormHolder from '../../components/user-form-holder';
-import SubmitButton from '../../components/user-submit-button';
+import SubmitButton from '../../components/submit-button';
 import Input from '../../components/user-input';
 import { userRegister } from '../../requester';
 
@@ -52,14 +52,12 @@ function RegisterPage() {
             email,
             password
         };
-
         const user = await userRegister(body);
         if (user) {
             context.login(user);
             history.push('/');
         }
         else setErrEmail('Email is already registered!');
-
     }
 
     const onSubmit = (e) => {
@@ -72,7 +70,6 @@ function RegisterPage() {
         <div className={styles.background}>
             <Header />
             <main className={styles.main}>
-
                 <FormHolder className='register' title='Sign Up for Free'>
                     <form onSubmit={onSubmit}>
                         <Input
@@ -114,7 +111,6 @@ function RegisterPage() {
                         </div>
                     </form>
                 </FormHolder>
-
             </main>
         </div>
     )

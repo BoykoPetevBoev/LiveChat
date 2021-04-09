@@ -1,5 +1,5 @@
 .aside {
-    padding-top: 10px;
+    /* padding-top: 10px; */
     min-width: 360px;
     border-top: solid 1px rgba(191, 191, 191, 1);
 }
@@ -14,6 +14,6 @@
     background: #f0f8ff;
     height: 30px;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 

@@ -2,14 +2,14 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
+import { sendFriendRequest, findUsers } from '../../requester';
 
 import Header from '../../components/header';
 import Input from '../../components/user-input';
-import SubmitButton from '../../components/user-submit-button';
+import SubmitButton from '../../components/submit-button';
 import Wrapper from '../../components/wrapper';
 import FriendsMenu from '../../components/menu-friends';
 import UserBadge from '../../components/user-badge';
-import { sendFriendRequest, findUsers } from '../../requester';
 
 function AddFriendsPage() {
     const history = useHistory();
@@ -62,7 +62,6 @@ function AddFriendsPage() {
             <Header />
             <Wrapper>
                 <FriendsMenu />
-
                 <h2>Add Friend</h2>
                 
                 <div className={styles['form-holder']}>
@@ -81,7 +80,6 @@ function AddFriendsPage() {
                 <div className={styles['result-holder']}>
                     {renderUsers()}
                 </div>
-
             </Wrapper>
         </div>
     );

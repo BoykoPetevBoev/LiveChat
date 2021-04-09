@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import UserContext from './Context';
 
-import HomePage from '../pages/home-page';
-import RegisterPage from '../pages/user-register-page';
-import LoginPage from '../pages/user-login-page';
-import ErrorPage from '../pages/error-page';
-import ChatPage from '../pages/chat-page';
-import FriendsPage from '../pages/friends-page';
-import AllFriendsPage from '../pages/friends-all-page';
-import AddFriendsPage from '../pages/friends-add-page';
-import FriendRequestsPage from '../pages/friends-requests-page';
+import HomePage from '../pages/home';
+import RegisterPage from '../pages/user-register';
+import LoginPage from '../pages/user-login';
+import ErrorPage from '../pages/error';
+import ChatPage from '../pages/chat';
+import FriendsPage from '../pages/friends';
+import AllFriendsPage from '../pages/friends-all';
+import AddFriendsPage from '../pages/friends-add';
+import FriendRequestsPage from '../pages/friends-requests';
 
 function App() {
   const { loggedIn } = useContext(UserContext)
@@ -23,12 +23,10 @@ function App() {
           <HomePage />
         </Route>
 
+        <Route exact path='/chat/:id' component={loggedIn ? ChatPage : ErrorPage}/>
+
         <Route exact path='/chat'>
           {loggedIn ? <ChatPage /> : <ErrorPage />}
-        </Route>
-
-        <Route exact path='/chat/:id' component={loggedIn ? ChatPage : ErrorPage}>
-          {/* <ChatPage /> */}
         </Route>
 
         <Route exact path='/friends'>
@@ -41,7 +39,6 @@ function App() {
 
         <Route exact path='/friends/requests'>
           {loggedIn ? <FriendRequestsPage /> : <ErrorPage />}
-
         </Route>
 
         <Route exact path='/friends/add'>
@@ -55,7 +52,6 @@ function App() {
         <Route exact path='/register'>
           {loggedIn ? <ErrorPage /> : <RegisterPage />}
         </Route>
-
 
         <Route component={ErrorPage} />
       </Switch>

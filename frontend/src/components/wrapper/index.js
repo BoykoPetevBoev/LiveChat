@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-import Menu from '../../components/aside-menu';
+import Menu from '../menu-aside';
 
 function Wrapper(props) {
     return (

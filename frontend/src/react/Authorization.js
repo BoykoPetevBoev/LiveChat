@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserContext from './Context';
-import Loading from '../pages/loading-page';
+import Loading from '../pages/loading';
 import { userAuthorization } from '../requester';
 
 function getCookie(name) {
@@ -13,18 +13,19 @@ function Authorization(props) {
     const [loggedIn, setLoggedIn] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    
     useEffect(() => {
         setLoading(true);
         const token = getCookie('token');
         if (!token) return logout();
         sendRequest(token);
     }, []);
-
+    
     const sendRequest = async (token) => {
         const user = await userAuthorization(token);
         user ? login(user) : logout();
     }
-
+    
     const updateUser = (user) => {
         if (!loggedIn) {
             return;
@@ -54,7 +55,6 @@ function Authorization(props) {
             updateUser,
             login,
             logout,
-            // socket
         }}>
             {props.children}
         </UserContext.Provider>

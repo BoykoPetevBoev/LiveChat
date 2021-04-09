@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import styles from './index.module.css';
-import Header from '../../components/header';
-import FormHolder from '../../components/user-form-holder';
-import SubmitButton from '../../components/user-submit-button';
-import Input from '../../components/user-input';
-import UserContext from '../../react/Context';
-import { userLogin } from '../../requester';
 import { Link } from 'react-router-dom';
+import { userLogin } from '../../requester';
+import UserContext from '../../react/Context';
+import styles from './index.module.css';
+
+import FormHolder from '../../components/user-form-holder';
+import SubmitButton from '../../components/submit-button';
+import Input from '../../components/user-input';
+import Header from '../../components/header';
 
 
 function LoginPage() {
@@ -38,7 +39,6 @@ function LoginPage() {
         <div className={styles.container}>
             <Header />
             <main className={styles.main}>
-
                 <FormHolder className='login' title="Welcome Back!">
                     <form className='form' onSubmit={onSubmit}>
                         <Input
@@ -59,12 +59,11 @@ function LoginPage() {
                         />
                         <SubmitButton value='LOGIN' />
                         <div className={styles.link}>
-                            <p>Don't have an account?</p>
+                            <p>Don't have an account?</p> 
                             <Link to='/register'>Sign up</Link>
                         </div>
                     </form>
                 </FormHolder>
-
             </main>
         </div>
     )
