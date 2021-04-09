@@ -10,11 +10,14 @@ const RoomSchema = new Schema({
         type: String,
         require: true
     },
-    messages: [],
+    messages: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Message'
+    }],
     members: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }]
-})
+});
 
 module.exports = mongoose.model('Room', RoomSchema);

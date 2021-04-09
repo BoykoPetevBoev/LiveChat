@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import UserContext from './Context';
-import Loading from '../components/loading';
-import { userAuthorization } from '../utils/requester';
+import Loading from '../pages/loading-page';
+import { userAuthorization } from '../requester';
 
 function getCookie(name) {
-    const cookieValue = localStorage.getItem(name);;
+    const cookieValue = localStorage.getItem(name);
     return cookieValue;
 }
 
@@ -14,6 +14,7 @@ function Authorization(props) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         const token = getCookie('token');
         if (!token) return logout();
         sendRequest(token);
@@ -45,14 +46,15 @@ function Authorization(props) {
     }
 
     if (loading) return <Loading />
-    
+
     return (
         <UserContext.Provider value={{
             loggedIn,
             user,
             updateUser,
             login,
-            logout
+            logout,
+            // socket
         }}>
             {props.children}
         </UserContext.Provider>

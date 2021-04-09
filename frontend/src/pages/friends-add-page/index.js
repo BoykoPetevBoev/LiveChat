@@ -9,7 +9,7 @@ import SubmitButton from '../../components/user-submit-button';
 import Wrapper from '../../components/wrapper';
 import FriendsMenu from '../../components/menu-friends';
 import UserBadge from '../../components/user-badge';
-import { sendFriendRequest, findUsers } from '../../utils/requester';
+import { sendFriendRequest, findUsers } from '../../requester';
 
 function AddFriendsPage() {
     const history = useHistory();

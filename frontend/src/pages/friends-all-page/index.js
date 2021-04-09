@@ -8,7 +8,7 @@ import Header from '../../components/header';
 import Wrapper from '../../components/wrapper';
 import FriendsMenu from '../../components/menu-friends';
 import UserBadge from '../../components/user-badge';
-import { removeFriend } from '../../utils/requester';
+import { removeFriend } from '../../requester';
 
 
 function AllFriendsPage() {

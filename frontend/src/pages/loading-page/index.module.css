@@ -1,0 +1,17 @@
+.container {
+    height: 100vh;
+}
+
+.content {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    top: 90px;
+}
+
+.msg {
+    margin: 0;
+    padding-top: 20%;
+    font-size: xx-large;
+}
