@@ -3,11 +3,14 @@ import styles from './index.module.css';
 import UserList from '../user-list';
 
 function UserBadge(props) {
+
     const [user, setUser] = useState(props.user);
 
     useEffect(() => {
         setUser(props.user);
     }, [props.user]);
+
+    if(!user) return null;
 
     return (
         <div className={styles.wrapper}>

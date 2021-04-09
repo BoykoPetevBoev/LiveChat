@@ -70,6 +70,7 @@ async function findUsers(selector) {
 }
 
 async function updateUser(user) {
+    if(!user) return undefined;
     try {
         return await UserSchema
             .findOneAndUpdate({ _id: user._id }, user, { new: true })

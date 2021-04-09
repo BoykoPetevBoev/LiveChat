@@ -3,6 +3,7 @@
     flex-direction: row;
     padding: 8px;
     justify-content: space-around;
+    max-width: 400px;
 }
 
 .username {

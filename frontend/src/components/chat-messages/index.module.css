@@ -1,0 +1,42 @@
+/* Message */
+.message-holder p {
+    border-radius: 20px;
+    /* height: 35px; */
+    padding: 8px 12px;
+    background-color: #66ad00;
+    box-sizing: border-box;
+    color: #fff;
+    display: inline-block;
+    margin: 1px;
+}
+
+.message-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-info .sender {
+    /* font-weight: bold; */
+    /* margin-bottom: 0; */
+}
+
+.message-info .time {
+    color: gray;
+    /* margin-bottom: 0; */
+}
+
+.sender .time {
+}
+
+.chat {
+    display: flex;
+    flex-grow: 20;
+    flex-direction: column-reverse;
+    height: 100px;
+    text-align: right;
+    padding: 30px;
+    overflow: scroll;
+}
+.chat::-webkit-scrollbar {
+    display: none;
+}

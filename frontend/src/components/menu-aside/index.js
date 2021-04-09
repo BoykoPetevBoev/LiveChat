@@ -15,15 +15,12 @@ function Menu() {
     const RenderFriends = () => {
 
         if (user.friends.length === 0) return null;
-
         return (
             user.friends.map(friend => {
-
                 const room = user.rooms.find(room =>
                     room?.members.includes(friend._id) &&
                     room.type === 'chat'
                 )
-
                 return (
                     <Link to={`/chat/${room?._id}`} key={friend?._id}>
                         <UserList user={friend} />

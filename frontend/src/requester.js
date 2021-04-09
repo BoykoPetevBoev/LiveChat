@@ -19,7 +19,6 @@ async function promiseHandler(res) {
     const result = res.ok
         ? await res.json()
         : undefined;
-
     return result;
 }
 

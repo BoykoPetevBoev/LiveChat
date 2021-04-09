@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import UserAvatar from '../user-avatar';
 
-function UserList(props) {
-    const [user, setUser] = useState(props.user);
+function UserList({user}) {
 
-    useEffect(() => {
-        setUser(props.user);
-    }, [props.user]);
-
+    if(!user) return null;
     return (
         <div className={styles.friend}>
             <UserAvatar username={user.username} />

@@ -16,6 +16,8 @@ function FriendRequestsPage() {
 
     const removeUser = async (e) => {
         const id = e.target.value;
+        if(!id) return;
+
         const response = await removeFriendRequest({ user, id });
         if (!response) return;
 
@@ -26,6 +28,8 @@ function FriendRequestsPage() {
 
     const addFriend = async (e) => {
         const id = e.target.value;
+        if(!id) return;
+
         const response = await acceptFriendRequest({ user, id });
         if (!response) return;
 
