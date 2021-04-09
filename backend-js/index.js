@@ -1,27 +1,16 @@
-const socketio = require('socket.io');
 const http = require('http');
 
 const config = require('./config/config');
-const databaseConfig = require('./database/config');
+const databaseConfig = require('./config/mongodb');
 const expressConfig = require('./config/express');
 const socketIoConfig = require('./config/socketio');
 
 const app = expressConfig()
 const server = http.createServer(app);
 
-const io = socketio(server, {
-    cors: {
-        origins: "http://localhost:3000",
-    }
-});
-// io.on('connection', (socket) => {
-//     console.log('We have new connection');
 
-//     socket.on('disconnect', () => {
-//         console.log('Disconnect');
-//     })
-// })
-socketIoConfig(io);
+
+const io = socketIoConfig(server);
 databaseConfig();
 
 const port = config.port;

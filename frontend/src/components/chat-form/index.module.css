@@ -25,7 +25,7 @@
 
 
 /* Message */
-.chat p {
+.message-holder p {
     border-radius: 20px;
     height: 35px;
     padding: 8px 12px;
@@ -34,6 +34,19 @@
     color: #fff;
     display: inline-block;
     margin: 1px;
+}
+
+.message-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-info .sender {
+    font-weight: bold;
+}
+
+.message-info .time {
+    color: gray;
 }
 
 

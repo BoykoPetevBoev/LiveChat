@@ -24,15 +24,15 @@ function App() {
         </Route>
 
         <Route exact path='/chat'>
-          <ChatPage />
+          {loggedIn ? <ChatPage /> : <ErrorPage />}
         </Route>
-        
-        <Route exact path='/chat/:id' component={ChatPage}>
+
+        <Route exact path='/chat/:id' component={loggedIn ? ChatPage : ErrorPage}>
           {/* <ChatPage /> */}
         </Route>
 
         <Route exact path='/friends'>
-          {loggedIn ?<FriendsPage />  : <ErrorPage />}
+          {loggedIn ? <FriendsPage /> : <ErrorPage />}
         </Route>
 
         <Route exact path='/friends/all'>

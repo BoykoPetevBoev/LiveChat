@@ -7,7 +7,7 @@ import Header from '../../components/header';
 import FormHolder from '../../components/user-form-holder';
 import SubmitButton from '../../components/user-submit-button';
 import Input from '../../components/user-input';
-import { userRegister } from '../../utils/requester';
+import { userRegister } from '../../requester';
 
 function RegisterPage() {
     const [username, setUsername] = useState('');

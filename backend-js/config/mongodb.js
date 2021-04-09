@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('../config/config');
+const config = require('./config');
 
 function databaseConfig() {
     const databaseUrl = `mongodb+srv://${config.dbUser}:${config.dbPassword}@${config.dbAddress}/${config.dbName}?retryWrites=true&w=majority`;
