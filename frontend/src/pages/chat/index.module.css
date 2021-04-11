@@ -11,6 +11,7 @@
     justify-content: space-around;
     background-color:  #f0f8ff;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .send-message {

@@ -1,13 +1,19 @@
 /* Message */
 .message-holder p {
     border-radius: 20px;
-    /* height: 35px; */
     padding: 8px 12px;
-    background-color: #66ad00;
     box-sizing: border-box;
     color: #fff;
     display: inline-block;
     margin: 1px;
+}
+
+.green {
+    background-color: #66ad00;
+}
+
+.red {
+    background-color: #ec5a28;
 }
 
 .message-info {
@@ -31,9 +37,10 @@
 .chat {
     display: flex;
     flex-grow: 20;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    justify-content: flex-end;
     height: 100px;
-    text-align: right;
+    text-align: left;
     padding: 30px;
     overflow: scroll;
 }

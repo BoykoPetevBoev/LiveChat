@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import UserContext from '../../react/Context';
 import styles from './index.module.css';
 
-function ChatMessages(props) {
+function ChatMessages({ messages, users }) {
 
-    if (!props.messages) return null;
+    const context = useContext(UserContext);
+    const [user, setUser] = useState(context.user);
+
+    if (!messages) return null;
+
 
     return (
         <div className={styles.chat}> {
-            props.messages.map((msg, index) => {
+            messages.map((message, index) => {
                 return (
                     <div key={index}>
                         <div className={styles['message-info']}>
-                            <p className={styles.time}>{msg.time}</p>
-                            <p className={styles.sender}>{msg.sender}</p>
+                            <p className={styles.sender}>{
+                                users.find(user => user._id === message.sender)?.username
+                            }</p>
+                            <p className={styles.time}>{message.time}</p>
                         </div>
                         <div className={styles['message-holder']}>
-                            <p>{msg.message}</p>
+                            <p className={user._id === message.sender ? styles.green : styles.red}>
+                                {message.content}
+                            </p>
                         </div>
                     </div>
                 )
