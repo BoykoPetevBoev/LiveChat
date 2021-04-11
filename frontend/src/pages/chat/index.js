@@ -7,6 +7,7 @@ import Header from '../../components/header';
 import Wrapper from '../../components/wrapper';
 import UserList from '../../components/user-list';
 import ChatMessages from '../../components/chat-messages';
+import { getChat } from '../../requester';
 
 
 function ChatPage(props) {
@@ -17,39 +18,49 @@ function ChatPage(props) {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
 
-    useEffect(() => {
-        const chatId = props.match.params.id;
-        const room = user.rooms.find(room => room._id === chatId);
-        const members = user.friends.filter(user => room.members.includes(user._id));
+    const fetchData = async (id) => {
+        if(!id || id == undefined) {
+            return undefined;
+        }
+        console.log(id);
 
-        setUser(context.user);
+        const room = await getChat(id);
+        const members = room.members.filter(u => u._id !== user._id);
         setUsers(members);
         setChat(room);
         setMessages([...room.messages]);
+    }
 
-        socket.on('chat-message', (response) => {
-            room.messages.unshift(response);
-            setChat(room);
-            setMessages([...room.messages]);
+    useEffect(() => {
+        const chatId = props.match.params.id;
+        fetchData(chatId);
+        setUser(context.user);
+        
+        socket.on('message', async (updatedRoom) => {
+            setChat(updatedRoom);
+            setMessages([...updatedRoom.messages]);
         });
-    }, [props.match.params.id, user.rooms, setMessages, user.friends, context.user]);
-
+    }, [props.match.params.id, context.user]);
+    
     const messageHandler = (message) => {
         const msgTemplate = {
-            sender: user.username,
-            message: message.trim(),
-            time: new Date().toLocaleString()
+            chat: chat,
+            message: {
+                sender: user,
+                content: message.trim(),
+                time: new Date().toLocaleString()
+            }
         }
         socket.emit('chat-message', msgTemplate)
     }
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(message);
         if (!message) return;
         messageHandler(message);
         setMessage('');
     }
+
 
     return (
         <div className={styles.container}>
@@ -60,14 +71,14 @@ function ChatPage(props) {
                     <div className={styles['chat-header']}>
                         {users.map((member, index) => {
                             return (
-                                <UserList user={member}  key={index}/>
+                                <UserList user={member} key={index} />
                             )
                         })}
                         <p>{chat.name}</p>
                         <p>{chat?._id}</p>
                     </div>
 
-                    <ChatMessages messages={messages} />
+                    <ChatMessages messages={messages} users={[user, ...users]}/>
 
                     <form className={styles.form} onSubmit={onSubmit}>
                         <input

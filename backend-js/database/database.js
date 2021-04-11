@@ -1,10 +1,25 @@
 const UserSchema = require('./models/Users');
 const RoomSchema = require('./models/Room');
+const MessageSchema = require('./models/Message');
 const { hashPassword, checkPassword } = require('./utils');
 
 const invalidSelector = (selector) => {
     return !selector || typeof selector !== 'object';
 }
+
+// MESSAGE
+
+async function createMessage(message) {
+    if (!message.room || !message.sender || !message.content || !message.time)
+        return undefined;
+    try {
+        const messageModel = await new MessageSchema(message);
+        const savedMessage = await messageModel.save();
+        return savedMessage;
+    } catch (err) { return errorHandler(err) }
+}
+
+//CHAT
 
 async function createRoom(room) {
     if (!room || !room.name || !room.type)
@@ -15,6 +30,28 @@ async function createRoom(room) {
         return savedRoom;
     } catch (err) { return errorHandler(err) }
 }
+
+async function findChatById(id) {
+    if (!id) return undefined;
+    try {
+        return await RoomSchema
+            .findById(id)
+            .populate('members')
+            .populate('messages')
+    } catch (err) { return errorHandler(err) }
+}
+
+async function updateChat(room) {
+    if (!room) return undefined;
+    try {
+        return await RoomSchema
+            .findOneAndUpdate({ _id: room._id }, room, { new: true })
+            .populate('members')
+            .populate('messages')
+    } catch (err) { return errorHandler(err) }
+}
+
+//USER
 
 async function createUser(user) {
     if (!user || !user.username || !user.email || !user.password)
@@ -52,15 +89,6 @@ async function findUserById(id) {
     } catch (err) { return errorHandler(err) }
 }
 
-async function findChatById(id) {
-    if(!id) return undefined;
-    try {
-        return await RoomSchema
-            .findById(id)
-            .populate('members')
-    } catch (err) { return errorHandler(err) }
-}
-
 async function findUsers(selector) {
     if (invalidSelector(selector))
         return undefined;
@@ -70,7 +98,7 @@ async function findUsers(selector) {
 }
 
 async function updateUser(user) {
-    if(!user) return undefined;
+    if (!user) return undefined;
     try {
         return await UserSchema
             .findOneAndUpdate({ _id: user._id }, user, { new: true })
@@ -89,9 +117,11 @@ function errorHandler(err) {
 module.exports = {
     createUser,
     createRoom,
+    createMessage,
     findUser,
     findUserById,
     findChatById,
     findUsers,
     updateUser,
+    updateChat
 }

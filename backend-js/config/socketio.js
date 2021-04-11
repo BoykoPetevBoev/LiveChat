@@ -1,5 +1,5 @@
 const socketio = require('socket.io');
-const socket = require('../socket/socket')
+const socket = require('../server/socket')
 
 const URL = "http://localhost:3000";
 
