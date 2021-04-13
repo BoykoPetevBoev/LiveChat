@@ -5,13 +5,14 @@ import { socket } from '../../socket';
 
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper';
-import UserList from '../../components/user-list';
+import ChatHeader from '../../components/chat-header';
 import ChatMessages from '../../components/chat-messages';
 import { getChat } from '../../requester';
 
 
 function ChatPage(props) {
     const context = useContext(UserContext);
+    const [chatId, setChatId] = useState(props?.match?.params?.id)
     const [user, setUser] = useState(context.user);
     const [users, setUsers] = useState([]);
     const [chat, setChat] = useState({});
@@ -19,11 +20,7 @@ function ChatPage(props) {
     const [messages, setMessages] = useState([]);
 
     const fetchData = async (id) => {
-        if(!id || id == undefined) {
-            return undefined;
-        }
-        console.log(id);
-
+        if(!id) return;
         const room = await getChat(id);
         const members = room.members.filter(u => u._id !== user._id);
         setUsers(members);
@@ -32,16 +29,15 @@ function ChatPage(props) {
     }
 
     useEffect(() => {
-        const chatId = props.match.params.id;
-        fetchData(chatId);
+        setChatId(props?.match?.params?.id);
+        fetchData(props?.match?.params?.id);
         setUser(context.user);
-        
         socket.on('message', async (updatedRoom) => {
             setChat(updatedRoom);
             setMessages([...updatedRoom.messages]);
         });
-    }, [props.match.params.id, context.user]);
-    
+    }, [props.match?.params?.id, context.user]);
+
     const messageHandler = (message) => {
         const msgTemplate = {
             chat: chat,
@@ -61,43 +57,33 @@ function ChatPage(props) {
         setMessage('');
     }
 
-
     return (
         <div className={styles.container}>
             <Header />
             <Wrapper>
+                {!chatId ? null :
+                    <div className={styles.container}>
+                        <ChatHeader users={users} chat={chat} />
+                        <ChatMessages messages={messages} users={[user, ...users]} />
 
-                <div className={styles.container}>
-                    <div className={styles['chat-header']}>
-                        {users.map((member, index) => {
-                            return (
-                                <UserList user={member} key={index} />
-                            )
-                        })}
-                        <p>{chat.name}</p>
-                        <p>{chat?._id}</p>
+                        <form className={styles.form} onSubmit={onSubmit}>
+                            <input
+                                className={styles.input}
+                                type="text"
+                                placeholder="Aa..."
+                                value={message}
+                                onChange={e => setMessage(e.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                value="Send"
+                                className={styles['send-button']}
+                            >
+                                <i className="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
                     </div>
-
-                    <ChatMessages messages={messages} users={[user, ...users]}/>
-
-                    <form className={styles.form} onSubmit={onSubmit}>
-                        <input
-                            className={styles.input}
-                            type="text"
-                            placeholder="Aa..."
-                            value={message}
-                            onChange={e => setMessage(e.target.value)}
-                        />
-                        <button
-                            type="submit"
-                            value="Send"
-                            className={styles['send-button']}
-                        >
-                            <i className="fas fa-arrow-right"></i>
-                        </button>
-                    </form>
-
-                </div>
+                }
 
             </Wrapper>
         </div>

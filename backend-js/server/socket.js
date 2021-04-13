@@ -49,8 +49,6 @@ function socket(io) {
       const savedChat = await findChatById(room);
       savedChat.messages = addId(savedChat.messages, savedMessage._id);
       const updatedChat = await updateChat(savedChat);
-
-      console.log(savedMessage);
       io.emit('message', updatedChat);
     });
 

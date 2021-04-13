@@ -33,7 +33,7 @@ function Header() {
                     </div>
                 </Link>
 
-                {loggedIn ? <Link className={styles.button} to={`/chat/${context.user.rooms[0]._id}`}>
+                {loggedIn ? <Link className={styles.button} to={`/chat`}>
                     <div>
                         <i className="fas fa-comments"></i>
                         <p>Chat</p>

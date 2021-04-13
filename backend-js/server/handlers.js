@@ -13,8 +13,7 @@ const {
     verifyToken,
     addId,
     removeId,
-    areTheyFriends
-} = require('./utils');
+    areTheyFriends } = require('./utils');
 
 async function userLogin(req, res) {
     try {
@@ -176,7 +175,7 @@ async function removeFriend(req, res) {
 async function getChat(req, res) {
     try {
         const { id } = req.query;
-        if(!id)  return res.status(401).send('Invalid data').end();
+        if (!id) return res.status(401).send('Invalid data').end();
 
         const chat = await findChatById(id);
         return res.status(200).send(chat);

@@ -7,6 +7,10 @@ function ChatMessages({ messages, users }) {
     const context = useContext(UserContext);
     const [user, setUser] = useState(context.user);
 
+    useEffect(() => {
+        setUser(context.user)
+    }, [context.user])
+
     if (!messages) return null;
 
 
