@@ -1,7 +1,7 @@
 const UserSchema = require('./models/Users');
 const RoomSchema = require('./models/Room');
 const MessageSchema = require('./models/Message');
-const { hashPassword, checkPassword } = require('./utils');
+const { hashPassword } = require('./utils');
 
 const invalidSelector = (selector) => {
     return !selector || typeof selector !== 'object';
@@ -57,7 +57,7 @@ async function createUser(user) {
     if (!user || !user.username || !user.email || !user.password)
         return undefined;
     try {
-        user.password = hashPassword(user.password)
+        user.password = hashPassword(user.password);
         const userModel = new UserSchema(user);
         const savedUser = await userModel.save();
         return savedUser;
@@ -93,7 +93,12 @@ async function findUsers(selector) {
     if (invalidSelector(selector))
         return undefined;
     try {
-        return UserSchema.find(selector)
+        return UserSchema
+            .find(selector)
+            .populate('sentRequests')
+            .populate('receivedRequests')
+            .populate('friends')
+            .populate('rooms')
     } catch (err) { return errorHandler(err) }
 }
 
