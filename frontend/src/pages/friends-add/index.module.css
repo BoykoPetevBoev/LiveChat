@@ -7,14 +7,3 @@
 .form-holder form {
     width: 300px;
 }
-
-.result-holder {
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    border: dotted 2px #87c13f;
-    border-radius: 20px;
-    width: 70%;
-    margin: 20px 0;
-}

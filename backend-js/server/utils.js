@@ -27,7 +27,7 @@ function addId(array, id) {
 }
 
 function removeId(array, id) {
-    const match = (user) => user._id == id
+    const match = (user) => user._id == id;
     if (array.some(match)) {
         const index = array.findIndex(match);
         array.splice(index, 1);

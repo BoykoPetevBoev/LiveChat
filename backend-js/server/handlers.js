@@ -182,6 +182,24 @@ async function getChat(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
+async function createGroup(req, res) {
+    try {
+        const group = req.body;
+        if (!group || !group.name || !group.type || !group.members || group.members.length === 0)
+            return res.status(401).send('Invalid data').end();
+
+        const savedGroup = await createRoom(group);
+
+        savedGroup.members.map(async (id) => {
+            const user = await findUserById(id);
+            user.rooms = addId(user.rooms, savedGroup._id);
+            return await updateUser(user);
+        });
+
+        return res.status(200).send(savedGroup);
+    } catch (err) { errorHandler(err, req, res) }
+}
+
 function errorHandler(err, req, res) {
     console.error(err);
     return res.status(500).send({ error: 'Something failed!' });
@@ -196,5 +214,6 @@ module.exports = {
     removeFriendRequest,
     acceptFriendRequest,
     removeFriend,
-    getChat
+    getChat,
+    createGroup
 }

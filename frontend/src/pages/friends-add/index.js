@@ -9,7 +9,7 @@ import Input from '../../components/user-input';
 import SubmitButton from '../../components/submit-button';
 import Wrapper from '../../components/wrapper';
 import FriendsMenu from '../../components/menu-friends';
-import UserBadge from '../../components/user-badge';
+import UsersList from '../../components/user-list';
 
 function AddFriendsPage() {
     const history = useHistory();
@@ -40,21 +40,13 @@ function AddFriendsPage() {
         setUsers(response);
     }
 
-    const renderUsers = () => {
-        if (users.length === 0) return <p>Find Friends</p>;
-        
-        return (
-            users.map((friend, index) => {
-                if (
-                    user._id === friend._id ||
-                    user.sentRequests.some(u => u._id === friend._id) ||
-                    user.receivedRequests.some(u => u._id === friend._id) ||
-                    user.friends?.some(u => u._id === friend._id) 
-                ) return null;
-  
-                return (<UserBadge user={friend} addUser={addUser} key={friend._id}/>)
-            })
-        )
+    const filterUsers = () => {
+        return users.filter((friend) => {
+            return friend._id !== user._id &&
+                !user.sentRequests.some(u => u._id === friend._id) &&
+                !user.receivedRequests.some(u => u._id === friend._id) &&
+                !user.friends?.some(u => u._id === friend._id)
+        })
     }
 
     return (
@@ -63,7 +55,7 @@ function AddFriendsPage() {
             <Wrapper>
                 <FriendsMenu />
                 <h2>Add Friend</h2>
-                
+
                 <div className={styles['form-holder']}>
                     <form onSubmit={onSubmit}>
                         <Input
@@ -77,9 +69,12 @@ function AddFriendsPage() {
                     </form>
                 </div>
 
-                <div className={styles['result-holder']}>
-                    {renderUsers()}
-                </div>
+                <UsersList
+                    users={filterUsers()}
+                    heading={''}
+                    empty={'Find Friends'}
+                    buttons={{ add: addUser }}
+                />
             </Wrapper>
         </div>
     );

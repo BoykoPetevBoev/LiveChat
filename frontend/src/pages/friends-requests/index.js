@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper';
 import FriendsMenu from '../../components/menu-friends';
-import UserBadge from '../../components/user-badge';
+import UsersList from '../../components/user-list';
 import { acceptFriendRequest, removeFriendRequest } from '../../requester';
 
 function FriendRequestsPage() {
@@ -16,7 +16,7 @@ function FriendRequestsPage() {
 
     const removeUser = async (e) => {
         const id = e.target.value;
-        if(!id) return;
+        if (!id) return;
 
         const response = await removeFriendRequest({ user, id });
         if (!response) return;
@@ -28,7 +28,7 @@ function FriendRequestsPage() {
 
     const addFriend = async (e) => {
         const id = e.target.value;
-        if(!id) return;
+        if (!id) return;
 
         const response = await acceptFriendRequest({ user, id });
         if (!response) return;
@@ -38,33 +38,24 @@ function FriendRequestsPage() {
         history.push('/friends/all');
     }
 
-    const RenderUsers = (props) => {
-        const users = props.users
-        const buttons = props.buttons
-        if (!users || users.length === 0) return <p>There is no requests in this section</p>;
-        return (
-            users.map((user) => {
-                return (<UserBadge user={user} {...buttons} key={user._id} />)
-            })
-        )
-    }
-
     return (
         <div className={styles.container}>
             <Header />
             <Wrapper>
                 <FriendsMenu />
                 <h2>Friend Requests</h2>
-
-                <p className={styles.heading}>Your received requests</p>
-                <div className={styles.requests}>
-                    <RenderUsers users={user.receivedRequests} buttons={{ confirm: addFriend, delete: removeUser }} />
-                </div>
-
-                <p className={styles.heading}>Your sent requests</p>
-                <div className={styles.requests}>
-                    <RenderUsers users={user.sentRequests} buttons={{ delete: removeUser }} />
-                </div>
+                <UsersList
+                    users={user.receivedRequests}
+                    heading={'Your received requests'}
+                    buttons={{ confirm: addFriend, remove: removeUser }}
+                    empty={'There is no requests in this section'}
+                    />
+                <UsersList
+                    users={user.sentRequests}
+                    heading={'Your sent requests'}
+                    buttons={{ remove: removeUser }}
+                    empty={'There is no requests in this section'}
+                />
             </Wrapper>
 
         </div>

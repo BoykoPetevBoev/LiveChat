@@ -1,27 +1,17 @@
-.friend {
-    display: flex;
-    flex-direction: row;
-    padding: 8px;
-    justify-content: space-around;
-    max-width: 400px;
+.container {
+    width: 70%;
+    margin: 20px 0;
 }
 
-.username {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 200px
-}
-
-.username p {
-    margin: 0;
-}
-.username p:first-child {
+.heading {
     font-weight: bold;
-}
-
-.friend:hover {
-    background-color: aliceblue;
+}   
+.friends {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 30px;  
+    flex-wrap: wrap;
+    border: dotted 2px #87c13f;
 }
