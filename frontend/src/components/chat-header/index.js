@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-import UserList from '../user-list';
+import UserList from '../user-card';
 
 function ChatHeader({ users, chat }) {
     return (

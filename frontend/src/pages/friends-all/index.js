@@ -3,13 +3,11 @@ import { useHistory } from 'react-router-dom';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
 
-
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper';
 import FriendsMenu from '../../components/menu-friends';
-import UserBadge from '../../components/user-badge';
 import { removeFriend } from '../../requester';
-
+import UsersList from '../../components/user-list';
 
 function AllFriendsPage() {
     const history = useHistory();
@@ -26,15 +24,8 @@ function AllFriendsPage() {
         history.push('/friends/all');
     }
 
-    const RenderUsers = (props) => {
-        const users = props.users
-        const buttons = props.buttons
-        if (!users || users.length === 0) return <p>There is no friends in your list</p>;
-        return (
-            users.map((user) => {
-                return (<UserBadge user={user} {...buttons} key={user._id} />)
-            })
-        )
+    const redirectToChat = () => {
+        history.push(`/chat `);
     }
 
     return (
@@ -44,9 +35,12 @@ function AllFriendsPage() {
                 <FriendsMenu />
                 <h2>All Friends</h2>
 
-                <div className={styles.friends}>
-                    <RenderUsers users={user.friends} buttons={{ remove: removeFriendFromList }} />
-                </div>
+                <UsersList
+                    users={user.friends}
+                    heading={''}
+                    empty={'There is no friends in your list'}
+                    buttons={{ remove: removeFriendFromList, chat: redirectToChat }}
+                />
 
             </Wrapper>
         </div>

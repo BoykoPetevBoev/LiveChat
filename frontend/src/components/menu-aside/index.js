@@ -2,38 +2,48 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
-import UserList from '../user-list';
+import UserCard from '../user-card';
 
 function Menu() {
     const context = useContext(UserContext);
     const [user, setUser] = useState(context.user);
+    const [chats, setChats] = useState([]);
+    const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
         setUser(context.user)
+        setChats(context.user.rooms.filter(room => room.type === 'chat'));
+        setRooms(context.user.rooms.filter(room => room.type === 'group'));
     }, [context.user]);
 
     const RenderFriends = () => {
+        if (chats.length === 0)
+            return <p>Looks like you haven't added any friends yet.Invite friends to chat together.</p>
 
-        if (user.friends.length === 0) return null;
-        return (
-            user.friends.map(friend => {
-                const room = user.rooms.find(room =>
-                    room?.members.includes(friend._id) &&
-                    room.type === 'chat'
-                )
-                return (
-                    <Link to={`/chat/${room?._id}`} key={friend?._id}>
-                        <UserList user={friend} />
-                    </Link>
-                )
-            })
-        )
+        return chats.map(chat => {
+            const friend = user.friends.find(fr => chat.members.includes(fr._id))
+            return (
+                <Link to={`/chat/${chat._id}`} key={chat._id}>
+                    <UserCard user={friend} />
+                </Link>
+            );
+        });
+    }
+
+    const RenderGroups = () => {
+        return rooms.map(room => {
+            return (
+                <Link to={`/chat/${room._id}`} key={room?._id}>
+                    <UserCard room={room} />
+                </Link>
+            );
+        });
     }
 
     return (
         <div className={styles.aside}>
             <div>
-                <UserList user={user} />
+                <UserCard user={user} />
                 <div className={styles['user-options']}>
                     {/* <Link to='/chat'><i className="fas fa-microphone-slash"></i></Link> */}
                     <Link to='/chat'><i className="fas fa-microphone"></i></Link>
@@ -42,13 +52,15 @@ function Menu() {
                     <Link to='/chat'><i className="fas fa-cog"></i></Link>
                 </div>
             </div>
-            <div>
+
+            <div className={styles.border}>
                 <p className={styles.heading}> <i className="fas fa-user"></i> Friends</p>
                 <RenderFriends />
             </div>
-            <div>
-                <p className={styles.heading}> <i className="fas fa-users"></i> Rooms</p>
-                {/* <i className="fas fa-users-slash"></i> */}
+
+            <div className={styles.border}>
+                <p className={styles.heading}> <i className="fas fa-users"></i> Groups</p>
+                <RenderGroups />
             </div>
         </div>
     )

@@ -1,0 +1,27 @@
+.friend {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    justify-content: space-around;
+    max-width: 400px;
+}
+
+.username {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 200px
+}
+
+.username p {
+    margin: 0;
+}
+.username p:first-child {
+    font-weight: bold;
+}
+
+.friend:hover {
+    background-color: aliceblue;
+}

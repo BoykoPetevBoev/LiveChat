@@ -14,8 +14,7 @@ async function createMessage(message) {
         return undefined;
     try {
         const messageModel = await new MessageSchema(message);
-        const savedMessage = await messageModel.save();
-        return savedMessage;
+        return await messageModel.save();
     } catch (err) { return errorHandler(err) }
 }
 
@@ -26,8 +25,7 @@ async function createRoom(room) {
         return undefined;
     try {
         const roomModel = new RoomSchema(room);
-        const savedRoom = await roomModel.save();
-        return savedRoom;
+        return await roomModel.save();
     } catch (err) { return errorHandler(err) }
 }
 

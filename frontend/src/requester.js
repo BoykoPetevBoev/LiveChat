@@ -78,6 +78,11 @@ async function removeFriend(body) {
     return await fetchRequest('POST', body, `${URL}/remove-friend`);
 }
 
+async function createGroup(body) {
+    if(!body) return;
+    return await fetchRequest('POST', body, `${URL}/group-create`);
+}
+
 module.exports = {
     userLogin,
     userRegister,
@@ -87,5 +92,6 @@ module.exports = {
     removeFriendRequest,
     acceptFriendRequest,
     removeFriend,
-    getChat
+    getChat,
+    createGroup
 }

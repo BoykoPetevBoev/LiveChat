@@ -1,19 +1,18 @@
 import React from 'react';
 import styles from './index.module.css';
-import UserAvatar from '../user-avatar';
+import UserBadge from '../../components/user-badge';
 
-function UserList({user}) {
-
-    if(!user) return null;
+function UsersList({ users, heading, buttons, empty }) {
     return (
-        <div className={styles.friend}>
-            <UserAvatar username={user.username} />
-            <div className={styles.username}>
-                <p>{user.username}</p>
-                <p>{user.email}</p>
-            </div>
+        <div className={styles.container}>
+            <p className={styles.heading}>{heading}</p>
+            <div className={styles.friends}>    {
+                !users || users.length === 0
+                ? <p>{empty}</p>
+                : users.map((user) => <UserBadge user={user} {...buttons} key={user._id} />)
+            }</div>
         </div>
     )
 }
 
-export default UserList;
+export default UsersList

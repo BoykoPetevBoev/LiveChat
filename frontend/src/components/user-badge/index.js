@@ -1,33 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './index.module.css';
-import UserList from '../user-list';
+import UserCard from '../user-card';
 
-function UserBadge(props) {
-
-    const [user, setUser] = useState(props.user);
-
-    useEffect(() => {
-        setUser(props.user);
-    }, [props.user]);
+function UserBadge({user, add, confirm, remove}) {
 
     if(!user) return null;
-
     return (
         <div className={styles.wrapper}>
             
-            <UserList user={user}/>
+            <UserCard user={user}/>
 
-            {typeof props.addUser === 'function'
-                ? <button className={styles.btn} onClick={props.addUser} value={user._id}>+ Add User</button>
+            {typeof add === 'function'
+                ? <button className={styles.btn} onClick={add} value={user._id}>+ Add</button>
                 : null}
-            {typeof props.confirm === 'function'
-                ? <button className={styles.btn} onClick={props.confirm} value={user._id}>Confirm</button>
+            {typeof confirm === 'function'
+                ? <button className={styles.btn} onClick={confirm} value={user._id}>Confirm</button>
                 : null}
-            {typeof props.delete === 'function'
-                ? <button className={styles.btn2} onClick={props.delete} value={user._id}>Delete</button>
-                : null}
-            {typeof props.remove === 'function'
-                ? <button className={styles.btn2} onClick={props.remove} value={user._id}>Remove</button>
+            {typeof remove === 'function'
+                ? <button className={styles.btn2} onClick={remove} value={user._id}>Remove</button>
                 : null}
 
         </div>

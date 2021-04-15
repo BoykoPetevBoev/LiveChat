@@ -47,7 +47,7 @@ function Header() {
                     </div>
                 </Link> : null}
 
-                {loggedIn ? <Link className={styles.button} to='/friends'>
+                {loggedIn ? <Link className={styles.button} to='/group'>
                     <div>
                     <i className="fas fa-plus-circle"></i>
                         <p>New Group</p>
