@@ -5,12 +5,14 @@ import UserBadge from '../../components/user-badge';
 function UsersList({ users, heading, buttons, empty }) {
     return (
         <div className={styles.container}>
-            <p className={styles.heading}>{heading}</p>
-            <div className={styles.friends}>    {
-                !users || users.length === 0
-                ? <p>{empty}</p>
-                : users.map((user) => <UserBadge user={user} {...buttons} key={user._id} />)
-            }</div>
+                <p className={styles.heading}>{heading}</p>
+            <div className={styles.friends}>
+                {
+                    !users || users.length === 0
+                        ? <p>{empty}</p>
+                        : users.map((user) => <UserBadge user={user} {...buttons} key={user._id} />)
+                }
+            </div>
         </div>
     )
 }
