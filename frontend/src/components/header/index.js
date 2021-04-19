@@ -20,7 +20,7 @@ function Header() {
 
             <div className={styles.logo}>
                 <Link to='/'>
-                    <img src={logo} alt='Live Chat'/>
+                    <img src={logo} alt='Live Chat' />
                 </Link>
             </div>
 
@@ -49,24 +49,68 @@ function Header() {
 
                 {loggedIn ? <Link className={styles.button} to='/group'>
                     <div>
-                    <i className="fas fa-plus-circle"></i>
+                        <i className="fas fa-plus-circle"></i>
                         <p>New Group</p>
                     </div>
                 </Link> : null}
 
-                {loggedIn ? <Link className={styles.button} to='/' onClick={logout} >
-                    <div>
-                        <i className="fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                    </div>
-                </Link> : null}
+                {loggedIn ?
+                    <div className={styles.dropdown}>
 
-                {loggedIn ? null : <Link className={styles.button} to='/login'>
-                    <div>
-                        <i className="fas fa-sign-in-alt"></i>
-                        <p>Login</p>
+                        <Link className={styles.button} to='/profile'>
+                            <div>
+                                <i className="fas fa-user"></i>
+                                <p>Profile</p>
+                            </div>
+                        </Link>
+
+                        <div className={styles['dropdown-content']}>
+                            <Link to='/profile'>
+                                <div>
+                                    <i className="fas fa-cog"></i>
+                                    <p>Settings</p>
+                                </div>
+                            </Link>
+
+                            <Link to='/' onClick={logout} >
+                                <div>
+                                    <i className="fas fa-sign-out-alt"></i>
+                                    <p>Logout</p>
+                                </div>
+                            </Link>
+                        </div>
+
+                    </div> : null
+                }
+
+                {loggedIn ? null :
+                    <div className={styles.dropdown}>
+
+                        <Link className={styles.button} to='/login'>
+                            <div>
+                                <i className="fas fa-sign-in-alt"></i>
+                                <p>Login</p>
+                            </div>
+                        </Link>
+
+                        <div className={styles['dropdown-content']}>
+                            <Link to='/login'>
+                                <div>
+                                    <i className="fas fa-sign-in-alt"></i>
+                                    <p>Login</p>
+                                </div>
+                            </Link>
+
+                            <Link to='/register'>
+                                <div>
+                                    <i className="fas fa-sign-in-alt"></i>
+                                    <p>Register</p>
+                                </div>
+                            </Link>
+                        </div>
+
                     </div>
-                </Link>}
+                }
             </nav>
 
         </div>

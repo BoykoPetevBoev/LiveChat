@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+
 .container {
   display: flex;
   justify-content: space-around;
@@ -15,7 +16,7 @@
   justify-content: space-around;
 }
 
-.navigation a {
+.navigation .button {
   /* box-sizing: border-box; */
   height: 50px;
   width: 120px;
@@ -28,24 +29,57 @@
   margin: 0 20px;
 }
 
-.navigation a:hover {
+.navigation .button:hover {
   box-shadow: 0 0 5px grey;
+  color: #66ad00;
 }
 
-.navigation a:active {
+.navigation .button:active {
   box-shadow: inset 0 0 5px grey;
 }
 
-.navigation a div p {
+.navigation .button div p, .dropdown-content p {
   margin: 0;
 }
 
 .logo {
   height: 100%;
-  /* border-radius: 90%; */
-  /* border: solid 5px #87c13f; */
 }
 
 .logo img {
   height: 100%;
+}
+
+.dropdown-btn {
+  height: 50px;
+  width: 120px;
+  padding: 0 5px;
+  min-width: 90px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 120px;
+  background-color: #ffff;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 0 0 5px grey;
+  margin: -50px 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
+}
+
+.dropdown-content a:hover {
+  color: #66ad00;
 }
