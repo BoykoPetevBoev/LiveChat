@@ -18,7 +18,6 @@ async function promiseHandler(res) {
     const result = res.ok
         ? await res.json()
         : undefined;
-    console.log(result);
     return result;
 }
 
@@ -45,7 +44,6 @@ async function findUsers(username) {
 
 async function getChat(id) {
     if (!id) return;
-    console.log(id);
     return await fetchRequest('GET', undefined, `${URL}/chat?id=${id}`)
 }
 

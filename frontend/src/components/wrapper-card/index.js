@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './index.module.css';
-import UserCard from '../user-card';
 import {Link} from 'react-router-dom';
 
 function CardWrapper({ children, id, add, confirm, remove, redirect }) {
@@ -17,11 +16,11 @@ function CardWrapper({ children, id, add, confirm, remove, redirect }) {
             {typeof confirm === 'function'
                 ? <button className={styles.btn} onClick={confirm} value={id}>Confirm</button>
                 : null}
+            {redirect
+                ? <Link className={styles.btn} to={`/chat/${id}`}>Message</Link>
+                : null}
             {typeof remove === 'function'
                 ? <button className={styles.btn2} onClick={remove} value={id}>Remove</button>
-                : null}
-            {redirect
-                ? <Link className={styles.btn} to={`/chat/${id}`}>Chat</Link>
                 : null}
 
         </div>

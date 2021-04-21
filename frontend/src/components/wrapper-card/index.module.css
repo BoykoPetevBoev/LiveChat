@@ -1,12 +1,13 @@
 .wrapper {
     /* border: solid 2px #87c13f; */
-    box-shadow: 0 0 5px grey;
+    box-shadow: 0 0 8px rgb(202, 202, 202);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     width: 300px;
+    box-sizing: border-box;
     margin: 10px;
     background-color: #fff;
 }

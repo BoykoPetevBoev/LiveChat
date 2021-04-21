@@ -1,13 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
 import Header from '../../components/header';
-import FormHolder from '../../components/user-form-holder';
 import SubmitButton from '../../components/submit-button';
 import Input from '../../components/user-input';
-import { userRegister } from '../../requester';
 import Wrapper from '../../components/wrapper-main';
 import BorderWrapper from '../../components/wrapper-border';
 import UserAvatar from '../../components/user-avatar';
@@ -31,16 +27,16 @@ function ProfilePage() {
     const [errRePassword, setErrRePassword] = useState(null);
 
     const context = useContext(UserContext);
-    const history = useHistory();
     const [user, setUser] = useState(context.user);
 
     useEffect(() => {
-        setUsername(user.username);
-        setEmail(user.email);
+        setUser(context.user);
+        setUsername(context.user.username);
+        setEmail(context.user.email);
 
-    }, [])
+    }, [context.user])
 
-    const validateForm = () => {
+    const validateUser = () => {
         setErrUsername(null);
         setErrEmail(null);
 
@@ -51,6 +47,10 @@ function ProfilePage() {
         }
         if (email === '' || !email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
             setErrEmail('Enter a valid email address!');
+            result = false;
+        }
+        if(!phone || phone.length !== 10) {
+            setErrPhone('Pnone number must be 10 character long!');
             result = false;
         }
 
@@ -83,6 +83,8 @@ function ProfilePage() {
 
     const updateUser = (e) => {
         e.preventDefault();
+        const isValid = validateUser();
+        if (isValid) console.log('yes');
     }
 
     return (

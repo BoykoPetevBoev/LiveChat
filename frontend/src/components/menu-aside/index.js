@@ -44,13 +44,15 @@ function Menu() {
     return (
         <div className={styles.aside}>
             <div>
-                <UserCard user={user} />
+                <Link to='/chat'>
+                    <UserCard user={user} />
+                </Link>
                 <div className={styles['user-options']}>
                     {/* <Link to='/chat'><i className="fas fa-microphone-slash"></i></Link> */}
                     <Link to='/chat'><i className="fas fa-microphone"></i></Link>
                     {/* <Link to='/chat'><i className="fas fa-volume-mute"></i></Link> */}
                     <Link to='/chat'><i className="fas fa-volume-up"></i></Link>
-                    <Link to='/chat'><i className="fas fa-cog"></i></Link>
+                    <Link to='/profile'><i className="fas fa-cog"></i></Link>
                 </div>
             </div>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './index.module.css';
-import CardWrapper from '../wrapper-card';
 
 function BorderWrapper({  heading, children }) {
     return (
