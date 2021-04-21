@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './index.module.css';
+// import styles from './index.module.css';
 import CardWrapper from '../wrapper-card';
 import BorderWrapper from '../wrapper-border'
 import UserCard from '../user-card';

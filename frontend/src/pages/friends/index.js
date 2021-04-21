@@ -9,7 +9,9 @@ function FriendsPage() {
         <div className={styles.container}>
             <Header />
             <Wrapper>
+                <div></div>
                 <FriendsMenu/>
+                <div></div>
             </Wrapper>
         </div>
     );

@@ -15,7 +15,7 @@ function Authorization(props) {
 
     
     useEffect(() => {
-        setLoading(true);
+        // setLoading(true);
         const token = getCookie('token');
         if (!token) return logout();
         sendRequest(token);
@@ -46,7 +46,7 @@ function Authorization(props) {
         setLoading(false);
     }
 
-    if (loading) return <Loading />
+    // if (loading) return <Loading />
 
     return (
         <UserContext.Provider value={{

@@ -9,7 +9,9 @@ function UserCard({ user }) {
             <UserAvatar username={user?.username} />
             <div className={styles.username}>
                 {user ? <p>{user?.username}</p> : null}
-                {user ? <p>{user?.email}</p> : null}
+                {user
+                    ? <p>{user?.email}</p>
+                    : null}
             </div>
         </div>
     )

@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../react/Context';
-import { useHistory } from 'react-router-dom';
-
 import styles from './index.module.css';
 import { socket } from '../../socket';
 
@@ -10,13 +8,11 @@ import Wrapper from '../../components/wrapper-main';
 import ChatHeader from '../../components/chat-header';
 import ChatMessages from '../../components/chat-messages';
 import UsersList from '../../components/user-list';
-import GroupCard from '../../components/group-card';
 import { getChat } from '../../requester';
 
 
 function ChatPage(props) {
     const context = useContext(UserContext);
-    const history = useHistory();
     const [chatId, setChatId] = useState(props?.match?.params?.id)
     const [user, setUser] = useState(context.user);
     const [users, setUsers] = useState([]);
