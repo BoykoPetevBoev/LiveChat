@@ -4,7 +4,7 @@ import UserContext from '../../react/Context';
 import styles from './index.module.css';
 
 import Header from '../../components/header';
-import Wrapper from '../../components/wrapper';
+import Wrapper from '../../components/wrapper-main';
 import FriendsMenu from '../../components/menu-friends';
 import { removeFriend } from '../../requester';
 import UsersList from '../../components/user-list';
@@ -37,9 +37,10 @@ function AllFriendsPage() {
 
                 <UsersList
                     users={user.friends}
+                    rooms={user.rooms.filter(room => room.type === 'chat')}
                     heading={''}
                     empty={'There is no friends in your list'}
-                    buttons={{ remove: removeFriendFromList, chat: redirectToChat }}
+                    buttons={{ remove: removeFriendFromList, chat: redirectToChat, redirect: true }}
                 />
 
             </Wrapper>

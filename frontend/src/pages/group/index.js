@@ -4,7 +4,7 @@ import UserContext from '../../react/Context';
 import styles from './index.module.css';
 
 import Header from '../../components/header';
-import Wrapper from '../../components/wrapper';
+import Wrapper from '../../components/wrapper-main';
 import Input from '../../components/user-input';
 import SubmitButton from '../../components/submit-button';
 import UsersList from '../../components/user-list';

@@ -1,17 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../react/Context';
+import { useHistory } from 'react-router-dom';
+
 import styles from './index.module.css';
 import { socket } from '../../socket';
 
 import Header from '../../components/header';
-import Wrapper from '../../components/wrapper';
+import Wrapper from '../../components/wrapper-main';
 import ChatHeader from '../../components/chat-header';
 import ChatMessages from '../../components/chat-messages';
+import UsersList from '../../components/user-list';
+import GroupCard from '../../components/group-card';
 import { getChat } from '../../requester';
 
 
 function ChatPage(props) {
     const context = useContext(UserContext);
+    const history = useHistory();
     const [chatId, setChatId] = useState(props?.match?.params?.id)
     const [user, setUser] = useState(context.user);
     const [users, setUsers] = useState([]);
@@ -19,9 +24,12 @@ function ChatPage(props) {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
 
+
     const fetchData = async (id) => {
-        if(!id) return;
+        if (!id) return;
         const room = await getChat(id);
+        if (!room) return;
+
         const members = room.members.filter(u => u._id !== user._id);
         setUsers(members);
         setChat(room);
@@ -61,7 +69,25 @@ function ChatPage(props) {
         <div className={styles.container}>
             <Header />
             <Wrapper>
-                {!chatId ? null :
+                {!chatId
+                    ?
+                    <div className={styles['chat-list']}>
+                        <h2>Chat Page</h2>
+                        <UsersList
+                            users={user.friends}
+                            rooms={user.rooms.filter(room => room.type === 'chat')}
+                            heading='Friends'
+                            empty='There is no friends in your list'
+                            buttons={{ redirect: true }}
+                        />
+                        <UsersList
+                            rooms={user.rooms.filter(room => room.type === 'group')}
+                            heading='Groups'
+                            empty='There is no groups in your list'
+                            buttons={{ redirect: true }}
+                        />
+                    </div>
+                    :
                     <div className={styles.container}>
                         <ChatHeader users={users} chat={chat} />
                         <ChatMessages messages={messages} users={[user, ...users]} />

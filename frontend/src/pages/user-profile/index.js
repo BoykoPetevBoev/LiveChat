@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
 import styles from './index.module.css';
@@ -8,26 +8,41 @@ import FormHolder from '../../components/user-form-holder';
 import SubmitButton from '../../components/submit-button';
 import Input from '../../components/user-input';
 import { userRegister } from '../../requester';
-import Wrapper from '../../components/wrapper';
+import Wrapper from '../../components/wrapper-main';
+import BorderWrapper from '../../components/wrapper-border';
+import UserAvatar from '../../components/user-avatar';
 
 
 function ProfilePage() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [rePassword, setRePassword] = useState('');
     const [errUsername, setErrUsername] = useState(null);
     const [errEmail, setErrEmail] = useState(null);
-    const [errPassword, setErrPassword] = useState(null);
+    const [phone, setPhone] = useState('');
+    const [errPhone, setErrPhone] = useState('');
+
+    const [currPassword, setCurrPassword] = useState('');
+    const [errCurrPassword, setErrCurrPassword] = useState(null);
+
+    const [newPassword, setNewPassword] = useState('');
+    const [errNewPassword, setErrNewPassword] = useState(null);
+
+    const [rePassword, setRePassword] = useState('');
     const [errRePassword, setErrRePassword] = useState(null);
+
     const context = useContext(UserContext);
     const history = useHistory();
+    const [user, setUser] = useState(context.user);
+
+    useEffect(() => {
+        setUsername(user.username);
+        setEmail(user.email);
+
+    }, [])
 
     const validateForm = () => {
         setErrUsername(null);
         setErrEmail(null);
-        setErrPassword(null);
-        setErrRePassword(null);
 
         let result = true;
         if (username === '' || username.length < 2 || username.length > 20) {
@@ -38,32 +53,36 @@ function ProfilePage() {
             setErrEmail('Enter a valid email address!');
             result = false;
         }
-        if (password === '' || password.length < 3 || password.length > 50) {
-            setErrPassword('Password must be between 3 and 15 caracter long!');
+
+        return result;
+    }
+
+    const validatePassword = () => {
+        setErrCurrPassword(null);
+        setErrNewPassword(null);
+        setErrRePassword(null);
+
+        let result = true;
+        if (newPassword === '' || newPassword.length < 3 || newPassword.length > 50) {
+            setErrNewPassword('Password must be between 3 and 15 caracter long!');
             result = false;
         }
-        if (rePassword !== password) {
+        if (rePassword !== newPassword) {
             setErrRePassword('Password and Repeat password must be the same!');
             result = false;
         }
+
         return result;
     }
-    const registerHandler = async () => {
-        const body = {
-            username,
-            email,
-            password
-        };
-        const user = await userRegister(body);
-        if (user) {
-            context.login(user);
-            history.push('/');
-        }
-        else setErrEmail('Email is already registered!');
+
+    const updatePassword = (e) => {
+        e.preventDefault();
+        const isValid = validatePassword();
+        if (isValid) console.log('yes');
     }
 
-    const onSubmit = (e) => {
-        
+    const updateUser = (e) => {
+        e.preventDefault();
     }
 
     return (
@@ -71,7 +90,13 @@ function ProfilePage() {
             <Header />
             <Wrapper>
 
-                    <form onSubmit={onSubmit}>
+                <BorderWrapper heading='Image'>
+                    <UserAvatar username={user.username} />
+                    <p>{user.username}</p>
+                </BorderWrapper>
+
+                <BorderWrapper heading='Account settings'>
+                    <form className={styles.form} onSubmit={updateUser}>
                         <Input
                             name="username"
                             err={errUsername}
@@ -89,24 +114,47 @@ function ProfilePage() {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <Input
-                            err={errPassword}
+                            name="phone"
+                            err={errPhone}
+                            type="text"
+                            placeholder="Phone"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+                        <SubmitButton value='Save' />
+                    </form>
+                </BorderWrapper>
+
+                <BorderWrapper heading='Change your password'>
+                    <form className={styles.form} onSubmit={updatePassword}>
+                        <Input
+                            err={errCurrPassword}
                             type="password"
                             name="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Current password"
+                            value={currPassword}
+                            onChange={(e) => setCurrPassword(e.target.value)}
+                        />
+                        <Input
+                            err={errNewPassword}
+                            type="password"
+                            name="password"
+                            placeholder="New password"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
                         />
                         <Input
                             err={errRePassword}
                             type="password"
                             name="rePassword"
-                            placeholder="Confirm Password"
+                            placeholder="Confirm new password"
                             value={rePassword}
                             onChange={(e) => setRePassword(e.target.value)}
                         />
-                        <SubmitButton value='Save changes' />
+                        <SubmitButton value='Save' />
                     </form>
-            
+                </BorderWrapper>
+
             </Wrapper>
         </div>
     )

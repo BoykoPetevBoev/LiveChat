@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
 import UserCard from '../user-card';
+import GroupCard from '../group-card';
 
 function Menu() {
     const context = useContext(UserContext);
@@ -34,7 +35,7 @@ function Menu() {
         return rooms.map(room => {
             return (
                 <Link to={`/chat/${room._id}`} key={room?._id}>
-                    <UserCard room={room} />
+                    <GroupCard room={room} />
                 </Link>
             );
         });

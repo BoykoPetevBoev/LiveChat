@@ -15,10 +15,10 @@ function fetchRequest(method, body, url) {
 
 async function promiseHandler(res) {
     tokenHandler(res);
-
     const result = res.ok
         ? await res.json()
         : undefined;
+    console.log(result);
     return result;
 }
 
@@ -45,6 +45,7 @@ async function findUsers(username) {
 
 async function getChat(id) {
     if (!id) return;
+    console.log(id);
     return await fetchRequest('GET', undefined, `${URL}/chat?id=${id}`)
 }
 
@@ -79,7 +80,7 @@ async function removeFriend(body) {
 }
 
 async function createGroup(body) {
-    if(!body) return;
+    if (!body) return;
     return await fetchRequest('POST', body, `${URL}/group-create`);
 }
 

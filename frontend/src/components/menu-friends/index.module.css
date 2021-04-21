@@ -6,7 +6,9 @@
 }
 
 .links {
+    background-color: #fafafa;
     border: solid 2px #87c13f;
+    box-shadow: 0 0 10px 5px #fafafa;
     min-height: 60px;
     width: 300px;
     border-radius: 20px;

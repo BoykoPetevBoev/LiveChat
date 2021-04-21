@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 import Header from '../../components/header';
-import Wrapper from '../../components/wrapper';
+import Wrapper from '../../components/wrapper-main';
 import FriendsMenu from '../../components/menu-friends';
 
 function FriendsPage() {

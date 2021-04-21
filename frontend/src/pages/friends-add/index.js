@@ -7,7 +7,7 @@ import { sendFriendRequest, findUsers } from '../../requester';
 import Header from '../../components/header';
 import Input from '../../components/user-input';
 import SubmitButton from '../../components/submit-button';
-import Wrapper from '../../components/wrapper';
+import Wrapper from '../../components/wrapper-main';
 import FriendsMenu from '../../components/menu-friends';
 import UsersList from '../../components/user-list';
 
