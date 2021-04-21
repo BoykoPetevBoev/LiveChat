@@ -4,7 +4,7 @@ import UserContext from '../../react/Context';
 import { useHistory } from 'react-router-dom';
 
 import Header from '../../components/header';
-import Wrapper from '../../components/wrapper';
+import Wrapper from '../../components/wrapper-main';
 import FriendsMenu from '../../components/menu-friends';
 import UsersList from '../../components/user-list';
 import { acceptFriendRequest, removeFriendRequest } from '../../requester';

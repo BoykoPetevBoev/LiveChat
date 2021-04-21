@@ -28,6 +28,9 @@
     border-radius: 20px;
     margin: 5px;
     box-shadow: 0 0 5px grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn2 {

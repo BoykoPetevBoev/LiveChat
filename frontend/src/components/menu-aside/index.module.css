@@ -6,12 +6,15 @@
 
 .heading {
     font-size: 18px;
+    background: #fafafa;
+    padding: 18px;
+    margin: 0;
 }
 
 .user-options {
     display: flex;
     justify-content: space-around;
-    background: #f0f8ff;
+    /* background: #fafafa; */
     height: 30px;
     align-items: center;
     /* margin-top: 10px; */
