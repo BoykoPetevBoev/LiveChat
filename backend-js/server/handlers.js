@@ -1,4 +1,4 @@
-const { checkPassword } = require('../database/utils')
+const { checkPassword, hashPassword } = require('../database/utils')
 const {
     createUser,
     createRoom,
@@ -200,6 +200,30 @@ async function createGroup(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
+async function updatePassword(req, res) {
+    try {
+        const { user, currPassword, newPassword, rePassword } = req.body;
+        if (!user ||
+            !currPassword ||
+            !newPassword ||
+            !rePassword ||
+            newPassword === '' ||
+            newPassword.length < 3 ||
+            newPassword.length > 50 ||
+            rePassword !== newPassword
+        ) return res.status(401).send('Invalid data').end();
+
+        const matchPassword = await checkPassword(currPassword, user.password);
+        if (!matchPassword)
+            return res.status(401).end();
+
+        user.password = hashPassword(newPassword);
+        const updatedUser = await updateUser(user);
+        return res.status(200).send(updatedUser);
+
+    } catch (err) { errorHandler(err, req, res) }
+}
+
 function errorHandler(err, req, res) {
     console.error(err);
     return res.status(500).send({ error: 'Something failed!' });
@@ -215,5 +239,6 @@ module.exports = {
     acceptFriendRequest,
     removeFriend,
     getChat,
-    createGroup
+    createGroup,
+    updatePassword
 }
