@@ -8,7 +8,8 @@ const {
     removeFriend,
     userAuthorization,
     getChat,
-    createGroup } = require('./handlers');
+    createGroup,
+    updatePassword } = require('./handlers');
 
 function expressRouter(router){   
     router.get('/users', getUsersByUsername);
@@ -22,6 +23,7 @@ function expressRouter(router){
     router.post('/accept-friend-request', acceptFriendRequest)
     router.post('/remove-friend', removeFriend)
     router.post('/group-create', createGroup)
+    router.post('/update-password', updatePassword)
 
     router.use('*', (req, res) => {
         res.status(404).json({erroe: 'Not found!'});

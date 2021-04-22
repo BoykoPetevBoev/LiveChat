@@ -82,6 +82,11 @@ async function createGroup(body) {
     return await fetchRequest('POST', body, `${URL}/group-create`);
 }
 
+async function updatePassword(body) {
+    if (!body) return;
+    return await fetchRequest('POST', body, `${URL}/update-password`);
+}
+
 module.exports = {
     userLogin,
     userRegister,
@@ -92,5 +97,6 @@ module.exports = {
     acceptFriendRequest,
     removeFriend,
     getChat,
-    createGroup
+    createGroup,
+    updatePassword
 }
