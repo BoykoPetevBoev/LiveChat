@@ -224,6 +224,16 @@ async function updatePassword(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
+async function userUpdate(req, res) {
+    try {
+        const user = req.body;
+        if (!user) return res.status(401).send('Invalid data').end();
+
+        const updatedUser = await updateUser(user);
+        return res.status(200).send(updatedUser);
+    } catch (err) { errorHandler(err, req, res) }
+}
+
 function errorHandler(err, req, res) {
     console.error(err);
     return res.status(500).send({ error: 'Something failed!' });
@@ -232,6 +242,7 @@ function errorHandler(err, req, res) {
 module.exports = {
     userLogin,
     userRegister,
+    userUpdate,
     userAuthorization,
     getUsersByUsername,
     sendFriendRequest,
@@ -240,5 +251,5 @@ module.exports = {
     removeFriend,
     getChat,
     createGroup,
-    updatePassword
+    updatePassword,
 }

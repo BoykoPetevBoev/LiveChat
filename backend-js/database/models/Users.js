@@ -3,21 +3,33 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     username: {
-        required: true,
-        type: String
+        type: String,
+        required: true
     },
     email: {
-        required: true,
         type: String,
+        required: true,
         unique: true
     },
-    phone: {
-        default: null,
-        type: String
-    },
     password: {
-        required: true,
-        type: String
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        default: ''
+    },
+    image: {
+        type: String,
+        default: ''
+    },
+    address: {
+        type: String,
+        default: ''
+    },
+    website: {
+        type: String,
+        default: ''
     },
     rooms: [{
         type: Schema.Types.ObjectId,
@@ -35,9 +47,6 @@ const UserSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     }],
-    image: {
-        type: String
-    }
 })
 
 module.exports = mongoose.model('User', UserSchema);

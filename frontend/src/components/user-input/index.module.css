@@ -1,5 +1,12 @@
-.field-wrap {
-    height: 70px;
+.container {
+    /* min-width: 270px; */
+}
+
+.input-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    /* width: 100%; */
 }
 
 .line {
@@ -14,7 +21,7 @@
     transition: .5s ease;
     border: none;
     height: 30px;
-    width: 100%;
+    width: 300px;
     font-size:medium;
     transition: .5s ease;
     cursor: pointer;
@@ -46,4 +53,9 @@
 }
 .errorBox::placeholder{
     color: var(--primary-color);
+}
+
+.label {
+    height: 25px;
+    font-weight: bold;
 }
