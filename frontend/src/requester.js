@@ -86,6 +86,11 @@ async function updatePassword(body) {
     if (!body) return;
     return await fetchRequest('POST', body, `${URL}/update-password`);
 }
+async function updateUser(body) {
+    if (!body) return;
+    console.log(body);
+    return await fetchRequest('POST', body, `${URL}/update-user`);
+}
 
 module.exports = {
     userLogin,
@@ -98,5 +103,6 @@ module.exports = {
     removeFriend,
     getChat,
     createGroup,
-    updatePassword
+    updatePassword,
+    updateUser
 }
