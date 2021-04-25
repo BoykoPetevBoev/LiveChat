@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
-import UserCard from '../user-card';
-import GroupCard from '../group-card';
+import UserCardCompact from '../card-info-aside';
+import GroupCard from '../card-group';
 
 function Menu() {
     const context = useContext(UserContext);
@@ -25,7 +25,7 @@ function Menu() {
             const friend = user.friends.find(fr => chat.members.includes(fr._id))
             return (
                 <Link to={`/chat/${chat._id}`} key={chat._id}>
-                    <UserCard user={friend} />
+                    <UserCardCompact user={friend} />
                 </Link>
             );
         });
@@ -45,7 +45,7 @@ function Menu() {
         <div className={styles.aside}>
             <div>
                 <Link to='/chat'>
-                    <UserCard user={user} />
+                    <UserCardCompact user={user} />
                 </Link>
                 <div className={styles['user-options']}>
                     {/* <Link to='/chat'><i className="fas fa-microphone-slash"></i></Link> */}

@@ -27,10 +27,10 @@ function UserSettingsForm() {
     useEffect(() => {
         setUser(context.user);
         setUsername(context.user.username);
-        // setImage(context.user.image);
+        setImage(context.user.image);
         setPhone(context.user.phone);
-        // setAddress(context.user.address);
-        // setWebsite(context.user.website);
+        setAddress(context.user.address);
+        setWebsite(context.user.website);
 
     }, [context.user])
 
@@ -42,11 +42,12 @@ function UserSettingsForm() {
         setErrPhone(null)
 
         let result = false;
-        if (image !== '' && (!image.startsWith('http://' || !image.startsWith('https://')))) {
+        console.log(image);
+        if (image !== '' && !image.startsWith('http://') && !image.startsWith('https://')) {
             setErrImage('Image URL must start with "http://" or "https://"');
             result = true;
         }
-        if (website !== '' && (!website.startsWith('http://' || !website.startsWith('https://')))) {
+        if (website !== '' && !website.startsWith('http://') && !website.startsWith('https://')) {
             setErrWebsite('Your website must start with "http://" or "https://"');
             result = true;
         }
