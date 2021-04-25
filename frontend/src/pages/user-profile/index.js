@@ -5,9 +5,11 @@ import UserContext from '../../react/Context';
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
 import BorderWrapper from '../../components/wrapper-border';
-import UserAvatar from '../../components/user-avatar';
+import UserLogo from '../../components/user-avatar';
 import ChangePasswordForm from '../../components/form-change-password';
 import UserSettingsForm from '../../components/form-account-settings';
+import UserCardCompact from '../../components/card-info-aside';
+import UserCard from '../../components/card-user';
 
 
 function ProfilePage() {
@@ -23,14 +25,14 @@ function ProfilePage() {
         <div className={styles.background}>
             <Header />
             <Wrapper>
-
-                <BorderWrapper heading='Your business card'>
-                    <UserAvatar username={user.username} />
-                    <p>{user.username}</p>
+                <BorderWrapper heading='Your card'>
+                    <div className={styles['card-holder']}>
+                        <UserCard user={user}/>
+                    </div>
                 </BorderWrapper>
 
                 <UserSettingsForm />
-                <ChangePasswordForm/>
+                <ChangePasswordForm />
 
             </Wrapper>
         </div>
