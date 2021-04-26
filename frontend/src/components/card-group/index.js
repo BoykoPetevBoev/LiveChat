@@ -3,7 +3,7 @@ import styles from './index.module.css';
 import UserLogo from '../user-avatar';
 
 function GroupCard({ room }) {
-
+    if (!room) return null;
     return (
         <div className={styles.friend}>
             <UserLogo username={room?.name} />

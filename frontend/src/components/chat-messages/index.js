@@ -5,14 +5,14 @@ import styles from './index.module.css';
 function ChatMessages({ messages, users }) {
 
     const context = useContext(UserContext);
-    const [user, setUser] = useState(context.user);
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         setUser(context.user)
     }, [context.user])
 
-    if (!messages) return null;
 
+    if (!messages) return null;
 
     return (
         <div className={styles.chat}> {
@@ -20,9 +20,9 @@ function ChatMessages({ messages, users }) {
                 return (
                     <div key={index}>
                         <div className={styles['message-info']}>
-                            <p className={styles.sender}>{
-                                users.find(user => user._id === message.sender)?.username
-                            }</p>
+                            <p className={styles.sender}>
+                                {users.find(user => user._id === message.sender)?.username}
+                            </p>
                             <p className={styles.time}>{message.time}</p>
                         </div>
                         <div className={styles['message-holder']}>

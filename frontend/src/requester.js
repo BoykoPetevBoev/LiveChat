@@ -88,7 +88,6 @@ async function updatePassword(body) {
 }
 async function updateUser(body) {
     if (!body) return;
-    console.log(body);
     return await fetchRequest('POST', body, `${URL}/update-user`);
 }
 

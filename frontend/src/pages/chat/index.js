@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
 import { socket } from '../../socket';
+import { getChat } from '../../requester';
 
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
 import ChatHeader from '../../components/chat-header';
 import ChatMessages from '../../components/chat-messages';
 import UsersList from '../../components/user-list';
-import { getChat } from '../../requester';
 
 
 function ChatPage(props) {
@@ -51,7 +51,7 @@ function ChatPage(props) {
                 time: new Date().toLocaleString()
             }
         }
-        socket.emit('chat-message', msgTemplate)
+            .emit('chat-message', msgTemplate)
     }
 
     const onSubmit = async (e) => {
@@ -106,7 +106,6 @@ function ChatPage(props) {
                         </form>
                     </div>
                 }
-
             </Wrapper>
         </div>
     );

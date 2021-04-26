@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
 import SubmitButton from '../../components/submit-button';
@@ -8,7 +7,9 @@ import BorderWrapper from '../../components/wrapper-border';
 import { updatePassword } from '../../requester';
 
 function ChangePasswordForm() {
-
+    
+    const context = useContext(UserContext);
+    const [user, setUser] = useState({});
     const [currPassword, setCurrPassword] = useState('');
     const [errCurrPassword, setErrCurrPassword] = useState(null);
     const [newPassword, setNewPassword] = useState('');
@@ -16,22 +17,18 @@ function ChangePasswordForm() {
     const [rePassword, setRePassword] = useState('');
     const [errRePassword, setErrRePassword] = useState(null);
 
-    const context = useContext(UserContext);
-    const history = useHistory();
-    const [user, setUser] = useState(context.user);
-
     useEffect(() => {
         setUser(context.user);
     }, [context.user])
 
-    const validatePassword = () => {
+    const isInvalid = () => {
         setErrCurrPassword(null);
         setErrNewPassword(null);
         setErrRePassword(null);
 
         let result = false;
         if (currPassword === '') {
-            setErrCurrPassword('Password must be between 3 and 15 caracter long!');
+            setErrCurrPassword('Wrong password!');
             result = true;
         }
         if (newPassword === '' || newPassword.length < 3 || newPassword.length > 50) {
@@ -47,8 +44,7 @@ function ChangePasswordForm() {
 
     const passwordHandler = async (e) => {
         e.preventDefault();
-        const isInvalid = validatePassword();
-        if (isInvalid) return;
+        if (isInvalid()) return;
         const body = {
             user,
             currPassword,
@@ -57,12 +53,10 @@ function ChangePasswordForm() {
         }
         const response = await updatePassword(body)
         if(!response) return setErrCurrPassword('Wrong password!');
-
+        context.updateUser(response);
         setCurrPassword('');
         setNewPassword('');
         setRePassword('');
-        context.updateUser(response);
-        history.push('/profile');
     }
 
     return (

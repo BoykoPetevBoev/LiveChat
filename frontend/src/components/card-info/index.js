@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 function UserCardInfo({ data }) {
     if (!data) return null;
@@ -27,7 +27,7 @@ function UserCardInfo({ data }) {
             {data.website ?
                 <div className={styles['card-info']}>
                     <i className="fas fa-link"></i>
-                    <Link to={data.website}>{data.website.split('/')[2]}</Link>
+                    <p target="_blank" href={data.website}>{data.website.split('/')[2]}</p>
                 </div>
                 : null}
         </div>

@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import UserContext from '../../react/Context';
 import styles from './index.module.css';
-
+import UserContext from '../../react/Context';
+import { useHistory } from 'react-router-dom';
+import { removeFriend } from '../../requester';
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
 import FriendsMenu from '../../components/menu-friends';
-import { removeFriend } from '../../requester';
 import UsersList from '../../components/user-list';
 
 function AllFriendsPage() {

@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom'
 import { updateUser } from '../../requester'
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
@@ -9,6 +8,8 @@ import BorderWrapper from '../../components/wrapper-border';
 
 function UserSettingsForm() {
 
+    const context = useContext(UserContext);
+    const [user, setUser] = useState({});
     const [username, setUsername] = useState('');
     const [errUsername, setErrUsername] = useState(null);
     const [phone, setPhone] = useState('');
@@ -20,10 +21,6 @@ function UserSettingsForm() {
     const [image, setImage] = useState('');
     const [errImage, setErrImage] = useState(null);
 
-    const context = useContext(UserContext);
-    // const history = useHistory();
-    const [user, setUser] = useState(context.user);
-
     useEffect(() => {
         setUser(context.user);
         setUsername(context.user.username);
@@ -31,10 +28,9 @@ function UserSettingsForm() {
         setPhone(context.user.phone);
         setAddress(context.user.address);
         setWebsite(context.user.website);
-
     }, [context.user])
 
-    const validateUser = () => {
+    const isInvalid = () => {
         setErrUsername(null);
         setErrWebsite(null);
         setErrAddress(null);
@@ -42,7 +38,6 @@ function UserSettingsForm() {
         setErrPhone(null)
 
         let result = false;
-        console.log(image);
         if (image !== '' && !image.startsWith('http://') && !image.startsWith('https://')) {
             setErrImage('Image URL must start with "http://" or "https://"');
             result = true;
@@ -64,20 +59,14 @@ function UserSettingsForm() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const isInvalid = validateUser();
-        if (isInvalid) return;
-
+        if (isInvalid()) return;
         user.image = image;
         user.website = website;
         user.username = username;
         user.address = address;
         user.phone = phone;
         const res = await updateUser(user);
-
-        console.log(res);
-
         if (!res) return;
-
         context.updateUser(res);
     }
 

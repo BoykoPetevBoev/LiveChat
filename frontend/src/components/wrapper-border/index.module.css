@@ -10,14 +10,11 @@
     background-color: #ffff;
     display:inline;
     padding: 0 20px;
-    /* left: 50px; */
-    /* height: 20px; */
 }
 
 .friends {
     margin: auto;
     display: flex;
-    /* justify-content: center; */
     border-radius: 20px;
     padding: 30px;
     flex-wrap: wrap;

@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import { Link } from 'react-router-dom';
-
-import { useLocation } from 'react-router-dom'
-
-
+import { useLocation } from 'react-router-dom';
 
 function FriendsMenu() {
 
     const [path, setPath] = useState('');
     const location = useLocation();
-
 
     useEffect(() => {
         setPath(location.pathname);
