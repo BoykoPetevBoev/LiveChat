@@ -17,9 +17,9 @@ function GroupPage() {
     const history = useHistory();
 
     const [user, setUser] = useState(context.user);
-    const [name, setName] = useState('');
     const [members, setMembers] = useState([user]);
     const [type, setType] = useState('group');
+    const [name, setName] = useState('');
     const [errName, setErrName] = useState(null);
 
     const addUser = (e) => {

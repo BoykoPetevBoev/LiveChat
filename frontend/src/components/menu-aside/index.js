@@ -19,8 +19,7 @@ function Menu() {
 
     const RenderFriends = () => {
         if (chats.length === 0)
-            return <p>Looks like you haven't added any friends yet.Invite friends to chat together.</p>
-
+            return null;
         return chats.map(chat => {
             const friend = user.friends.find(fr => chat.members.includes(fr._id))
             return (
@@ -48,21 +47,19 @@ function Menu() {
                     <UserCardCompact user={user} />
                 </Link>
                 <div className={styles['user-options']}>
-                    {/* <Link to='/chat'><i className="fas fa-microphone-slash"></i></Link> */}
                     <Link to='/chat'><i className="fas fa-microphone"></i></Link>
-                    {/* <Link to='/chat'><i className="fas fa-volume-mute"></i></Link> */}
                     <Link to='/chat'><i className="fas fa-volume-up"></i></Link>
                     <Link to='/profile'><i className="fas fa-cog"></i></Link>
                 </div>
             </div>
 
             <div className={styles.border}>
-                <p className={styles.heading}> <i className="fas fa-user"></i> Friends</p>
+                <p className={styles.heading}> <i className="fas fa-user"></i>Friends</p>
                 <RenderFriends />
             </div>
 
             <div className={styles.border}>
-                <p className={styles.heading}> <i className="fas fa-users"></i> Groups</p>
+                <p className={styles.heading}> <i className="fas fa-users"></i>Groups</p>
                 <RenderGroups />
             </div>
         </div>

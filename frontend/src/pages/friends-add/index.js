@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
 import { sendFriendRequest, findUsers } from '../../requester';
-
 import Header from '../../components/header';
 import Input from '../../components/user-input';
 import SubmitButton from '../../components/submit-button';

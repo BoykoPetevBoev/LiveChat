@@ -1,15 +1,12 @@
 @keyframes color {
     0% {
         color: white;
-        /* text-shadow: 1px 0 1px black; */
     }
     50% {
         color: black;
-        /* text-shadow: 1px 0 1px white; */
     }
     100% {
         color: white;
-        /* text-shadow: 1px 0 1px black; */
     }
 }
 
@@ -25,7 +22,6 @@
 }
 
 .wrapper {
-    /* border: solid 2px #87c13f; */
     box-shadow: 0 0 8px rgb(202, 202, 202);
     border-radius: 20px;
     display: flex;
@@ -60,14 +56,11 @@
     border: none;
     height: 30px;
     width: 142px;
-    /* color: #fff; */
     font-size: medium;
     transition: .2s ease;
     cursor: pointer;
     border-radius: 20px;
     border-radius: 0 0 16px 16px;
-    /* margin: 5px; */
-    /* box-shadow: 0 0 1px #bfbfbf; */
     display: flex;
     justify-content: center;
     font-weight: bold;
@@ -78,7 +71,7 @@
 .btn {
     background-color: #fff;
     color: #66ad00;
-    /* box-shadow: 0 0 5px #66ad00; */
+    box-shadow: inset 0 0 8px #66ad00;
 }
 
 .btn:hover {
@@ -90,7 +83,7 @@
 .btn2 {
     background-color: #fff;
     color: #ec5a28;
-    /* box-shadow: 0 0 5px #ec5a28; */
+    box-shadow: inset 0 0 8px #ec5a28;
 }
 
 .btn2:hover {

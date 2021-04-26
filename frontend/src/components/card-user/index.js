@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import UserCardInfo from '../card-info';
 
 function UserCard({ user, buttons, id }) {
-
     if (!user?._id) return null;
     return (
         <div className={styles.wrapper} style={{ backgroundImage: `url(${user.image})` }}>
