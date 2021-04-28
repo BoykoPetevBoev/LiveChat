@@ -7,7 +7,8 @@ import RegisterPage from '../pages/user-register';
 import LoginPage from '../pages/user-login';
 import ErrorPage from '../pages/error';
 import ChatPage from '../pages/chat';
-import GroupPage from '../pages/group';
+import CreateGroupPage from '../pages/group-create';
+import GroupsPage from '../pages/group';
 import FriendsPage from '../pages/friends';
 import AllFriendsPage from '../pages/friends-all';
 import AddFriendsPage from '../pages/friends-add';
@@ -32,7 +33,11 @@ function App() {
         </Route>
 
         <Route exact path='/group'>
-          {loggedIn ? <GroupPage /> : <ErrorPage />}
+          {loggedIn ? <GroupsPage /> : <ErrorPage />}
+        </Route>
+        
+        <Route exact path='/group/create'>
+          {loggedIn ? <CreateGroupPage /> : <ErrorPage />}
         </Route>
 
         <Route exact path='/friends'>

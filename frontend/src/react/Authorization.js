@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserContext from './Context';
-import Loading from '../pages/loading';
+// import Loading from '../pages/loading';
 import { userAuthorization } from '../requester';
 
 function getCookie(name) {

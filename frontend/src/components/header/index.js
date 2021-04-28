@@ -49,8 +49,8 @@ function Header() {
 
                 {loggedIn ? <Link className={styles.button} to='/group'>
                     <div>
-                        <i className="fas fa-plus-circle"></i>
-                        <p>New Group</p>
+                    <i className="fas fa-users"></i>
+                        <p>Groups</p>
                     </div>
                 </Link> : null}
 
