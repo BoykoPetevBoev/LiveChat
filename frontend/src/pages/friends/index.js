@@ -9,8 +9,12 @@ function FriendsPage() {
         <div className={styles.container}>
             <Header />
             <Wrapper>
+
                 <div></div>
-                <FriendsMenu/>
+                <div>
+                    <h2>Friends Page</h2>
+                    <FriendsMenu />
+                </div>
                 <div></div>
             </Wrapper>
         </div>

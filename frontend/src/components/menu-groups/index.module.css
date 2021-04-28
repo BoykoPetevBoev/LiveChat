@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.links, .link-active{
+    background-color: #fafafa;
+    border: solid 2px #87c13f;
+    box-shadow: 0 0 10px 5px #fafafa;
+    min-height: 60px;
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+}
+
+.links:hover {
+    background-color: #87c13f;
+    /* background-color: white; */
+}
+
+.links p, .link-active p {
+    margin: 0;
+}
+
+.link-active {
+    background-color: #87c13f;
+}
