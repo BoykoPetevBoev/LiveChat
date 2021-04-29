@@ -77,7 +77,7 @@ function ChatPage(props) {
                             buttons={{ redirect: true }}
                         />
                         <UsersList
-                            rooms={user.rooms.filter(room => room.type === 'group')}
+                            rooms={user.rooms.filter(room => room.type !== 'chat')}
                             heading='Groups'
                             empty='There is no groups in your list'
                             buttons={{ redirect: true }}

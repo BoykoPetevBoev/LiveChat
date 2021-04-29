@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
@@ -19,17 +19,21 @@ function CreateGroupPage() {
 
     const [user, setUser] = useState(context.user);
     const [members, setMembers] = useState([user]);
-    const [type, setType] = useState('group');
+    const [type, setType] = useState('private');
     const [name, setName] = useState('');
     const [errName, setErrName] = useState(null);
+    const [about, setAbout] = useState('');
+    const [image, setImage] = useState('');
+    const [website, setWebsite] = useState('');
+
+    useEffect(() => {
+        setUser(context.user)
+    }, [context.user]);
 
     const addUser = (e) => {
         const id = e.target.value;
         const friend = user.friends.find(u => u._id === id);
-
-        if (members.find(u => u._id === friend._id))
-            return;
-
+        if (members.find(u => u._id === friend._id)) return;
         setMembers([...members, friend]);
     }
 
@@ -61,7 +65,14 @@ function CreateGroupPage() {
     }
 
     const sendRequest = async () => {
-        const group = { name, type, members }
+        const group = {
+            admin: user,
+            name,
+            about,
+            image,
+            type,
+            members
+        }
         const response = await createGroup(group);
         history.push(`/chat/${response._id}`);
     }
@@ -83,10 +94,40 @@ function CreateGroupPage() {
                         name="name"
                         err={errName}
                         type="text"
-                        placeholder="Group Name"
+                        placeholder="Group name"
                         vlalue={name}
                         onChange={(e) => setName(e.target.value)}
                     />
+                    <Input
+                        name="about"
+                        type="text"
+                        placeholder="About group"
+                        vlalue={about}
+                        onChange={(e) => setAbout(e.target.value)}
+                    />
+                    <Input
+                        name="image"
+                        type="text"
+                        placeholder="Image"
+                        vlalue={image}
+                        onChange={(e) => setImage(e.target.value)}
+                    />
+                    <Input
+                        name="website"
+                        type="text"
+                        placeholder="Website"
+                        vlalue={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                    />
+                    <select
+                        className={styles.select}
+                        name="type"
+                        value={type}
+                        onChange={(e) => { setType(e.target.value) }}
+                    >
+                        <option value="private">Private</option>
+                        <option value="public">Public</option>
+                    </select>
                     <SubmitButton value="Create Group" />
                 </form>
                 <UsersList
