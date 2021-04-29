@@ -14,7 +14,7 @@ function Menu() {
     useEffect(() => {
         setUser(context.user)
         setChats(context.user.rooms.filter(room => room.type === 'chat'));
-        setRooms(context.user.rooms.filter(room => room.type === 'group'));
+        setRooms(context.user.rooms.filter(room => room.type !== 'chat'));
     }, [context.user]);
 
     const RenderFriends = () => {

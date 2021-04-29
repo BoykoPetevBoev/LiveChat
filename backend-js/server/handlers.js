@@ -161,10 +161,8 @@ async function removeFriend(req, res) {
 
         let receiver = await findUserById(user._id);
         let sender = await findUserById(id);
-
         sender.friends = removeId(sender.friends, user._id);
         sender = await updateUser(sender);
-
         receiver.friends = removeId(receiver.friends, id);
         receiver = await updateUser(receiver);
 
@@ -189,13 +187,11 @@ async function createGroup(req, res) {
             return res.status(401).send('Invalid data').end();
 
         const savedGroup = await createRoom(group);
-
         savedGroup.members.map(async (id) => {
             const user = await findUserById(id);
             user.rooms = addId(user.rooms, savedGroup._id);
             return await updateUser(user);
         });
-
         return res.status(200).send(savedGroup);
     } catch (err) { errorHandler(err, req, res) }
 }
