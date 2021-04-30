@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
-import UserCardCompact from '../card-info-aside';
-import GroupCard from '../card-group';
+import UserCardCompact from '../card-user-info-aside';
+import GroupCardCompact from '../card-group-info-aside';
 
 function Menu() {
     const context = useContext(UserContext);
@@ -31,10 +31,12 @@ function Menu() {
     }
 
     const RenderGroups = () => {
+        if (rooms.length === 0)
+            return null;
         return rooms.map(room => {
             return (
                 <Link to={`/chat/${room._id}`} key={room?._id}>
-                    <GroupCard room={room} />
+                    <GroupCardCompact group={room} />
                 </Link>
             );
         });

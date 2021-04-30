@@ -1,19 +1,18 @@
 import React from 'react';
 import styles from './index.module.css';
 import { Link } from 'react-router-dom';
-import UserCardInfo from '../card-info';
+import UserCardInfo from '../card-user-info';
 
 function UserCard({ user, buttons, id }) {
     if (!user?._id) return null;
     return (
         <div className={styles.wrapper} style={{ backgroundImage: `url(${user.image})` }}>
 
-                <div className={styles.username}>
-                    <p>{user?.username}</p>
-                </div>
+            <div className={styles.username}>
+                <p>{user?.username}</p>
+            </div>
 
-           <UserCardInfo data={user}/>
-          
+            <UserCardInfo data={user} />
 
             <div className={styles.buttons}>
                 {typeof buttons?.add === 'function'
@@ -22,7 +21,7 @@ function UserCard({ user, buttons, id }) {
                 {typeof buttons?.confirm === 'function'
                     ? <button className={styles.btn} onClick={buttons.confirm} value={user._id}>Confirm</button>
                     : null}
-                {buttons?.redirect
+                {buttons?.redirect && id
                     ? <Link className={styles.btn} to={`/chat/${id}`}>Message</Link>
                     : null}
                 {typeof buttons?.remove === 'function'

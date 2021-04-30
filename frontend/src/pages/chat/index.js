@@ -8,7 +8,8 @@ import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
 import ChatHeader from '../../components/chat-header';
 import ChatMessages from '../../components/chat-messages';
-import UsersList from '../../components/user-list';
+import UsersList from '../../components/list-user';
+import GroupsList from '../../components/list-groups';
 
 
 function ChatPage(props) {
@@ -76,8 +77,8 @@ function ChatPage(props) {
                             empty='There is no friends in your list'
                             buttons={{ redirect: true }}
                         />
-                        <UsersList
-                            rooms={user.rooms.filter(room => room.type !== 'chat')}
+                        <GroupsList
+                            groups={user.rooms.filter(room => room.type !== 'chat')}
                             heading='Groups'
                             empty='There is no groups in your list'
                             buttons={{ redirect: true }}

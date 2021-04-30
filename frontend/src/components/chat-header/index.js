@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.css';
-import UserCardCompact from '../card-info-aside';
+import UserCardCompact from '../card-user-info-aside';
 
 function ChatHeader({ users, chat }) {
     if (!users) return null;

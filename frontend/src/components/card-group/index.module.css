@@ -1,27 +1,93 @@
-.friend {
+@keyframes color {
+    0% {
+        color: white;
+    }
+    50% {
+        color: black;
+    }
+    100% {
+        color: white;
+    }
+}
+
+ p {
+    margin: 0;
+}
+
+.name {
+    font-weight: bold;
+    margin-bottom: 7px;
+    font-size: 20px;
+    animation: color 10s infinite;
+}
+
+.wrapper {
+    box-shadow: 0 0 8px rgb(202, 202, 202);
+    border-radius: 20px;
     display: flex;
-    flex-direction: row;
-    padding: 8px;
-    justify-content: space-around;
-    max-width: 400px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 300px;
+    box-sizing: border-box;
+    margin: 10px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 120px;
+}
+
+.wrapper div {
+    background-image: none;
 }
 
 .username {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 200px
-}
-
-.username p {
-    margin: 0;
-}
-.username p:first-child {
     font-weight: bold;
 }
 
-.friend:hover {
-    background-color: aliceblue;
+.buttons {
+    display: flex;
+    justify-content: space-between;
+   width: 100%;
+}
+
+.btn, .btn2 {
+    border: none;
+    height: 30px;
+    width: 142px;
+    font-size: medium;
+    transition: .2s ease;
+    cursor: pointer;
+    border-radius: 20px;
+    border-radius: 0 0 16px 16px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    align-items: center;
+    box-shadow: inset 0 0 8px rgb(202 202 202);
+}
+
+.btn {
+    background-color: #fff;
+    color: #66ad00;
+    box-shadow: inset 0 0 8px #66ad00;
+}
+
+.btn:hover {
+    background-color: #66ad00;
+    color: #fff;
+    box-shadow: 0 0 5px #66ad00;
+}
+
+.btn2 {
+    background-color: #fff;
+    color: #ec5a28;
+    box-shadow: inset 0 0 8px #ec5a28;
+}
+
+.btn2:hover {
+    background-color: #ec5a28;
+    color: #fff;
+    box-shadow: 0 0 5px #ec5a28;
 }
