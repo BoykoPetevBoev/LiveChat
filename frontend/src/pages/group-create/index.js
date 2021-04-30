@@ -7,16 +7,14 @@ import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
 import Input from '../../components/user-input';
 import SubmitButton from '../../components/submit-button';
-import UsersList from '../../components/user-list';
+import UsersList from '../../components/list-user';
 import { createGroup } from '../../requester';
 import GroupsMenu from '../../components/menu-groups';
-
 
 function CreateGroupPage() {
 
     const context = useContext(UserContext);
     const history = useHistory();
-
     const [user, setUser] = useState(context.user);
     const [members, setMembers] = useState([user]);
     const [type, setType] = useState('private');
@@ -82,7 +80,7 @@ function CreateGroupPage() {
         if (isInvalid()) return;
         sendRequest();
     }
-
+    
     return (
         <div className={styles.container}>
             <Header />

@@ -6,7 +6,7 @@ import { removeFriend } from '../../requester';
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
 import FriendsMenu from '../../components/menu-friends';
-import UsersList from '../../components/user-list';
+import UsersList from '../../components/list-user';
 
 function AllFriendsPage() {
     const history = useHistory();

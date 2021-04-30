@@ -8,7 +8,7 @@ import Input from '../../components/user-input';
 import SubmitButton from '../../components/submit-button';
 import Wrapper from '../../components/wrapper-main';
 import FriendsMenu from '../../components/menu-friends';
-import UsersList from '../../components/user-list';
+import UsersList from '../../components/list-user';
 
 function AddFriendsPage() {
     const history = useHistory();
