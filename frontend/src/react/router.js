@@ -14,6 +14,7 @@ import AllFriendsPage from '../pages/friends-all';
 import AddFriendsPage from '../pages/friends-add';
 import FriendRequestsPage from '../pages/friends-requests';
 import ProfilePage from '../pages/user-profile';
+import AllGroupsPage from '../pages/group-all';
 
 function App() {
   const { loggedIn } = useContext(UserContext)
@@ -38,6 +39,10 @@ function App() {
         
         <Route exact path='/group/create'>
           {loggedIn ? <CreateGroupPage /> : <ErrorPage />}
+        </Route>
+        
+        <Route exact path='/group/all'>
+          {loggedIn ? <AllGroupsPage /> : <ErrorPage />}
         </Route>
 
         <Route exact path='/friends'>

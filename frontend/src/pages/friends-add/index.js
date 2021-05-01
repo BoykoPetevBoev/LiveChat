@@ -70,7 +70,7 @@ function AddFriendsPage() {
 
                 <UsersList
                     users={filterUsers()}
-                    heading={''}
+                    heading={'Users'}
                     empty={'Find Friends'}
                     buttons={{ add: addUser }}
                 />

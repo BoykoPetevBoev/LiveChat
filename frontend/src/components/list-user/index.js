@@ -2,9 +2,9 @@ import React from 'react';
 import UserCard from '../card-user';
 import BorderWrapper from '../wrapper-border'
 
-function UsersList({ users, rooms, buttons, empty }) {
+function UsersList({ users, rooms, buttons, empty, heading }) {
     return (
-        <BorderWrapper heading="Friends">
+        <BorderWrapper heading={heading}>
             {
                 !users || users.length === 0
                     ? <p>{empty}</p>

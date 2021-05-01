@@ -3,6 +3,7 @@ import styles from './index.module.css';
 // import { Link } from 'react-router-dom';
 
 function GroupCardInfo({ data }) {
+    // console.log(data);
     if (!data) return null;
     return (
         <div className={styles.holder}>
