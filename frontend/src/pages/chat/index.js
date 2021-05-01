@@ -52,7 +52,7 @@ function ChatPage(props) {
                 time: new Date().toLocaleString()
             }
         }
-            .emit('chat-message', msgTemplate)
+        socket.emit('chat-message', msgTemplate)
     }
 
     const onSubmit = async (e) => {
