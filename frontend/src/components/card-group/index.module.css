@@ -18,7 +18,6 @@
     font-weight: bold;
     margin-bottom: 7px;
     font-size: 20px;
-    animation: color 10s infinite;
 }
 
 .wrapper {
@@ -40,6 +39,10 @@
 
 .wrapper div {
     background-image: none;
+}
+
+.wrapper p {
+    animation: color 10s infinite;
 }
 
 .username {

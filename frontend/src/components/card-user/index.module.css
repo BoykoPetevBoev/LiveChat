@@ -59,8 +59,7 @@
     font-size: medium;
     transition: .2s ease;
     cursor: pointer;
-    border-radius: 20px;
-    border-radius: 0 0 16px 16px;
+    border-radius: 16px;
     display: flex;
     justify-content: center;
     font-weight: bold;

@@ -2,9 +2,9 @@ import React from 'react';
 import BorderWrapper from '../wrapper-border'
 import GroupCard from '../card-group';
 
-function GroupsList({ groups, buttons, empty }) {
+function GroupsList({ groups, buttons, empty, heading }) {
     return (
-        <BorderWrapper heading="Groups">
+        <BorderWrapper heading={heading}>
             {
                 !groups || groups.length === 0
                     ? <p>{empty}</p>
