@@ -83,6 +83,12 @@ function ChatPage(props) {
                             empty='There is no groups in your list'
                             buttons={{ redirect: true }}
                         />
+                        <GroupsList
+                            groups={user.rooms.filter(room => room.type === 'public')}
+                            heading='Public Groups'
+                            empty='There is no public groups'
+                            buttons={{ redirect: true }}
+                        />
                     </div>
                     :
                     <div className={styles.container}>

@@ -1,4 +1,3 @@
-
 @keyframes color {
     0% {
         color: white;
@@ -17,56 +16,30 @@
 .container {
     display: flex;
     flex-direction: row;
-    /* padding: 5px; */
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     min-width: 300px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     box-shadow: inset 0 0 4px 5px white;
-    
 }
 
-.info-holder , .img-holder{
+.info-holder, .img-holder {
     min-width: 50%
 }
 
 .img-holder {
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 0 4px 5px white;
+    animation: color 10s infinite;
 }
 
-.info {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-width: 200px
-}
 
 .containers p, .username p {
     margin: 0;
-}
-
-.username {
-    font-weight: bold;
-    margin-bottom: 7px;
-    font-size: 20px;
-    animation: color 10s infinite;
-}
-
-.card-info {
-    display: flex;
-    align-items: center;
-    height: 20px;
-    font-size: 14px;
-    animation: color 10s infinite;
-}
-
-.card-info i {
-    margin-right: 10px;
-    width: 16px;
-    vertical-align: middle;
 }

@@ -35,6 +35,9 @@
 .img-holder {
    display: flex;
    justify-content: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   box-shadow: inset 0 0 4px 5px white;
 }
 
 .info {
@@ -70,3 +73,4 @@
     width: 16px;
     vertical-align: middle;
 }
+

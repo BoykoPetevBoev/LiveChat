@@ -21,11 +21,18 @@
     align-items: center;
     height: 20px;
     font-size: 14px;
-    animation: color 10s infinite;
+    /* animation: color 10s infinite; */
 }
 
 .card-info i {
     margin-right: 10px;
     width: 16px;
     vertical-align: middle;
+}
+
+.card-info p {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -12,6 +12,7 @@
         /* text-shadow: 1px 0 1px black; */
     }
 }
+
 .holder {
     margin: 10px;
 }
@@ -21,7 +22,7 @@
     align-items: center;
     height: 20px;
     font-size: 14px;
-    animation: color 10s infinite;
+    /* animation: color 10s infinite; */
 }
 
 .card-info i {
@@ -29,3 +30,4 @@
     width: 16px;
     vertical-align: middle;
 }
+
