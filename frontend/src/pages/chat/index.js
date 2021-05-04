@@ -95,7 +95,7 @@ function ChatPage(props) {
                         <ChatAside users={users} chat={chat} />
 
                         <div className={styles.main}>
-                            <ChatHeader chat={chat}/>
+                            <ChatHeader chat={chat} user={user} users={users}/>
                             <ChatMessages messages={messages} users={users} />
                             <form className={styles.form} onSubmit={onSubmit}>
                                 <input

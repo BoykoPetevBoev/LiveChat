@@ -22,7 +22,11 @@
     align-items: center;
     height: 20px;
     font-size: 14px;
-    /* animation: color 10s infinite; */
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .card-info i {
@@ -31,3 +35,6 @@
     vertical-align: middle;
 }
 
+.card-info:hover {
+    font-size: 20px;
+}

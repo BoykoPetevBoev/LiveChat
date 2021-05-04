@@ -26,12 +26,13 @@ function Header() {
 
             <nav className={styles.navigation}>
 
-                <Link className={styles.button} to='/'>
-                    <div>
-                        <i className="fas fa-home"></i>
-                        <p>Home</p>
-                    </div>
-                </Link>
+                {loggedIn ? null :
+                    <Link className={styles.button} to='/'>
+                        <div>
+                            <i className="fas fa-home"></i>
+                            <p>Home</p>
+                        </div>
+                    </Link>}
 
                 {loggedIn ? <Link className={styles.button} to={`/chat`}>
                     <div>
@@ -49,7 +50,7 @@ function Header() {
 
                 {loggedIn ? <Link className={styles.button} to='/group'>
                     <div>
-                    <i className="fas fa-users"></i>
+                        <i className="fas fa-users"></i>
                         <p>Groups</p>
                     </div>
                 </Link> : null}
@@ -71,7 +72,6 @@ function Header() {
                                     <p>Settings</p>
                                 </div>
                             </Link>
-
                             <Link to='/' onClick={logout} >
                                 <div>
                                     <i className="fas fa-sign-out-alt"></i>
@@ -100,7 +100,6 @@ function Header() {
                                     <p>Login</p>
                                 </div>
                             </Link>
-
                             <Link to='/register'>
                                 <div>
                                     <i className="fas fa-sign-in-alt"></i>
