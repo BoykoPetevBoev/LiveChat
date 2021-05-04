@@ -40,11 +40,6 @@ test('/login', async () => {
     expect(resValid.statusCode).toEqual(401);
 })
 
-test('/', async () => {
-    const res = await supertest(app).get('/');
-    expect(res.statusCode).toEqual(200);
-})
-
 test('/users', async () => {
     const resNoUsers = await supertest(app).get(`/users?username=${user.username}`);
     await new UserSchema(user).save();
