@@ -17,13 +17,13 @@ function ChatMessages({ messages, users }) {
     return (
         <div className={styles.chat}> {
             messages.map((message, index) => {
+                const sender = users.find(user => user._id === message.sender)
                 return (
-                    <div key={index}>
-                        <div className={styles['message-info']}>
-                            <p className={styles.sender}>
-                                {users.find(user => user._id === message.sender)?.username}
-                            </p>
+                    <div className={styles.message} key={index}>
+                        <div className={styles['message-info']}  >
+                            <p className={styles.sender}>{sender?.username}</p>
                             <p className={styles.time}>{message.time}</p>
+                            <div className={styles['user-ico']} style={{ backgroundImage: `url(${sender?.image})` }}></div>
                         </div>
                         <div className={styles['message-holder']}>
                             <p className={user._id === message.sender ? styles.green : styles.red}>
