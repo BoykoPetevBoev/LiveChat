@@ -18,36 +18,18 @@ function Menu() {
     }, [context.user]);
 
     const RenderFriends = () => {
-        if (chats.length === 0)
-            return null;
-        return chats.map(chat => {
-            const friend = user.friends.find(fr => chat.members.includes(fr._id))
-            return (
-                <Link to={`/chat/${chat._id}`} key={chat._id}>
-                    <UserCardCompact user={friend} />
-                </Link>
-            );
-        });
-    }
-
-    const RenderGroups = () => {
-        if (rooms.length === 0)
-            return null;
-        return rooms.map(room => {
-            return (
-                <Link to={`/chat/${room._id}`} key={room?._id}>
-                    <GroupCardCompact group={room} />
-                </Link>
-            );
-        });
+        return chats.length === 0
+            ? null
+            : chats.map(chat => {
+                const friend = user.friends.find(fr => chat.members.includes(fr._id))
+                return <UserCardCompact user={friend} chatId={chat._id} key={chat._id} />;
+            });
     }
 
     return (
         <div className={styles.aside}>
             <div>
-                <Link to='/chat'>
-                    <UserCardCompact user={user} />
-                </Link>
+                <UserCardCompact user={user} />
                 <div className={styles['user-options']}>
                     <Link to='/chat'><i className="fas fa-microphone"></i></Link>
                     <Link to='/chat'><i className="fas fa-volume-up"></i></Link>
@@ -62,7 +44,10 @@ function Menu() {
 
             <div className={styles.border}>
                 <p className={styles.heading}> <i className="fas fa-users"></i>Groups</p>
-                <RenderGroups />
+                {rooms.length === 0
+                    ? null
+                    : rooms.map(room => <GroupCardCompact group={room} key={room._id} />)
+                }
             </div>
         </div>
     )

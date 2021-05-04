@@ -43,6 +43,14 @@
     animation: color 10s infinite;
 }
 
+.img-holder a {
+    height: 100%;
+    width: 100%;
+    animation: color 10s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .containers p, .username p {
     margin: 0;

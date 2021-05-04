@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 import { Link } from 'react-router-dom';
-import GroupCardInfo from '../card-group-info';
+import CardInfo from '../card-info';
 
 function GroupCard({ room, buttons }) {
     if (!room) return null;
@@ -12,7 +12,7 @@ function GroupCard({ room, buttons }) {
                 {<p>{room?.name}</p>}
             </div>
 
-            <GroupCardInfo data={room} />
+            <CardInfo data={room} />
 
             <div className={styles.buttons}>
                 {typeof buttons?.add === 'function'

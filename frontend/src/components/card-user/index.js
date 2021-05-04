@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 import { Link } from 'react-router-dom';
-import UserCardInfo from '../card-user-info';
+import CardInfo from '../card-info';
 
 function UserCard({ user, buttons, id }) {
     if (!user?._id) return null;
@@ -12,7 +12,7 @@ function UserCard({ user, buttons, id }) {
                 <p>{user?.username}</p>
             </div>
 
-            <UserCardInfo data={user} />
+            <CardInfo data={user} />
 
             <div className={styles.buttons}>
                 {typeof buttons?.add === 'function'

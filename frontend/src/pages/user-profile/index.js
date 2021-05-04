@@ -21,6 +21,7 @@ function ProfilePage() {
         <div className={styles.background}>
             <Header />
             <Wrapper>
+                <h2>Settings</h2>
                 <BorderWrapper heading='Your card'>
                     <div className={styles['card-holder']}>
                         <UserCard user={user}/>
