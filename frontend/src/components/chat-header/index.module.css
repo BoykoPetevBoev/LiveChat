@@ -1,6 +1,6 @@
 .chat-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     /* background-color:  #f0f8ff; */
     align-items: center;
     /* flex-wrap: wrap; */

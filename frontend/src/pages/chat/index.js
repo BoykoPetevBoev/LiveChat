@@ -10,6 +10,7 @@ import ChatHeader from '../../components/chat-header';
 import ChatMessages from '../../components/chat-messages';
 import UsersList from '../../components/list-user';
 import GroupsList from '../../components/list-groups';
+import ChatAside from '../../components/chat-aside';
 
 
 function ChatPage(props) {
@@ -27,8 +28,7 @@ function ChatPage(props) {
         const room = await getChat(id);
         if (!room) return;
 
-        const members = room.members.filter(u => u._id !== user._id);
-        setUsers(members);
+        setUsers(room.members);
         setChat(room);
         setMessages([...room.messages]);
     }
@@ -91,26 +91,29 @@ function ChatPage(props) {
                         />
                     </div>
                     :
-                    <div className={styles.container}>
-                        <ChatHeader users={users} chat={chat} />
-                        <ChatMessages messages={messages} users={[user, ...users]} />
+                    <div className={styles.chat}>
+                        <ChatAside users={users} chat={chat} />
 
-                        <form className={styles.form} onSubmit={onSubmit}>
-                            <input
-                                className={styles.input}
-                                type="text"
-                                placeholder="Aa..."
-                                value={message}
-                                onChange={e => setMessage(e.target.value)}
-                            />
-                            <button
-                                type="submit"
-                                value="Send"
-                                className={styles['send-button']}
-                            >
-                                <i className="fas fa-arrow-right"></i>
-                            </button>
-                        </form>
+                        <div className={styles.main}>
+                            <ChatHeader chat={chat}/>
+                            <ChatMessages messages={messages} users={users} />
+                            <form className={styles.form} onSubmit={onSubmit}>
+                                <input
+                                    className={styles.input}
+                                    type="text"
+                                    placeholder="Aa..."
+                                    value={message}
+                                    onChange={e => setMessage(e.target.value)}
+                                />
+                                <button
+                                    type="submit"
+                                    value="Send"
+                                    className={styles['send-button']}
+                                >
+                                    <i className="fas fa-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 }
             </Wrapper>

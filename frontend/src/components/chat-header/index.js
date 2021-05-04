@@ -2,15 +2,11 @@ import React from 'react';
 import styles from './index.module.css';
 import UserCardCompact from '../card-user-info-aside';
 
-function ChatHeader({ users, chat }) {
-    if (!users) return null;
+function ChatHeader({ chat }) {
+    if (!chat) return null;
     return (
         <div className={styles['chat-header']}>
-            {
-                users.map((member) => {
-                    return (<UserCardCompact user={member} key={member._id} />)
-                })
-            }
+            <h2>{chat.name}</h2>
         </div>
     )
 }

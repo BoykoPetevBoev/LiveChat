@@ -1,7 +1,14 @@
 .aside {
-    min-width: 360px;
+    width: 400px;
     border-top: solid 1px rgba(191, 191, 191, 1);
     overflow: auto;
+    transition: width 1s ;
+    box-sizing: border-box;
+}
+
+.aside:hover {
+    width: 550px;
+    
 }
 
 .heading {
