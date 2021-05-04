@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
 
@@ -26,9 +27,14 @@ function ChatMessages({ messages, users }) {
                             <div className={styles['user-ico']} style={{ backgroundImage: `url(${sender?.image})` }}></div>
                         </div>
                         <div className={styles['message-holder']}>
-                            <p className={user._id === message.sender ? styles.green : styles.red}>
-                                {message.content}
-                            </p>
+                            {message.content.startsWith('http')
+                                ? <a className={user._id === message.sender ? styles.red : styles.green} href={message.content}>
+                                    {message.content}
+                                </a>
+                                : <p className={user._id === message.sender ? styles.red : styles.green}>
+                                    {message.content}
+                                </p>}
+
                         </div>
                     </div>
                 )

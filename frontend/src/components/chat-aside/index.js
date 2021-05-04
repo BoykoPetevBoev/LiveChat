@@ -3,7 +3,6 @@ import styles from './index.module.css';
 import UserCardCompact from '../card-user-info-aside'
 
 function ChatAside({ users, chat }) {
-    console.log(chat);
     if (!users) return (
         <div className={styles.aside}></div>
     );
