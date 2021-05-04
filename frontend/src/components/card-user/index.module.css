@@ -42,6 +42,10 @@
     background-image: none;
 }
 
+.wrapper p, .wrapper i {
+    animation: color 10s infinite;
+}
+
 .username {
     font-weight: bold;
 }
