@@ -38,3 +38,16 @@
 .card-info:hover {
     font-size: 20px;
 }
+
+.card-info i {
+    margin-right: 10px;
+    width: 16px;
+    vertical-align: middle;
+}
+
+.card-info p {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

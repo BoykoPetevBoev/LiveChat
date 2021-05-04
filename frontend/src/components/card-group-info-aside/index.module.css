@@ -41,6 +41,7 @@
    background-repeat: no-repeat;
    background-size: cover;
    box-shadow: inset 0 0 4px 5px white;
+   animation: color 10s infinite;
 }
 
 .info {
@@ -75,5 +76,14 @@
     margin-right: 10px;
     width: 16px;
     vertical-align: middle;
+}
+
+.img-holder a {
+    height: 100%;
+    width: 100%;
+    animation: color 10s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
