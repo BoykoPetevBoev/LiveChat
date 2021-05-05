@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
-import UserCardCompact from '../card-user-info-aside';
-import GroupCardCompact from '../card-group-info-aside';
+import UserCardCompact from '../card-user-aside';
+import GroupCardCompact from '../card-group-aside';
 
 function Menu() {
     const context = useContext(UserContext);

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './index.module.css';
-import { Link } from 'react-router-dom';
 
 function UserInfo({ data }) {
     if (!data) return null;
@@ -8,10 +7,10 @@ function UserInfo({ data }) {
         <div className={styles.holder}>
 
             {data.email ?
-                <div className={styles['card-info']}>
+                <a className={styles['card-info']} href={`mailto:${data.email}`} target="_blank">
                     <i className="fas fa-envelope"></i>
                     <p>{data?.email}</p>
-                </div>
+                </a>
                 : null}
 
             {data.phone ?
@@ -22,14 +21,14 @@ function UserInfo({ data }) {
                 : null}
 
             {data.address ?
-                <div className={styles['card-info']}>
+                <a className={styles['card-info']} href={`http://maps.google.com/?q=1200 ${data.address}`} target="_blank">
                     <i className="fas fa-map-marker-alt"></i>
                     <p>{data.address}</p>
-                </div>
+                </a>
                 : null}
 
             {data.website ?
-                <a href={data.website} className={styles['card-info']}>
+                <a className={styles['card-info']} href={data.website} target="_blank">
                     <i className="fas fa-link"></i>
                     <p target="_blank" href={data.website}>{data.website.split('/')[2]}</p>
                 </a>

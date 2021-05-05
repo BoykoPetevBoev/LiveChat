@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
 
@@ -11,7 +10,6 @@ function ChatMessages({ messages, users }) {
     useEffect(() => {
         setUser(context.user)
     }, [context.user])
-
 
     if (!messages) return null;
 
@@ -28,9 +26,9 @@ function ChatMessages({ messages, users }) {
                         </div>
                         <div className={styles['message-holder']}>
                             {message.content.startsWith('http')
-                                ? <a className={user._id === message.sender ? styles.red : styles.green} href={message.content}>
-                                    {message.content}
-                                </a>
+                                ? <p className={user._id === message.sender ? styles.red : styles.green} >
+                                    <a target="_blank" href={message.content}>{message.content}</a>
+                                </p>
                                 : <p className={user._id === message.sender ? styles.red : styles.green}>
                                     {message.content}
                                 </p>}

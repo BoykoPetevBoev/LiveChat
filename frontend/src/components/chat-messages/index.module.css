@@ -45,14 +45,14 @@
 }
 
 .chat {
-    display: flex;
+    /* display: flex; */
+    overflow: scroll;
     flex-grow: 20;
-    flex-direction: column;
-    justify-content: flex-end;
+    /* flex-direction: column; */
+    /* justify-content: flex-end; */
     height: 100px;
     text-align: left;
     padding: 30px;
-    overflow: scroll;
 }
 
 .chat::-webkit-scrollbar {
