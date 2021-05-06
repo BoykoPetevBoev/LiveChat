@@ -5,6 +5,9 @@
     transition: width 1s ;
     box-sizing: border-box;
 }
+/* .aside::-webkit-scrollbar {
+    width: 10px;
+  } */
 
 .aside:hover {
     width: 550px;

@@ -16,6 +16,7 @@ import FriendRequestsPage from '../pages/friends-requests';
 import ProfilePage from '../pages/user-profile';
 import AllGroupsPage from '../pages/group-all';
 import ChatHomePage from '../pages/chat-home';
+import SettingsGroupPage from '../pages/group-settings';
 
 function App() {
   const { loggedIn } = useContext(UserContext)
@@ -24,32 +25,19 @@ function App() {
     <Router>
       <Switch>
 
-        <Route exact path='/'>
-          <HomePage />
-        </Route>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/chat/:id' component={loggedIn ? ChatPage : ErrorPage} />
+        <Route exact path='/chat' component={loggedIn ? ChatHomePage : ErrorPage}/>
 
-        <Route exact path='/chat/:id' component={loggedIn ? ChatPage : ErrorPage}/>
-
-        <Route exact path='/chat'>
-          {loggedIn ? <ChatHomePage /> : <ErrorPage />}
-        </Route>
-
-        <Route exact path='/group'>
-          {loggedIn ? <GroupsPage /> : <ErrorPage />}
-        </Route>
-        
-        <Route exact path='/group/create'>
-          {loggedIn ? <CreateGroupPage /> : <ErrorPage />}
-        </Route>
-        
-        <Route exact path='/group/all'>
-          {loggedIn ? <AllGroupsPage /> : <ErrorPage />}
-        </Route>
+        <Route exact path='/group' component={loggedIn ? GroupsPage : ErrorPage}/>
+        <Route exact path='/group/create' component={loggedIn ? CreateGroupPage : ErrorPage}/>
+        <Route exact path='/group/all' component={loggedIn ? AllGroupsPage : ErrorPage}/>
+        <Route exact path='/group/:id' component={loggedIn ? SettingsGroupPage : ErrorPage}/>
 
         <Route exact path='/friends'>
           {loggedIn ? <FriendsPage /> : <ErrorPage />}
         </Route>
-        
+
         <Route exact path='/profile'>
           {loggedIn ? <ProfilePage /> : <ErrorPage />}
         </Route>

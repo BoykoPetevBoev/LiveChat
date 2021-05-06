@@ -49,46 +49,50 @@ async function getChat(id) {
 
 async function userLogin(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/login`);
+    return await fetchRequest('POST', body, `${URL}/user/login`);
 }
 
 async function userRegister(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/register`);
+    return await fetchRequest('POST', body, `${URL}/user/register`);
 }
 
 async function sendFriendRequest(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/send-friend-request`);
+    return await fetchRequest('POST', body, `${URL}/user/send-friend-request`);
 }
 
 async function removeFriendRequest(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/remove-friend-request`);
+    return await fetchRequest('POST', body, `${URL}/user/remove-friend-request`);
 }
 
 async function acceptFriendRequest(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/accept-friend-request`);
+    return await fetchRequest('POST', body, `${URL}/user/accept-friend-request`);
 }
 
 async function removeFriend(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/remove-friend`);
+    return await fetchRequest('POST', body, `${URL}/user/remove-friend`);
 }
 
-async function createGroup(body) {
+async function createChat(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/group-create`);
+    return await fetchRequest('POST', body, `${URL}/chat/create`);
 }
 
 async function updatePassword(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/update-password`);
+    return await fetchRequest('POST', body, `${URL}/user/update-password`);
 }
 async function updateUser(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/update-user`);
+    return await fetchRequest('POST', body, `${URL}/user/update`);
+}
+async function updateChat(body) {
+    if (!body) return;
+    return await fetchRequest('POST', body, `${URL}/chat/update`);
 }
 
 module.exports = {
@@ -101,7 +105,8 @@ module.exports = {
     acceptFriendRequest,
     removeFriend,
     getChat,
-    createGroup,
+    createGroup: createChat,
     updatePassword,
-    updateUser
+    updateUser,
+    updateChat
 }
