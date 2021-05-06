@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserContext from '../../react/Context';
 import styles from './index.module.css';
 import { Link } from 'react-router-dom';
 import CardInfo from '../card-info';
 
 function GroupCard({ room, buttons }) {
+    const context = useContext(UserContext);
+
     if (!room) return null;
     return (
         <div className={styles.wrapper} style={{ backgroundImage: `url(${room.image})` }}>
@@ -23,6 +26,9 @@ function GroupCard({ room, buttons }) {
                     : null}
                 {buttons?.redirect
                     ? <Link className={styles.btn} to={`/chat/${room._id}`}>Message</Link>
+                    : null}
+                {buttons?.settings && context.user._id === room.admin
+                    ? <Link className={styles.btn2} to={`/group/${room._id}`}>Settings</Link>
                     : null}
                 {typeof buttons?.remove === 'function'
                     ? <button className={styles.btn2} onClick={buttons.remove} value={room._id}>Remove</button>

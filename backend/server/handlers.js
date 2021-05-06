@@ -6,7 +6,8 @@ const {
     findUserById,
     findChatById,
     findUsers,
-    updateUser } = require('../database/database');
+    updateUser,
+    updateChat } = require('../database/database');
 
 const {
     setToken,
@@ -230,6 +231,22 @@ async function userUpdate(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
+async function updateGrpup(req, res) {
+    try {
+        const room = req.body;
+        if(!room) return res.status(401).send('Invalid data').end();
+
+        const updatedRoom = await updateChat(room);
+        updatedRoom.members.map(async (id) => {
+            const user = await findUserById(id);
+            user.rooms = addId(user.rooms, savedGroup._id);
+            return await updateUser(user);
+        });
+        return res.status(200).send(updatedRoom);
+    } catch (err) { errorHandler(err, req, res) }
+}
+
+
 function errorHandler(err, req, res) {
     console.error(err);
     return res.status(500).send({ error: 'Something failed!' });
@@ -247,5 +264,6 @@ module.exports = {
     removeFriend,
     getChat,
     createGroup,
+    updateGrpup,
     updatePassword,
 }

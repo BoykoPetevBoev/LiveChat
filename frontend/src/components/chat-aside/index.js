@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './index.module.css';
 import UserCardCompact from '../card-user-aside'
+import UserContext from '../../react/Context';
+import { Link } from 'react-router-dom';
 
 function ChatAside({ users, chat }) {
-    if (!users) return (
-        <div className={styles.aside}></div>
-    );
+    const context = useContext(UserContext);
+
+    if (!users)
+        return <div className={styles.aside}></div>
     return (
         <div className={styles.aside}>
             {chat.image
@@ -19,6 +22,13 @@ function ChatAside({ users, chat }) {
                 </div>
                 : null
             }
+            {chat.website
+                ? <div>
+                    <h3>Website</h3>
+                    <a href={chat.website} target="_blank" rel="noopener noreferrer">{chat.website}</a>
+                </div>
+                : null
+            }
             {users.length > 0
                 ? <div>
                     <h3>Users</h3>
@@ -26,6 +36,9 @@ function ChatAside({ users, chat }) {
                 </div>
                 : null
             }
+            {context.user._id === chat.admin
+                ? <Link className={styles.btn2} to={`/group/${chat._id}`}>Settings</Link>
+                : null}
         </div>
     )
 }
