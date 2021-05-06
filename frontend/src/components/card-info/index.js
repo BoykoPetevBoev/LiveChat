@@ -47,6 +47,12 @@ function UserInfo({ data }) {
                     <p>{data?.members.length}</p>
                 </div>
                 : null}
+            {data.type ?
+                <div className={styles['card-info']}>
+                    <i className="fas fa-users-cog"></i>
+                    <p>{data.type}</p>
+                </div>
+                : null}
         </div>
     )
 }

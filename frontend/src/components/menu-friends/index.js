@@ -22,7 +22,7 @@ function FriendsMenu() {
                     location.pathname === '/friends/requests' ? styles['link-active'] : styles['links']
                 }>
                     <i className="fas fa-user-check"></i>
-                    <p>Pending</p>
+                    <p>Friend Requests</p>
                 </div>
             </Link>
 

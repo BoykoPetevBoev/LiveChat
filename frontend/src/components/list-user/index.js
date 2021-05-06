@@ -1,5 +1,5 @@
 import React from 'react';
-import UserCard from '../card-user';
+import Card from '../card';
 import BorderWrapper from '../wrapper-border'
 
 function UsersList({ users, rooms, buttons, empty, heading }) {
@@ -10,7 +10,7 @@ function UsersList({ users, rooms, buttons, empty, heading }) {
                     ? <p>{empty}</p>
                     : users.map((user) => {
                         const chat = rooms?.find(room => room.members.includes(user._id))
-                        return <UserCard id={chat?._id} buttons={buttons} user={user} key={user._id} />
+                        return <Card id={chat?._id} buttons={buttons} data={user} key={user._id} />
                     })
             }
         </BorderWrapper >

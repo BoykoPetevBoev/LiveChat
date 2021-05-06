@@ -5,7 +5,7 @@ function BorderWrapper({  heading, children }) {
     return (
         <div className={styles.container}>
             {heading ? <p className={styles.heading}>{heading}</p> : null}
-            <div className={styles.friends}>
+            <div className={styles.content}>
                 {children}
             </div>
         </div>

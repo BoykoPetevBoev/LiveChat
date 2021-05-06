@@ -12,11 +12,12 @@
     padding: 0 20px;
 }
 
-.friends {
+.content {
     margin: auto;
-    display: flex;
-    border-radius: 20px;
     padding: 30px;
-    flex-wrap: wrap;
+    border-radius: 20px;
     border: dotted 1px #87c13f;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
