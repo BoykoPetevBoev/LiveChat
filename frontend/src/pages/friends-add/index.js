@@ -36,10 +36,11 @@ function AddFriendsPage() {
 
     const sendRequest = async (username) => {
         const response = await findUsers(username);
-        setUsers(response);
+        const filteredUsers = filterUsers(response);
+        setUsers(filteredUsers);
     }
 
-    const filterUsers = () => {
+    const filterUsers = (users) => {
         return users.filter((friend) => {
             return friend._id !== user._id &&
                 !user.sentRequests.some(u => u._id === friend._id) &&
@@ -53,7 +54,7 @@ function AddFriendsPage() {
             <Header />
             <Wrapper>
                 <FriendsMenu />
-                <h2>Add Friend</h2>
+                <h2>Add Friends</h2>
 
                 <div className={styles['form-holder']}>
                     <form onSubmit={onSubmit}>
@@ -69,9 +70,9 @@ function AddFriendsPage() {
                 </div>
 
                 <UsersList
-                    users={filterUsers()}
+                    users={users}
                     heading={'Users'}
-                    empty={'Find Friends'}
+                    empty={'No Result'}
                     buttons={{ add: addUser }}
                 />
             </Wrapper>

@@ -1,6 +1,6 @@
 import React from 'react';
 import BorderWrapper from '../wrapper-border'
-import GroupCard from '../card-group';
+import Card from '../card';
 
 function GroupsList({ groups, buttons, empty, heading }) {
     return (
@@ -8,7 +8,7 @@ function GroupsList({ groups, buttons, empty, heading }) {
             {
                 !groups || groups.length === 0
                     ? <p>{empty}</p>
-                    : groups?.map((room) => <GroupCard room={room} buttons={buttons} key={room._id} />)
+                    : groups?.map((room) => <Card data={room} buttons={buttons} key={room._id} />)
             }
         </BorderWrapper >
     )

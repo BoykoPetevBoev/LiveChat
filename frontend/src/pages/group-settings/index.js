@@ -12,7 +12,7 @@ import { updateChat } from '../../requester';
 import GroupsMenu from '../../components/menu-groups';
 import { getChat } from '../../requester';
 import BorderWrapper from '../../components/wrapper-border';
-import GroupCard from '../../components/card-group';
+import Card from '../../components/card';
 
 function SettingsGroupPage({match}) {
 
@@ -102,7 +102,7 @@ function SettingsGroupPage({match}) {
                 <h2>Group Settings</h2>
                 <BorderWrapper heading="Group Card">
                     <div className={styles['card-holder']}>
-                        <GroupCard room={group} />
+                        <Card data={group} />
                     </div>
                 </BorderWrapper>
                 <form className={styles.form} onSubmit={onSubmit}>

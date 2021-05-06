@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styles from './index.module.css';
-import UserCardCompact from '../card-user-aside'
 import UserContext from '../../react/Context';
 import { Link } from 'react-router-dom';
+import CardAside from '../card-aside';
 
 function ChatAside({ users, chat }) {
     const context = useContext(UserContext);
@@ -32,12 +32,12 @@ function ChatAside({ users, chat }) {
             {users.length > 0
                 ? <div>
                     <h3>Users</h3>
-                    {users.map((member) => <UserCardCompact user={member} key={member._id} />)}
+                    {users.map((member) => <CardAside data={member} key={member._id} />)}
                 </div>
                 : null
             }
             {context.user._id === chat.admin
-                ? <Link className={styles.btn2} to={`/group/${chat._id}`}>Settings</Link>
+                ? <Link className={styles.buton} to={`/group/${chat._id}`}>Settings</Link>
                 : null}
         </div>
     )

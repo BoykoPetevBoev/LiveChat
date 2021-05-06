@@ -18,7 +18,7 @@ function AllGroupsPage() {
                     groups={context.user.rooms.filter(room => room.type !== 'chat')}
                     heading={''}
                     empty={'There is no groups in your list'}
-                    buttons={{redirect: true }}
+                    buttons={{redirect: true, settings: true}}
                 />
             </Wrapper>
         </div>

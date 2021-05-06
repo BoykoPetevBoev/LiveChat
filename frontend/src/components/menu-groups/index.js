@@ -11,7 +11,7 @@ function GroupsMenu() {
             <Link to='/group/create'>
                 <div className={location.pathname === '/group/create' ? styles['link-active'] : styles.links}>
                     <i className="fas fa-user-plus"></i>
-                    <p>Greate Group</p>
+                    <p>Create New Group</p>
                 </div>
             </Link>
 
@@ -22,12 +22,12 @@ function GroupsMenu() {
                 </div>
             </Link>
 
-            <Link to='/group/find'>
+            {/* <Link to='/group/find'>
                 <div className={location.pathname === '/group/find' ? styles['link-active'] : styles.links}>
                     <i className="fas fa-user-friends"></i>
                     <p>Find Group</p>
                 </div>
-            </Link>
+            </Link> */}
 
         </div>
     );

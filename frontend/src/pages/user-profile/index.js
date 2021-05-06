@@ -6,7 +6,7 @@ import Wrapper from '../../components/wrapper-main';
 import BorderWrapper from '../../components/wrapper-border';
 import ChangePasswordForm from '../../components/form-change-password';
 import UserSettingsForm from '../../components/form-account-settings';
-import UserCard from '../../components/card-user';
+import Card from '../../components/card';
 
 
 function ProfilePage() {
@@ -24,7 +24,7 @@ function ProfilePage() {
                 <h2>Settings</h2>
                 <BorderWrapper heading='Your card'>
                     <div className={styles['card-holder']}>
-                        <UserCard user={user}/>
+                        <Card data={user}/>
                     </div>
                 </BorderWrapper>
                 <UserSettingsForm />

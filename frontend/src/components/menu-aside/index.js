@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import UserContext from '../../react/Context';
-import UserCardCompact from '../card-user-aside';
-import GroupCardCompact from '../card-group-aside';
+import CardAside from '../card-aside';
 
 function Menu() {
     const context = useContext(UserContext);
@@ -22,14 +21,14 @@ function Menu() {
             ? null
             : chats.map(chat => {
                 const friend = user.friends.find(fr => chat.members.includes(fr._id))
-                return <UserCardCompact user={friend} chatId={chat._id} key={chat._id} />;
+                return <CardAside data={friend} path={`/chat/${chat._id}`} key={chat._id} />;
             });
     }
 
     return (
         <div className={styles.aside}>
             <div>
-                <UserCardCompact user={user} />
+                <CardAside data={user} />
                 <div className={styles['user-options']}>
                     <Link to='/chat'><i className="fas fa-microphone"></i></Link>
                     <Link to='/chat'><i className="fas fa-volume-up"></i></Link>
@@ -46,7 +45,7 @@ function Menu() {
                 <p className={styles.heading}> <i className="fas fa-users"></i>Groups</p>
                 {rooms.length === 0
                     ? null
-                    : rooms.map(room => <GroupCardCompact group={room} key={room._id} />)
+                    : rooms.map(room => <CardAside data={room} path={`/chat/${room._id}`} key={room._id} />)
                 }
             </div>
         </div>
