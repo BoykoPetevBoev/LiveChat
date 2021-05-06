@@ -11,9 +11,8 @@ function getCookie(name) {
 function Authorization(props) {
     const [user, setUser] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
-    
     useEffect(() => {
         // setLoading(true);
         const token = getCookie('token');
@@ -36,14 +35,14 @@ function Authorization(props) {
     const login = (user) => {
         setUser(user);
         setLoggedIn(true);
-        setLoading(false);
+        // setLoading(false);
     }
 
     const logout = () => {
         localStorage.removeItem('token');;
         setUser(null);
         setLoggedIn(false);
-        setLoading(false);
+        // setLoading(false);
     }
 
     // if (loading) return <Loading />
