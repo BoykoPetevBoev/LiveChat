@@ -15,6 +15,7 @@ import AddFriendsPage from '../pages/friends-add';
 import FriendRequestsPage from '../pages/friends-requests';
 import ProfilePage from '../pages/user-profile';
 import AllGroupsPage from '../pages/group-all';
+import ChatHomePage from '../pages/chat-home';
 
 function App() {
   const { loggedIn } = useContext(UserContext)
@@ -30,7 +31,7 @@ function App() {
         <Route exact path='/chat/:id' component={loggedIn ? ChatPage : ErrorPage}/>
 
         <Route exact path='/chat'>
-          {loggedIn ? <ChatPage /> : <ErrorPage />}
+          {loggedIn ? <ChatHomePage /> : <ErrorPage />}
         </Route>
 
         <Route exact path='/group'>

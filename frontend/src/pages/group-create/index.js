@@ -80,7 +80,7 @@ function CreateGroupPage() {
         if (isInvalid()) return;
         sendRequest();
     }
-    
+
     return (
         <div className={styles.container}>
             <Header />

@@ -9,7 +9,7 @@ function ChatAside({ users, chat }) {
     return (
         <div className={styles.aside}>
             {chat.image
-                ? <img className={styles.img} src={chat.image} />
+                ? <img className={styles.img} src={chat.image} alt="Chat" />
                 : null
             }
             {chat.about

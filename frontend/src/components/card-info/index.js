@@ -7,7 +7,7 @@ function UserInfo({ data }) {
         <div className={styles.holder}>
 
             {data.email ?
-                <a className={styles['card-info']} href={`mailto:${data.email}`} target="_blank">
+                <a className={styles['card-info']} href={`mailto:${data.email}`} target="_blank" rel="noopener noreferrer">
                     <i className="fas fa-envelope"></i>
                     <p>{data?.email}</p>
                 </a>
@@ -21,14 +21,14 @@ function UserInfo({ data }) {
                 : null}
 
             {data.address ?
-                <a className={styles['card-info']} href={`http://maps.google.com/?q=1200 ${data.address}`} target="_blank">
+                <a className={styles['card-info']} href={`http://maps.google.com/?q=1200 ${data.address}`} target="_blank" rel="noopener noreferrer">
                     <i className="fas fa-map-marker-alt"></i>
                     <p>{data.address}</p>
                 </a>
                 : null}
 
             {data.website ?
-                <a className={styles['card-info']} href={data.website} target="_blank">
+                <a className={styles['card-info']} href={data.website} target="_blank" rel="noopener noreferrer">
                     <i className="fas fa-link"></i>
                     <p target="_blank" href={data.website}>{data.website.split('/')[2]}</p>
                 </a>
