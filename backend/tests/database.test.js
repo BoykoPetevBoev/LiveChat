@@ -1,4 +1,5 @@
 const UserSchema = require('../database/models/Users');
+const RoomSchema = require('../database/models/Room');
 const setupDB = require('./test-setup');
 const { 
     createUser, 
@@ -6,22 +7,12 @@ const {
     findUsers 
 } = require('../database/database');
 
-const user = {
-    email: 'testDatabase',
-    username: 'testDatabase',
-    password: 'testDatabase'
-}
 setupDB('Chat-Test-Database');
-
-test('Mongoose model schema', () => {
-    const userModel = new UserSchema(user);
-    expect(userModel.email).toBe(user.email);
-    expect(userModel.username).toBe(user.username);
-    expect(userModel.password).toBe(user.password);
-    expect(userModel.friends.length).toBe(0);
-    expect(userModel.rooms.length).toBe(0);
-    expect(userModel._id).toBeTruthy();
-})
+const user = {
+    email: 'email',
+    username: 'username',
+    password: 'password'
+}
 
 test('Save user to database', async () => {
     await createUser(user);

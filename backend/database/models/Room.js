@@ -12,7 +12,8 @@ const RoomSchema = new Schema({
         require: true
     },
     about: {
-        type: String
+        type: String,
+        default: ''
     },
     type: {
         type: String,

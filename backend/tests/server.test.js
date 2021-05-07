@@ -12,7 +12,7 @@ const user = {
 setupDB('Chat-Test-Server');
 
 test('/register', async () => {
-    const resValid = await supertest(app).post('/register').send(user);
+    const resValid = await supertest(app).post('/user/register').send(user);
     const savedUser = await UserSchema.findOne({ email: user.email });
 
     expect(resValid.statusCode).toEqual(200);
@@ -22,21 +22,21 @@ test('/register', async () => {
     expect(savedUser.friends.length).toBe(0);
     expect(savedUser.rooms.length).toBe(0);
 
-    const resInvalid = await supertest(app).post('/register').send(undefined);
+    const resInvalid = await supertest(app).post('/user/register').send(undefined);
     expect(resInvalid.statusCode).toEqual(401);
 
-    const resRegistered = await supertest(app).post('/register').send(user);
+    const resRegistered = await supertest(app).post('/user/register').send(user);
     expect(resRegistered.statusCode).toEqual(401);
 })
 
 test('/login', async () => {
-    const resNotRegistered = await supertest(app).post('/login').send(user);
+    const resNotRegistered = await supertest(app).post('/user/login').send(user);
     expect(resNotRegistered.statusCode).toEqual(401);
-    const resInvalid = await supertest(app).post('/login').send(undefined);
+    const resInvalid = await supertest(app).post('/user/login').send(undefined);
     expect(resInvalid.statusCode).toEqual(401);
 
     await new UserSchema(user).save();
-    const resValid = await supertest(app).post('/login').send(user);
+    const resValid = await supertest(app).post('/user/login').send(user);
     expect(resValid.statusCode).toEqual(401);
 })
 
