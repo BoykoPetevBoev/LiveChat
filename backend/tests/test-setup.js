@@ -1,5 +1,9 @@
+const UserSchema = require('../database/models/Users');
+const RoomSchema = require('../database/models/Room');
+const MessageSchema = require('../database/models/Message');
 const mongoose = require('mongoose')
 mongoose.set('useCreateIndex', true)
+mongoose.set('useFindAndModify', false)
 mongoose.promise = global.Promise
 
 const config = {
@@ -7,6 +11,28 @@ const config = {
     dbPassword: 123,
     dbAddress: 'softuni.dx3ut.mongodb.net',
     dbName: 'Chat-Test'
+}
+
+async function createCollection() {
+   
+
+    const userModel = new UserSchema(user);
+    await userModel.save();
+    // const room = {
+    //     name: 'name',
+    //     type: 'type',
+    //     admin: userModel._id
+    // }
+    // const roomModel = new RoomSchema(room);
+    // await roomModel.save();
+    // const message = {
+    //     content: 'content',
+    //     time: 'time',
+    //     sender: userModel._id,
+    //     room: roomModel._id
+    // }
+    // const messageModel = new MessageSchema(message);
+    // await messageModel.save();
 }
 
 async function removeAllCollections() {
@@ -31,16 +57,20 @@ async function dropAllCollections() {
     }
 }
 
-function setupDB(dbName) {
+async function setupDB(dbName) {
 
     beforeAll(async () => {
         const url = `mongodb+srv://${config.dbUser}:${config.dbPassword}@${config.dbAddress}/${dbName}?retryWrites=true&w=majority`;
         await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     })
 
-    afterEach(async () => {
-        await removeAllCollections()
-    })
+    // beforeEach(async () => {
+    //     await createCollection();
+    // });
+
+    // afterEach(async () => {
+    //     await removeAllCollections()
+    // })
 
     afterAll(async () => {
         await dropAllCollections()
