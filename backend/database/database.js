@@ -10,8 +10,7 @@ const invalidSelector = (selector) => {
 // MESSAGE
 
 async function createMessage(message) {
-    if (!message.room || !message.sender || !message.content || !message.time)
-        return undefined;
+    if (!message || !message.room || !message.sender || !message.content || !message.time) return undefined;
     try {
         const messageModel = await new MessageSchema(message);
         return await messageModel.save();
@@ -21,8 +20,7 @@ async function createMessage(message) {
 //CHAT
 
 async function createRoom(room) {
-    if (!room || !room.name || !room.type)
-        return undefined;
+    if (!room || !room.name || !room.type || !room.admin) return undefined;
     try {
         const roomModel = new RoomSchema(room);
         return await roomModel.save();
@@ -39,7 +37,7 @@ async function findChatById(id) {
     } catch (err) { return errorHandler(err) }
 }
 
-async function updateChat(room) {
+async function updateRoom(room) {
     if (!room) return undefined;
     try {
         return await RoomSchema
@@ -52,8 +50,7 @@ async function updateChat(room) {
 //USER
 
 async function createUser(user) {
-    if (!user || !user.username || !user.email || !user.password)
-        return undefined;
+    if (!user || !user.username || !user.email || !user.password) return undefined;
     try {
         user.password = hashPassword(user.password);
         const userModel = new UserSchema(user);
@@ -63,8 +60,7 @@ async function createUser(user) {
 }
 
 async function findUser(selector) {
-    if (invalidSelector(selector))
-        return undefined;
+    if (invalidSelector(selector)) return undefined;
     try {
         return await UserSchema
             .findOne(selector)
@@ -88,8 +84,7 @@ async function findUserById(id) {
 }
 
 async function findUsers(selector) {
-    if (invalidSelector(selector))
-        return undefined;
+    if (invalidSelector(selector)) return undefined;
     try {
         return UserSchema
             .find(selector)
@@ -126,5 +121,5 @@ module.exports = {
     findChatById,
     findUsers,
     updateUser,
-    updateChat,
+    updateChat: updateRoom,
 }
