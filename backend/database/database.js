@@ -121,5 +121,5 @@ module.exports = {
     findChatById,
     findUsers,
     updateUser,
-    updateChat: updateRoom,
+    updateRoom,
 }
