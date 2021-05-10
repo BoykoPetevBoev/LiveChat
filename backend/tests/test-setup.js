@@ -68,9 +68,9 @@ async function setupDB(dbName) {
     //     await createCollection();
     // });
 
-    // afterEach(async () => {
-    //     await removeAllCollections()
-    // })
+    afterEach(async () => {
+        await removeAllCollections()
+    })
 
     afterAll(async () => {
         await dropAllCollections()

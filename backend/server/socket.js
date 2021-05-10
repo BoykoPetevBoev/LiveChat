@@ -1,4 +1,4 @@
-const { createMessage, findChatById, updateChat } = require("../database/database");
+const { createMessage, findChatById, updateRoom } = require("../database/database");
 const {
   setToken,
   verifyToken,
@@ -48,7 +48,7 @@ function socket(io) {
       const savedMessage = await createMessage({ room, sender, content, time });
       const savedChat = await findChatById(room);
       savedChat.messages = addId(savedChat.messages, savedMessage._id);
-      const updatedChat = await updateChat(savedChat);
+      const updatedChat = await updateRoom(savedChat);
       io.emit('message', updatedChat);
     });
 

@@ -7,7 +7,7 @@ const {
     findChatById,
     findUsers,
     updateUser,
-    updateChat } = require('../database/database');
+    updateRoom } = require('../database/database');
 
 const {
     setToken,
@@ -236,7 +236,7 @@ async function updateGrpup(req, res) {
         const room = req.body;
         if(!room) return res.status(401).send('Invalid data').end();
 
-        const updatedRoom = await updateChat(room);
+        const updatedRoom = await updateRoom(room);
         updatedRoom.members.map(async (id) => {
             const user = await findUserById(id);
             user.rooms = addId(user.rooms, savedGroup._id);

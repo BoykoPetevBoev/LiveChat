@@ -9,27 +9,18 @@ const {
 } = require('../database/database');
 
 setupDB('Chat-Test-Database');
+
 const userModel = new UserSchema({
     email: 'email',
     username: 'username',
     password: 'password'
 });
 
-
 describe('User Tests', () => {
-
-    beforeEach(async () => {
-        await userModel.save();
-    });
-
+    
     test('Save user', async () => {
-        const createdUser = await createUser({
-            email: 'test',
-            username: 'test',
-            password: 'test'
-        });
-        const savedUser = await UserSchema.findById(createdUser._id);
-        expect(savedUser._id).toStrictEqual(createdUser._id);
+        const createdUser =  await createUser(userModel)
+        const savedUser = await findUserById(createdUser._id);
         expect(savedUser.email).toBe(createdUser.email);
         expect(savedUser.username).toBe(createdUser.username);
         expect(savedUser.password).toBe(createdUser.password);
@@ -42,52 +33,48 @@ describe('User Tests', () => {
         expect(savedUser.receivedRequests.length).toBe(0);
         expect(savedUser.sentRequests.length).toBe(0);
     })
-    
+
     test('Get user by selector', async () => {
+        await createUser(userModel)
         const savedUser = await findUser({ email: userModel.email });
         expect(savedUser.email).toBe(userModel.email);
         expect(savedUser.username).toBe(userModel.username);
-        expect(savedUser.password).toBe(userModel.password);
+        // expect(savedUser.password).toBe(userModel.password);
     })
 
     test('Get user by id', async () => {
-        const savedUser = await findUserById(userModel._id);
-        expect(savedUser.email).toBe(userModel.email);
-        expect(savedUser.username).toBe(userModel.username);
-        expect(savedUser.password).toBe(userModel.password);
+        const user = await createUser(userModel);
+        const savedUser = await findUserById(user._id);
+        expect(savedUser.email).toBe(user.email);
+        expect(savedUser.username).toBe(user.username);
+        // expect(savedUser.password).toBe(userModel.password);
     })
 
     test('Get users', async () => {
-        const savedUsers = await findUsers({ username: userModel.username });
+        const user = await createUser(userModel)
+        const savedUsers = await findUsers({ username: user.username });
         expect(savedUsers.length).toBe(1);
-        expect(savedUsers[0]['username']).toEqual(userModel.username);
-        expect(savedUsers[0]['email']).toEqual(userModel.email);
-        expect(savedUsers[0]['password']).toEqual(userModel.password);
+        expect(savedUsers[0]['username']).toEqual(user.username);
+        expect(savedUsers[0]['email']).toEqual(user.email);
+        // expect(savedUsers[0]['password']).toEqual(userModel.password);
     })
 
     test('Update user', async () => {
-        userModel.username = 'updated-username';
-        userModel.password = 'updated-password';
-        userModel.phone = 'updated-phone';
-        userModel.image = 'updated-image';
-        userModel.address = 'updated-address';
-        userModel.website = 'updated-website';
-        const savedUser = await updateUser(userModel)
-        expect(savedUser._id).toStrictEqual(userModel._id);
-        expect(savedUser.email).toBe(userModel.email);
-        expect(savedUser.username).toBe(userModel.username);
-        expect(savedUser.password).toBe(userModel.password);
-        expect(savedUser.phone).toBe(userModel.phone);
-        expect(savedUser.image).toBe(userModel.image);
-        expect(savedUser.address).toBe(userModel.address);
-        expect(savedUser.website).toBe(userModel.website);
+        const user = await createUser(userModel)
+        user.username = 'updated-username';
+        user.password = 'updated-password';
+        user.phone = 'updated-phone';
+        user.image = 'updated-image';
+        user.address = 'updated-address';
+        user.website = 'updated-website';
+        const savedUser = await updateUser(user)
+        expect(savedUser.email).toBe(user.email);
+        expect(savedUser.username).toBe(user.username);
+        expect(savedUser.password).toBe(user.password);
+        expect(savedUser.phone).toBe(user.phone);
+        expect(savedUser.image).toBe(user.image);
+        expect(savedUser.address).toBe(user.address);
+        expect(savedUser.website).toBe(user.website);
     })
-
-    // test('Invalid user data', async () => {
-    //     const invalidUser = await createUser(undefined);
-    //     expect(invalidUser).toBeUndefined();
-    //     // const invalidUser = await findUsers(undefined);
-    //     // expect(invalidUser).toBeUndefined();
-    // })
 })
 
