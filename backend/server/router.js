@@ -11,13 +11,15 @@ const {
     createGroup,
     updateGrpup,
     updatePassword,
-    userUpdate } = require('./handlers');
+    userUpdate,
+    getPublicGroups } = require('./handlers');
 
 function expressRouter(router){   
     router.get('/users', getUsersByUsername);
     router.get('/verify', userAuthorization);
     router.get('/chat', getChat);
-
+    router.get('/groups/public', getPublicGroups);
+    
     router.post('/user/login', userLogin);
     router.post('/user/register', userRegister);
     router.post('/user/update', userUpdate);
@@ -29,7 +31,7 @@ function expressRouter(router){
 
     router.post('/chat/create', createGroup);
     router.post('/chat/update', updateGrpup);
-
+    
     router.use('*', (req, res) => {
         res.status(404).json({erroe: 'Not found!'});
     })

@@ -7,7 +7,8 @@ const {
     findChatById,
     findUsers,
     updateUser,
-    updateRoom } = require('../database/database');
+    updateRoom,
+    findRooms } = require('../database/database');
 
 const {
     setToken,
@@ -246,6 +247,14 @@ async function updateGrpup(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
+async function getPublicGroups(req, res) {
+    try {
+        const rooms = await findRooms({type: 'public'});
+        console.log(rooms.length);
+        return res.status(200).send(rooms);
+    } catch (err) { errorHandler(err, req, res) }
+}
+
 
 function errorHandler(err, req, res) {
     console.error(err);
@@ -266,4 +275,5 @@ module.exports = {
     createGroup,
     updateGrpup,
     updatePassword,
+    getPublicGroups
 }
