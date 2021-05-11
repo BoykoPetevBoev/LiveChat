@@ -7,8 +7,6 @@ const invalidSelector = (selector) => {
     return !selector || typeof selector !== 'object';
 }
 
-// MESSAGE
-
 async function createMessage(message) {
     if (!message || !message.room || !message.sender || !message.content || !message.time) return undefined;
     try {
@@ -16,8 +14,6 @@ async function createMessage(message) {
         return await messageModel.save();
     } catch (err) { return errorHandler(err) }
 }
-
-//CHAT
 
 async function createRoom(room) {
     if (!room || !room.name || !room.type || !room.admin) return undefined;
@@ -27,7 +23,7 @@ async function createRoom(room) {
     } catch (err) { return errorHandler(err) }
 }
 
-async function findChatById(id) {
+async function findRoomById(id) {
     if (!id) return undefined;
     try {
         return await RoomSchema
@@ -47,7 +43,15 @@ async function updateRoom(room) {
     } catch (err) { return errorHandler(err) }
 }
 
-//USER
+async function findRooms(selector) {
+    if (invalidSelector(selector)) return undefined;
+    try {
+        return await RoomSchema
+            .find(selector)
+            .populate('members')
+            .populate('messages')
+    } catch (err) { return errorHandler(err) }
+}
 
 async function createUser(user) {
     if (!user || !user.username || !user.email || !user.password) return undefined;
@@ -118,8 +122,9 @@ module.exports = {
     createMessage,
     findUser,
     findUserById,
-    findChatById,
+    findChatById: findRoomById,
     findUsers,
     updateUser,
     updateRoom,
+    findRooms
 }

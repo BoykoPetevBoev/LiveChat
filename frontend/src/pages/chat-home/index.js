@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
+import { getPublicGroups } from '../../requester';
+
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
 import UsersList from '../../components/list-user';
@@ -9,8 +11,19 @@ import GroupsList from '../../components/list-groups';
 function ChatHomePage() {
     const context = useContext(UserContext);
     const [user, setUser] = useState(context.user);
+    const [groups, setGroups] = useState([]);
+
+    const fetchData = async () => {
+        const res = await getPublicGroups();
+        if(!res) return;
+
+console.log(res);
+
+        setGroups(res);
+    }
 
     useEffect(() => {
+        fetchData();
         setUser(context.user);
     }, [context.user]);
 
@@ -34,7 +47,7 @@ function ChatHomePage() {
                         buttons={{ redirect: true, settings: true }}
                     />
                     <GroupsList
-                        groups={user.rooms.filter(room => room.type === 'public')}
+                        groups={groups}
                         heading='Public Groups'
                         empty='There is no public groups'
                         buttons={{ redirect: true, settings: true }}

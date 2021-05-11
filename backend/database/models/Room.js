@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const RoomSchema = new Schema({
     admin: {
-        require: true,
         type: Schema.Types.ObjectId,
         ref: 'User'
     },

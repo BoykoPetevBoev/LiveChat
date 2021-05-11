@@ -47,6 +47,10 @@ async function getChat(id) {
     return await fetchRequest('GET', undefined, `${URL}/chat?id=${id}`)
 }
 
+async function getPublicGroups() {
+    return await fetchRequest('GET', undefined, `${URL}/groups/public`);
+}
+
 async function userLogin(body) {
     if (!body) return;
     return await fetchRequest('POST', body, `${URL}/user/login`);
@@ -95,6 +99,7 @@ async function updateChat(body) {
     return await fetchRequest('POST', body, `${URL}/chat/update`);
 }
 
+
 module.exports = {
     userLogin,
     userRegister,
@@ -108,5 +113,6 @@ module.exports = {
     createGroup: createChat,
     updatePassword,
     updateUser,
-    updateChat
+    updateChat,
+    getPublicGroups
 }

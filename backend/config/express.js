@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const expressRouter = require('../server/router');
 
-
 function expressConfig() {
     const router = express.Router();
     const app = express();
