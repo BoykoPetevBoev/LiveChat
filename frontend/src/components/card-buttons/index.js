@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 function CardButtons({ data, buttons, id }) {
     const context = useContext(UserContext);
     if (!data) return null;
+
     return (
         <div className={styles.buttons}>
             {typeof buttons?.add === 'function'
@@ -14,7 +15,15 @@ function CardButtons({ data, buttons, id }) {
             {typeof buttons?.confirm === 'function'
                 ? <button className={styles.btn} onClick={buttons.confirm} value={data._id}>Confirm</button>
                 : null}
-            {buttons?.redirect && !id
+            {typeof
+                buttons?.join === 'function'
+                && data.type === 'public'
+                && !data.members.some(u => u._id === context.user._id)
+                ? <button className={styles.btn} onClick={buttons.join} value={data._id}>Join Group</button>
+                : null}
+            {buttons?.redirect
+                && !id
+                && (data.members.some(u => u._id === context.user._id) || data.members.includes(context.user._id))
                 ? <Link className={styles.btn} to={`/chat/${data._id}`}>Message</Link>
                 : null}
             {buttons?.redirect && id

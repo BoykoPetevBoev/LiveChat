@@ -44,7 +44,7 @@ async function findUsers(username) {
 
 async function getChat(id) {
     if (!id) return;
-    return await fetchRequest('GET', undefined, `${URL}/chat?id=${id}`)
+    return await fetchRequest('GET', undefined, `${URL}/group?id=${id}`)
 }
 
 async function getPublicGroups() {
@@ -81,9 +81,9 @@ async function removeFriend(body) {
     return await fetchRequest('POST', body, `${URL}/user/remove-friend`);
 }
 
-async function createChat(body) {
+async function createGroup(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/chat/create`);
+    return await fetchRequest('POST', body, `${URL}/group/create`);
 }
 
 async function updatePassword(body) {
@@ -96,9 +96,12 @@ async function updateUser(body) {
 }
 async function updateChat(body) {
     if (!body) return;
-    return await fetchRequest('POST', body, `${URL}/chat/update`);
+    return await fetchRequest('POST', body, `${URL}/group/update`);
 }
-
+async function sendGroupRequest(body) {
+    if (!body) return;
+    return await fetchRequest('POST', body, `${URL}/group/send-join-request`);
+}
 
 module.exports = {
     userLogin,
@@ -110,9 +113,10 @@ module.exports = {
     acceptFriendRequest,
     removeFriend,
     getChat,
-    createGroup: createChat,
+    createGroup,
     updatePassword,
     updateUser,
     updateChat,
-    getPublicGroups
+    getPublicGroups,
+    sendGroupRequest
 }

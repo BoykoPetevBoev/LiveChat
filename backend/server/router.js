@@ -7,17 +7,18 @@ const {
     acceptFriendRequest,
     removeFriend,
     userAuthorization,
-    getChat,
+    getGroup,
     createGroup,
-    updateGrpup,
+    updateGroup,
     updatePassword,
     userUpdate,
-    getPublicGroups } = require('./handlers');
+    getPublicGroups,
+    sendGroupRequest } = require('./handlers');
 
 function expressRouter(router){   
     router.get('/users', getUsersByUsername);
     router.get('/verify', userAuthorization);
-    router.get('/chat', getChat);
+    router.get('/group', getGroup);
     router.get('/groups/public', getPublicGroups);
     
     router.post('/user/login', userLogin);
@@ -29,8 +30,9 @@ function expressRouter(router){
     router.post('/user/accept-friend-request', acceptFriendRequest);
     router.post('/user/remove-friend', removeFriend);
 
-    router.post('/chat/create', createGroup);
-    router.post('/chat/update', updateGrpup);
+    router.post('/group/create', createGroup);
+    router.post('/group/update', updateGroup);
+    router.post('/group/send-join-request', sendGroupRequest);
     
     router.use('*', (req, res) => {
         res.status(404).json({erroe: 'Not found!'});

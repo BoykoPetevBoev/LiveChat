@@ -19,7 +19,7 @@ async function verifyToken(token) {
 }
 
 function addId(array, id) {
-    const match = (user) => user._id == id;
+    const match = (element) => element._id == id || element == id;
     if (!array.some(match)) {
         array.push(id);
     }
