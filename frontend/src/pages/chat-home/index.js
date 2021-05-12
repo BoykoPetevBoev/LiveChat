@@ -26,11 +26,10 @@ function ChatHomePage() {
     }, [context.user]);
 
     const joinToGroup = async (e) => {
-        const res = await sendGroupRequest({
+        await sendGroupRequest({
             senderId: user._id,
             groupId: e.target.value
         })
-        console.log(res);
     }
 
     return (

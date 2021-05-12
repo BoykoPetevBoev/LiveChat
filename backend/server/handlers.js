@@ -190,8 +190,7 @@ async function createGroup(req, res) {
             return res.status(401).send('Invalid data').end();
 
         const savedGroup = await createRoom(group);
-        savedGroup.members.map(async (id) => {
-            const user = await findUserById(id);
+        savedGroup.members.map(async (user) => {
             user.rooms = addId(user.rooms, savedGroup._id);
             return await updateUser(user);
         });
@@ -239,9 +238,8 @@ async function updateGroup(req, res) {
         if (!room) return res.status(401).send('Invalid data').end();
 
         const updatedRoom = await updateRoom(room);
-        updatedRoom.members.map(async (id) => {
-            const user = await findUserById(id);
-            user.rooms = addId(user.rooms, savedGroup._id);
+        updatedRoom.members.map(async (user) => {
+            user.rooms = addId(user.rooms, updatedRoom._id);
             return await updateUser(user);
         });
         return res.status(200).send(updatedRoom);
