@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../../react/Context';
 import styles from './index.module.css';
-import { getPublicGroups } from '../../requester';
+import { getPublicGroups, sendGroupRequest } from '../../requester';
 
 import Header from '../../components/header';
 import Wrapper from '../../components/wrapper-main';
@@ -15,9 +15,7 @@ function ChatHomePage() {
 
     const fetchData = async () => {
         const res = await getPublicGroups();
-        if(!res) return;
-
-console.log(res);
+        if (!res) return;
 
         setGroups(res);
     }
@@ -26,6 +24,14 @@ console.log(res);
         fetchData();
         setUser(context.user);
     }, [context.user]);
+
+    const joinToGroup = async (e) => {
+        const res = await sendGroupRequest({
+            senderId: user._id,
+            groupId: e.target.value
+        })
+        console.log(res);
+    }
 
     return (
         <div className={styles.container}>
@@ -50,7 +56,7 @@ console.log(res);
                         groups={groups}
                         heading='Public Groups'
                         empty='There is no public groups'
-                        buttons={{ redirect: true, settings: true }}
+                        buttons={{ join: joinToGroup , settings: true, redirect: true,}}
                     />
                 </div>
             </Wrapper>

@@ -4,11 +4,12 @@ const {
     createRoom,
     findUser,
     findUserById,
-    findChatById,
+    findRoomById,
     findUsers,
     updateUser,
     updateRoom,
-    findRooms } = require('../database/database');
+    findRooms,
+} = require('../database/database');
 
 const {
     setToken,
@@ -172,12 +173,12 @@ async function removeFriend(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
-async function getChat(req, res) {
+async function getGroup(req, res) {
     try {
         const { id } = req.query;
         if (!id) return res.status(401).send('Invalid data').end();
 
-        const chat = await findChatById(id);
+        const chat = await findRoomById(id);
         return res.status(200).send(chat);
     } catch (err) { errorHandler(err, req, res) }
 }
@@ -232,10 +233,10 @@ async function userUpdate(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
-async function updateGrpup(req, res) {
+async function updateGroup(req, res) {
     try {
         const room = req.body;
-        if(!room) return res.status(401).send('Invalid data').end();
+        if (!room) return res.status(401).send('Invalid data').end();
 
         const updatedRoom = await updateRoom(room);
         updatedRoom.members.map(async (id) => {
@@ -249,9 +250,21 @@ async function updateGrpup(req, res) {
 
 async function getPublicGroups(req, res) {
     try {
-        const rooms = await findRooms({type: 'public'});
-        console.log(rooms.length);
+        const rooms = await findRooms({ type: 'public' });
         return res.status(200).send(rooms);
+    } catch (err) { errorHandler(err, req, res) }
+}
+
+async function sendGroupRequest(req, res) {
+    try {
+        const { senderId, groupId } = req.body;
+        if (!senderId || !groupId )
+            return res.status(401).send('Invalid data').end();
+
+        const group = await findRoomById(groupId);
+        group.requests = addId(group.requests, senderId);
+        const updatedGroup = await updateRoom(group);
+        return res.status(200).send(updatedGroup);
     } catch (err) { errorHandler(err, req, res) }
 }
 
@@ -271,9 +284,10 @@ module.exports = {
     removeFriendRequest,
     acceptFriendRequest,
     removeFriend,
-    getChat,
+    getGroup,
     createGroup,
-    updateGrpup,
+    updateGroup,
     updatePassword,
-    getPublicGroups
+    getPublicGroups,
+    sendGroupRequest
 }

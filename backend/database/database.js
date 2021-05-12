@@ -30,26 +30,29 @@ async function findRoomById(id) {
             .findById(id)
             .populate('members')
             .populate('messages')
-    } catch (err) { return errorHandler(err) }
-}
-
-async function updateRoom(room) {
-    if (!room) return undefined;
-    try {
-        return await RoomSchema
+            .populate('requests')
+        } catch (err) { return errorHandler(err) }
+    }
+    
+    async function updateRoom(room) {
+        if (!room) return undefined;
+        try {
+            return await RoomSchema
             .findOneAndUpdate({ _id: room._id }, room, { new: true })
             .populate('members')
             .populate('messages')
-    } catch (err) { return errorHandler(err) }
-}
-
-async function findRooms(selector) {
-    if (invalidSelector(selector)) return undefined;
-    try {
-        return await RoomSchema
+            .populate('requests')
+        } catch (err) { return errorHandler(err) }
+    }
+    
+    async function findRooms(selector) {
+        if (invalidSelector(selector)) return undefined;
+        try {
+            return await RoomSchema
             .find(selector)
             .populate('members')
             .populate('messages')
+            .populate('requests')
     } catch (err) { return errorHandler(err) }
 }
 
@@ -122,7 +125,7 @@ module.exports = {
     createMessage,
     findUser,
     findUserById,
-    findChatById: findRoomById,
+    findRoomById,
     findUsers,
     updateUser,
     updateRoom,
