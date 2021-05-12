@@ -36,9 +36,16 @@ function ChatAside({ users, chat }) {
                 </div>
                 : null
             }
+            {context.user._id === chat.admin && chat.requests.length !== 0
+                ? <div>
+                    <h3 className={styles.important}>Requests {chat.requests.length}</h3>
+                </div>
+                : null
+            }
             {context.user._id === chat.admin
                 ? <Link className={styles.buton} to={`/group/${chat._id}`}>Settings</Link>
-                : null}
+                : null
+            }
         </div>
     )
 }

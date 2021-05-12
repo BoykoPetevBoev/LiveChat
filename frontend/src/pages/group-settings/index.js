@@ -14,7 +14,7 @@ import { getChat } from '../../requester';
 import BorderWrapper from '../../components/wrapper-border';
 import Card from '../../components/card';
 
-function SettingsGroupPage({match}) {
+function SettingsGroupPage({ match }) {
 
     const context = useContext(UserContext);
     const history = useHistory();
@@ -26,6 +26,7 @@ function SettingsGroupPage({match}) {
     const [about, setAbout] = useState('');
     const [type, setType] = useState('private');
     const [members, setMembers] = useState([user]);
+    const [requests, setRequests] = useState([]);
     const [image, setImage] = useState('');
     const [website, setWebsite] = useState('');
 
@@ -41,6 +42,7 @@ function SettingsGroupPage({match}) {
         setWebsite(room.website);
         setType(room.type);
         setMembers(room.members);
+        setRequests(room.requests);
     }
     useEffect(() => {
         fetchData(match?.params?.id);
@@ -61,6 +63,25 @@ function SettingsGroupPage({match}) {
             members.splice(members.findIndex(match), 1);
             setMembers([...members]);
         }
+    }
+    const removeRequest = (e) => {
+        const id = e.target.value;
+        const match = (u) => u._id === id;
+        if (requests.some(match)) {
+            requests.splice(requests.findIndex(match), 1);
+            setRequests([...requests]);
+        }
+    }
+
+    const acceptRequest = (e) => {
+        const id = e.target.value;
+        const match = (u) => u._id === id;
+        const sender = requests.find(match);
+        requests.splice(requests.findIndex(match), 1);
+        setRequests([...requests])
+        if (members.find(match)) return;
+
+        setMembers([...members, sender]);
     }
 
     const filterUsers = () => {
@@ -88,8 +109,9 @@ function SettingsGroupPage({match}) {
         group.about = about;
         group.image = image;
         group.type = type;
-        group.members = members;   
-        group.website = website;    
+        group.members = members;
+        group.requests = requests;
+        group.website = website;
         const response = await updateChat(group);
         history.push(`/group/${response._id}`);
     }
@@ -148,15 +170,21 @@ function SettingsGroupPage({match}) {
                 </form>
                 <UsersList
                     users={members}
-                    heading={'Group Members'}
+                    heading='Group Members'
                     buttons={{ remove: removeUser }}
                     empty={'There is no friends in this section'}
                 />
                 <UsersList
                     users={filterUsers()}
-                    heading={'Add members'}
+                    heading='Add members'
                     buttons={{ add: addUser }}
                     empty={'There is no friends in this section'}
+                />
+                <UsersList
+                    users={requests}
+                    heading='Requests'
+                    buttons={{ add: acceptRequest, remove: removeRequest }}
+                    empty={'There is no requests in this section'}
                 />
             </Wrapper>
         </div>
