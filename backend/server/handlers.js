@@ -1,15 +1,19 @@
 const { checkPassword, hashPassword } = require('../database/utils')
 const {
-    createUser,
     createRoom,
+    createMessage,
+    findRoomById,
+    updateRoom,
+    findRooms
+} = require('../database/database-room');
+
+const {
+    createUser,
     findUser,
     findUserById,
-    findRoomById,
     findUsers,
-    updateUser,
-    updateRoom,
-    findRooms,
-} = require('../database/database');
+    updateUser
+} = require('../database/database-user');
 
 const {
     setToken,
@@ -42,9 +46,10 @@ async function userRegister(req, res) {
     try {
         const user = req.body;
         if (!user.username || !user.email || !user.password)
-            return res.status(401).send('Invalid data').end();
-
+        return res.status(401).send('Invalid data').end();
+        
         const foundUser = await findUser({ email: user.email });
+        console.log(foundUser);
         if (foundUser)
             return res.status(401).end();
 

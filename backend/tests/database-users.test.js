@@ -5,10 +5,10 @@ const {
     findUsers,
     findUser,
     findUserById,
-    updateUser,
-} = require('../database/database');
+    updateUser
+} = require('../database/database-user');
 
-setupDB('Chat-Test-Database');
+setupDB('Chat-Users');
 
 const userModel = new UserSchema({
     email: 'email',
@@ -17,7 +17,7 @@ const userModel = new UserSchema({
 });
 
 describe('User Tests', () => {
-    
+
     test('Save user', async () => {
         const createdUser =  await createUser(userModel)
         const savedUser = await findUserById(createdUser._id);
@@ -35,32 +35,25 @@ describe('User Tests', () => {
     })
 
     test('Get user by selector', async () => {
-        // await createUser(userModel)
         const savedUser = await findUser({ email: userModel.email });
         expect(savedUser.email).toBe(userModel.email);
         expect(savedUser.username).toBe(userModel.username);
-        // expect(savedUser.password).toBe(userModel.password);
     })
 
     test('Get user by id', async () => {
-        // const user = await createUser(userModel);
         const savedUser = await findUserById(userModel._id);
         expect(savedUser.email).toBe(userModel.email);
         expect(savedUser.username).toBe(userModel.username);
-        // expect(savedUser.password).toBe(userModel.password);
     })
 
     test('Get users', async () => {
-        // const user = await createUser(userModel)
         const savedUsers = await findUsers({ username: userModel.username });
         expect(savedUsers.length).toBe(1);
         expect(savedUsers[0]['username']).toEqual(userModel.username);
         expect(savedUsers[0]['email']).toEqual(userModel.email);
-        // expect(savedUsers[0]['password']).toEqual(userModel.password);
     })
 
     test('Update user', async () => {
-        // const user = await createUser(userModel)
         userModel.username = 'updated-username';
         userModel.password = 'updated-password';
         userModel.phone = 'updated-phone';

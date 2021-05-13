@@ -7,9 +7,9 @@ const {
     createMessage,
     findRoomById,
     updateRoom,
-} = require('../database/database');
+} = require('../database/database-room');
 
-setupDB('Chat-Test-Database');
+setupDB('Chat-Rooms');
 
 const userModel = new UserSchema({
     email: 'email',
@@ -29,6 +29,10 @@ const message = {
 }
 
 describe('Room Tests', () => {
+    // afterAll(async () => {
+    //     await dropAllCollections()
+    //     await mongoose.connection.close()
+    // })
 
     test('Save room', async () => {
         const createdRoom = await createRoom(roomModel);
@@ -61,7 +65,7 @@ describe('Room Tests', () => {
         expect(savedRoom.name).toBe(roomModel.name);
         expect(savedRoom.type).toBe(roomModel.type);
     })
-    
+
     test('Update room', async () => {
         // const room = await createRoom(roomModel);
         roomModel.name = 'updated-name';

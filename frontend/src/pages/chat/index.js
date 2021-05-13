@@ -9,6 +9,7 @@ import Wrapper from '../../components/wrapper-main';
 import ChatHeader from '../../components/chat-header';
 import ChatMessages from '../../components/chat-messages';
 import ChatAside from '../../components/chat-aside';
+import EmojiPicker from '../../components/chat-emoji-picker';
 
 function ChatPage(props) {
     const context = useContext(UserContext);
@@ -17,6 +18,7 @@ function ChatPage(props) {
     const [chat, setChat] = useState({});
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
+    const [display, setDisplay] = useState(false)
 
     const fetchData = async (id) => {
         if (!id) return;
@@ -49,6 +51,16 @@ function ChatPage(props) {
         socket.emit('chat-message', msgTemplate)
     }
 
+    const addEmoji = (e) => {
+        const emoji = e.target.value;
+        setMessage(message + emoji);
+        
+    };
+
+    const emojiPickerView = () => {
+        display ? setDisplay(false) : setDisplay(true);
+    }
+
     const onSubmit = async (e) => {
         e.preventDefault();
         if (!message) return;
@@ -67,7 +79,13 @@ function ChatPage(props) {
                     <div className={styles.main}>
                         <ChatHeader chat={chat} user={user} users={users} />
                         <ChatMessages messages={messages} users={users} />
+
+                        <EmojiPicker onClick={addEmoji} display={display} />
                         <form className={styles.form} onSubmit={onSubmit}>
+                            <div onClick={emojiPickerView} className={styles.emoji}>
+                                <i class="fas fa-smile"></i>
+                            </div>
+
                             <input
                                 className={styles.input}
                                 type="text"
