@@ -2,7 +2,7 @@
     width: 400px;
     border-left: solid 1px rgba(191, 191, 191, 1);
     overflow: auto;
-    transition: width 1s;
+    transition: width .5s;
     overflow: scroll;
     display: flex;
     flex-direction: column;

@@ -3,7 +3,8 @@ const RoomSchema = require('../database/models/Room');
 const MessageSchema = require('../database/models/Message');
 const setupDB = require('./test-setup');
 
-setupDB('Chat-Test-Database');
+setupDB('Chat-Models');
+
 const user = {
     email: 'email',
     username: 'username',
