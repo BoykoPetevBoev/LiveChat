@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
 function setToken(user) {
+    if (!user) return;
     const id = user._id;
     const email = user.email;
     const token = jwt.sign({ id, email }, config.tokenKey);
@@ -19,6 +20,7 @@ async function verifyToken(token) {
 }
 
 function addId(array, id) {
+    if (!array || !id) return;
     const match = (element) => element._id == id || element == id;
     if (!array.some(match)) {
         array.push(id);
@@ -27,6 +29,7 @@ function addId(array, id) {
 }
 
 function removeId(array, id) {
+    if (!array || !id) return;
     const match = (user) => user._id == id;
     if (array.some(match)) {
         const index = array.findIndex(match);

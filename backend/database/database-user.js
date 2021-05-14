@@ -1,6 +1,7 @@
 const UserSchema = require('./models/Users');
 const RoomSchema = require('./models/Room');
 const { hashPassword } = require('./utils');
+const mongoose = require('mongoose')
 
 const invalidSelector = (selector) => {
     return !selector || typeof selector !== 'object';

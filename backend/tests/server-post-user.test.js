@@ -2,33 +2,34 @@ const supertest = require('supertest');
 const expressConfig = require('../config/express');
 const UserSchema = require('../database/models/Users');
 const setupDB = require('./test-setup');
-setupDB('Chat-Test-Server');
+
+setupDB('Server-Post-User-Tests');
 
 const app = expressConfig();
 const user = {
-    email: 'testServer',
+    email: 'test',
     username: 'testServer',
     password: 'testServer'
 }
 
-describe('Server Tests', () => {
+describe('Server-Post-User-Tests', () => {
 
     test('/register', async () => {
         const resValid = await supertest(app).post('/user/register').send(user);
-        // const savedUser = await UserSchema.findOne({ email: user.email });
+        const savedUser = await UserSchema.findOne({ email: user.email });
 
         expect(resValid.statusCode).toEqual(200);
-        // expect(savedUser.username).toBe(user.username);
-        // expect(savedUser.email).toBe(user.email);
-        // expect(savedUser.password.length).toBe(60);
-        // expect(savedUser.friends.length).toBe(0);
-        // expect(savedUser.rooms.length).toBe(0);
+        expect(savedUser.username).toBe(user.username);
+        expect(savedUser.email).toBe(user.email);
+        expect(savedUser.password.length).toBe(60);
+        expect(savedUser.friends.length).toBe(0);
+        expect(savedUser.rooms.length).toBe(0);
 
         const resInvalid = await supertest(app).post('/user/register').send(undefined);
         expect(resInvalid.statusCode).toEqual(401);
 
-        // const resRegistered = await supertest(app).post('/user/register').send(user);
-        // expect(resRegistered.statusCode).toEqual(401);
+        const resRegistered = await supertest(app).post('/user/register').send(user);
+        expect(resRegistered.statusCode).toEqual(401);
     })
 
     test('/login', async () => {
@@ -40,15 +41,6 @@ describe('Server Tests', () => {
         // await new UserSchema(user).save();
         const resValid = await supertest(app).post('/user/login').send(user);
         expect(resValid.statusCode).toEqual(200);
-    })
-
-    test('/users', async () => {
-        const resNoUsers = await supertest(app).get(`/users?username=invalid`);
-        const resUsers = await supertest(app).get(`/users?username=${user.username}`);
-        expect(resNoUsers.statusCode).toEqual(200);
-        expect(resNoUsers.body.length).toBe(0);
-        expect(resUsers.statusCode).toEqual(200);
-        expect(resUsers.body.length).toBe(1);
     })
 
     test('/404', async () => {
