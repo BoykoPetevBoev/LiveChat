@@ -44,6 +44,12 @@ describe('User Tests', () => {
         const savedUser = await findUserById(userModel._id);
         expect(savedUser.email).toBe(userModel.email);
         expect(savedUser.username).toBe(userModel.username);
+
+        const invalidId = await findUserById(undefined);
+        expect(invalidId).toBeUndefined();
+
+        const noResult = await findUserById('6075bcfc00c9451a10477a31');
+        expect(noResult).toBeNull();
     })
 
     test('Get users', async () => {

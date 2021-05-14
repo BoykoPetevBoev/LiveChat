@@ -1,19 +1,26 @@
 const { 
     userLogin, 
     userRegister,
-    getUsersByUsername, 
     sendFriendRequest, 
     removeFriendRequest,
     acceptFriendRequest,
     removeFriend,
+    updatePassword,
+    userUpdate
+ } = require('./handlers-post-user');
+
+const {
     userAuthorization,
+    getUsersByUsername,
     getGroup,
+    getPublicGroups,
+} = require('./handlers-get');
+
+const {
     createGroup,
     updateGroup,
-    updatePassword,
-    userUpdate,
-    getPublicGroups,
-    sendGroupRequest } = require('./handlers');
+    sendGroupRequest
+} = require('./handlers-post-room');
 
 function expressRouter(router){   
     router.get('/users', getUsersByUsername);
@@ -35,7 +42,7 @@ function expressRouter(router){
     router.post('/group/send-join-request', sendGroupRequest);
     
     router.use('*', (req, res) => {
-        res.status(404).json({erroe: 'Not found!'});
+        res.status(404).json({error: 'Not found!'});
     })
 }
 

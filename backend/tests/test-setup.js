@@ -37,6 +37,7 @@ async function setupDB(dbName) {
     beforeAll(async () => {
         const url = `mongodb+srv://${config.dbUser}:${config.dbPassword}@${config.dbAddress}/${dbName}?retryWrites=true&w=majority`;
         await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+            await removeAllCollections()
     })
 
     // beforeEach(async () => {

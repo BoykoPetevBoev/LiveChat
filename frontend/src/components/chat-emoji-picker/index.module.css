@@ -14,8 +14,13 @@
 
 .container button {
     border: none;
-    background: none;
-    font-size: 16px;
+    background-color: white;
+    font-size: 17px;
     cursor: pointer;
-    margin: 3px;
+    padding: 3px;
+}
+
+.container button:hover {
+    background-color: aliceblue;
+    font-size: 25px;
 }

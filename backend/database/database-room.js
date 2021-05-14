@@ -9,7 +9,7 @@ async function createMessage(message) {
     if (!message || !message.room || !message.sender || !message.content || !message.time) return undefined;
     try {
         const messageModel = await new MessageSchema(message);
-        return await messageModel.save();
+        return await messageModel.save()
     } catch (err) { return errorHandler(err) }
 }
 

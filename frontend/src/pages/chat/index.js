@@ -83,7 +83,7 @@ function ChatPage(props) {
                         <EmojiPicker onClick={addEmoji} display={display} />
                         <form className={styles.form} onSubmit={onSubmit}>
                             <div onClick={emojiPickerView} className={styles.emoji}>
-                                <i class="fas fa-smile"></i>
+                                <i className="fas fa-smile"></i>
                             </div>
 
                             <input

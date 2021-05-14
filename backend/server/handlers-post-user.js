@@ -49,38 +49,12 @@ async function userRegister(req, res) {
         return res.status(401).send('Invalid data').end();
         
         const foundUser = await findUser({ email: user.email });
-        console.log(foundUser);
         if (foundUser)
             return res.status(401).end();
 
         const createdUser = await createUser(user);
         const token = setToken(createdUser);
         return res.status(200).header('Authorization', token).send(createdUser);
-    }
-    catch (err) { errorHandler(err, req, res) }
-}
-
-async function userAuthorization(req, res) {
-    try {
-        const { token } = req.query;
-        if (!token) return res.status(401).end();
-
-        const tokenStatus = await verifyToken(token);
-        if (!tokenStatus) return res.status(401).end();
-
-        const user = await findUserById(tokenStatus.id);
-        return res.status(200).header('Authorization', token).send(user);
-    }
-    catch (err) { errorHandler(err, req, res) }
-}
-
-async function getUsersByUsername(req, res) {
-    try {
-        const { username } = req.query;
-        if (!username) return res.status(401).end();
-
-        const users = await findUsers({ username });
-        return res.status(200).send(users);
     }
     catch (err) { errorHandler(err, req, res) }
 }
@@ -178,31 +152,6 @@ async function removeFriend(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
-async function getGroup(req, res) {
-    try {
-        const { id } = req.query;
-        if (!id) return res.status(401).send('Invalid data').end();
-
-        const chat = await findRoomById(id);
-        return res.status(200).send(chat);
-    } catch (err) { errorHandler(err, req, res) }
-}
-
-async function createGroup(req, res) {
-    try {
-        const group = req.body;
-        if (!group || !group.name || !group.type || !group.members || group.members.length === 0)
-            return res.status(401).send('Invalid data').end();
-
-        const savedGroup = await createRoom(group);
-        savedGroup.members.map(async (user) => {
-            user.rooms = addId(user.rooms, savedGroup._id);
-            return await updateUser(user);
-        });
-        return res.status(200).send(savedGroup);
-    } catch (err) { errorHandler(err, req, res) }
-}
-
 async function updatePassword(req, res) {
     try {
         const { user, currPassword, newPassword, rePassword } = req.body;
@@ -237,60 +186,18 @@ async function userUpdate(req, res) {
     } catch (err) { errorHandler(err, req, res) }
 }
 
-async function updateGroup(req, res) {
-    try {
-        const room = req.body;
-        if (!room) return res.status(401).send('Invalid data').end();
-
-        const updatedRoom = await updateRoom(room);
-        updatedRoom.members.map(async (user) => {
-            user.rooms = addId(user.rooms, updatedRoom._id);
-            return await updateUser(user);
-        });
-        return res.status(200).send(updatedRoom);
-    } catch (err) { errorHandler(err, req, res) }
-}
-
-async function getPublicGroups(req, res) {
-    try {
-        const rooms = await findRooms({ type: 'public' });
-        return res.status(200).send(rooms);
-    } catch (err) { errorHandler(err, req, res) }
-}
-
-async function sendGroupRequest(req, res) {
-    try {
-        const { senderId, groupId } = req.body;
-        if (!senderId || !groupId )
-            return res.status(401).send('Invalid data').end();
-
-        const group = await findRoomById(groupId);
-        group.requests = addId(group.requests, senderId);
-        const updatedGroup = await updateRoom(group);
-        return res.status(200).send(updatedGroup);
-    } catch (err) { errorHandler(err, req, res) }
-}
-
-
 function errorHandler(err, req, res) {
     console.error(err);
     return res.status(500).send({ error: 'Something failed!' });
 }
 
 module.exports = {
-    userLogin,
+    userLogin, 
     userRegister,
-    userUpdate,
-    userAuthorization,
-    getUsersByUsername,
-    sendFriendRequest,
+    sendFriendRequest, 
     removeFriendRequest,
     acceptFriendRequest,
     removeFriend,
-    getGroup,
-    createGroup,
-    updateGroup,
     updatePassword,
-    getPublicGroups,
-    sendGroupRequest
+    userUpdate
 }

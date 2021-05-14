@@ -29,10 +29,6 @@ const message = {
 }
 
 describe('Room Tests', () => {
-    // afterAll(async () => {
-    //     await dropAllCollections()
-    //     await mongoose.connection.close()
-    // })
 
     test('Save room', async () => {
         const createdRoom = await createRoom(roomModel);
@@ -58,23 +54,19 @@ describe('Room Tests', () => {
     })
 
     test('Get room by id', async () => {
-        // const room = await createRoom(roomModel);
         const savedRoom = await findRoomById(roomModel._id);
-        // expect(savedRoom._id).toStrictEqual(roomModel._id);
         expect(savedRoom.admin).toStrictEqual(roomModel.admin);
         expect(savedRoom.name).toBe(roomModel.name);
         expect(savedRoom.type).toBe(roomModel.type);
     })
 
     test('Update room', async () => {
-        // const room = await createRoom(roomModel);
         roomModel.name = 'updated-name';
         roomModel.type = 'updated-type';
         roomModel.about = 'updated-about';
         roomModel.image = 'updated-image';
         roomModel.website = 'updated-website';
         const savedRoom = await updateRoom(roomModel);
-        // expect(savedRoom._id).toStrictEqual(roomModel._id);
         expect(savedRoom.name).toBe(roomModel.name);
         expect(savedRoom.type).toBe(roomModel.type);
         expect(savedRoom.about).toBe(roomModel.about);
