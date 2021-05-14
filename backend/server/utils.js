@@ -21,7 +21,7 @@ async function verifyToken(token) {
 
 function addId(array, id) {
     if (!array || !id) return;
-    const match = (element) => element._id == id || element == id;
+    const match = (element) => element._id == id || element == id || element._id == id._id || element == id._id;
     if (!array.some(match)) {
         array.push(id);
     }

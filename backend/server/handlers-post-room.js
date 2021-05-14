@@ -25,7 +25,7 @@ const {
 async function createGroup(req, res) {
     try {
         const group = req.body;
-        if (!group || !group.name || !group.type || !group.members || group.members.length === 0)
+        if (!group || group._id || !group.name || !group.type || !group.members || group.members.length === 0)
             return res.status(401).send('Invalid data').end();
 
         const savedGroup = await createRoom(group);
@@ -41,11 +41,13 @@ async function createGroup(req, res) {
 async function updateGroup(req, res) {
     try {
         const room = req.body;
-        if (!room) return res.status(401).send('Invalid data').end();
+        if (!room || !room._id)
+            return res.status(401).send('Invalid data').end();
 
         const updatedRoom = await updateRoom(room);
         updatedRoom.members.map(async (user) => {
-            user.rooms = addId(user.rooms, updatedRoom._id);
+            user = await findUserById(user);
+            user.rooms = addId(user.rooms, updatedRoom);
             return await updateUser(user);
         });
         return res.status(200).send(updatedRoom);
