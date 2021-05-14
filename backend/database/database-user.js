@@ -44,7 +44,7 @@ async function findUserById(id) {
 async function findUsers(selector) {
     if (invalidSelector(selector)) return undefined;
     try {
-        return UserSchema
+        return await UserSchema
             .find(selector)
             .populate('sentRequests')
             .populate('receivedRequests')
