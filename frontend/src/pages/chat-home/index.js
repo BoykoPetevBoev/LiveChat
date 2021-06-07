@@ -47,6 +47,10 @@ function ChatHomePage() {
                     />
                     <GroupsList
                         groups={user.rooms.filter(room => room.type !== 'chat')}
+                        // groups={[...new Set(user.rooms
+                        //     .map(u => u._id)
+                        //     .map(id => user.rooms.find(r => r._id == id)
+                        //     ))]}
                         heading='Groups'
                         empty='There is no groups in your list'
                         buttons={{ redirect: true, settings: true }}
@@ -55,7 +59,7 @@ function ChatHomePage() {
                         groups={groups}
                         heading='Public Groups'
                         empty='There is no public groups'
-                        buttons={{ join: joinToGroup , settings: true, redirect: true,}}
+                        buttons={{ join: joinToGroup, settings: true, redirect: true, }}
                     />
                 </div>
             </Wrapper>

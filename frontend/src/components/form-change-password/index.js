@@ -49,7 +49,6 @@ function ChangePasswordForm() {
             user,
             currPassword,
             newPassword,
-            rePassword
         }
         const response = await updatePassword(body)
         if(!response) return setErrCurrPassword('Wrong password!');

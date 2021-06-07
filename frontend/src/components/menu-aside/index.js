@@ -13,7 +13,15 @@ function Menu() {
     useEffect(() => {
         setUser(context.user)
         setChats(context.user.rooms.filter(room => room.type === 'chat'));
-        setRooms(context.user.rooms.filter(room => room.type !== 'chat'));
+        // setRooms(context.user.rooms.filter(room => room.type !== 'chat'));
+        setRooms(
+            [...new Set(context.user.rooms
+                .filter(room => room.type !== 'chat')
+                .map(u => u._id)
+                .map(id => context.user.rooms.find(r => r._id === id))
+                )
+            ]
+        );
     }, [context.user]);
 
     const RenderFriends = () => {

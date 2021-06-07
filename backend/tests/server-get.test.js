@@ -85,4 +85,9 @@ describe('Server-Get-Tests', () => {
         expect(correctRequest.body[0].name).toBe(room.name);
         expect(correctRequest.body[0].type).toBe(room.type);
     })
+
+    test('/404', async () => {
+        const res = await supertest(app).get('/404');
+        expect(res.statusCode).toEqual(404);
+    })
 })
