@@ -46,8 +46,8 @@ async function userRegister(req, res) {
     try {
         const user = req.body;
         if (!user.username || !user.email || !user.password)
-        return res.status(401).send('Invalid data').end();
-        
+            return res.status(401).send('Invalid data').end();
+
         const foundUser = await findUser({ email: user.email });
         if (foundUser)
             return res.status(401).end();
@@ -154,15 +154,13 @@ async function removeFriend(req, res) {
 
 async function updatePassword(req, res) {
     try {
-        const { user, currPassword, newPassword, rePassword } = req.body;
+        const { user, currPassword, newPassword } = req.body;
         if (!user ||
             !currPassword ||
             !newPassword ||
-            !rePassword ||
             newPassword === '' ||
             newPassword.length < 3 ||
-            newPassword.length > 50 ||
-            rePassword !== newPassword
+            newPassword.length > 50
         ) return res.status(401).send('Invalid data').end();
 
         const matchPassword = await checkPassword(currPassword, user.password);
@@ -178,8 +176,17 @@ async function updatePassword(req, res) {
 
 async function userUpdate(req, res) {
     try {
-        const user = req.body;
+        const user = req.body && req.body._doc
+            ? req.body._doc
+            : req.body;
+
         if (!user) return res.status(401).send('Invalid data').end();
+
+        // user.rooms = [...new Set(user.rooms
+        //     .map(u => u._id)
+        //     .map(id => user.rooms.find(r => r._id == id)
+        //     ))]
+        user.rooms = [...new Set(user.rooms)]
 
         const updatedUser = await updateUser(user);
         return res.status(200).send(updatedUser);
@@ -192,9 +199,9 @@ function errorHandler(err, req, res) {
 }
 
 module.exports = {
-    userLogin, 
+    userLogin,
     userRegister,
-    sendFriendRequest, 
+    sendFriendRequest,
     removeFriendRequest,
     acceptFriendRequest,
     removeFriend,

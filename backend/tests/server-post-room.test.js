@@ -102,8 +102,8 @@ describe('Server-Post-Room-Tests', () => {
         expect(updatedGroup.body.members.length).toEqual(2);
         expect(updatedGroup.body.requests.length).toEqual(0);
 
-        // const updatedUser = await findUserById(savedUser._id);
-        // expect(updatedUser.rooms.length).toBe(1);
+        const updatedUser = await findUserById(savedUser._id);
+        expect(updatedUser.rooms.length).toBe(1);
     })
 
 })

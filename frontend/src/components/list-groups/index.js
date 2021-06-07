@@ -3,6 +3,10 @@ import BorderWrapper from '../wrapper-border'
 import Card from '../card';
 
 function GroupsList({ groups, buttons, empty, heading }) {
+    groups = [...new Set(groups
+        .map(u => u._id)
+        .map(id => groups.find(r => r._id === id)
+        ))]
     return (
         <BorderWrapper heading={heading}>
             {
