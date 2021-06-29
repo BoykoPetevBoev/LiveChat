@@ -32,7 +32,6 @@ function solve(input) {
                 for (let z = 0; z < n; z++) {
    
                     if (
-                        // X == x && Y == y && Z == Z ||
                         X == x && Y == y && Z - 1 == z ||
                         X == x && Y == y && Z + 1 == z ||
                         X == x && Y + 1 == y && Z == z ||
